@@ -20,6 +20,6 @@
 <div class="dark-bg"></div>
 
 <div id="content"> 
-    <?php require_once "page1/page1.php";?>
+    <?php require_once "home/home.php";?>
     <!-- AJAX FILL --> 
 </div>

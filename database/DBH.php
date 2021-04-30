@@ -9,7 +9,7 @@
     private $DBhost = "out27.keliweb.com";
     private $DBuser = "udkedhjd_dev";
     private $DBpwd = 'as@$asfaskjpjAFaks2';
-    private $DBname = "udkedhjd_A7TETE12";
+    private $DBname = "udkedhjd_test";
     private $DBport = "3306";
 
     protected function connect()

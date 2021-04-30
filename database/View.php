@@ -37,4 +37,13 @@
     public function friends(){
 
     }
+
+    public function pages(){
+      $sql = "SELECT 	pages.dir,
+                      pages.title,
+                      pages.menu_name
+              FROM 		pages 
+              WHERE 	pages.activated != 0; ";
+      return $this->getAll($sql);
+    }
   }

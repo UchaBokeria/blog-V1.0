@@ -1,8 +1,19 @@
 <?php
-    $arr = array(["folder"=>"user-side","file"=>"index"],
-                 ["folder"=>"user-side","file"=>"index"]);
+    include_once "database/autoloader.php";
+    $get = new View();
+    $result = $get->pages();     
+        
+    $require_js = '<script src="app/user-side/index.js"></script>' ;
+    $require_css = '<link rel="stylesheet" href="assets/style/reset.css">
+                    <link rel="stylesheet" href="app/user-side/index.css">' ;
 
-                 
+    foreach($result AS $value){
+        $require_css .= '<link rel="stylesheet" href="' . $value["dir"] . $value["title"] . '/' . $value["title"] . '.css">' ;
+        $require_js .= '<script src="' . $value["dir"] . $value["title"] . '/' . $value["title"] . '.js"></script>' ;
+    }  
+    
+    $require_fonts = "";
+    
     $require_icons = "
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
         <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
@@ -11,10 +22,12 @@
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     ";
 
+
     $require_plugins = "<script src='plugins/emojiPicker/fgEmojiPicker.js'></script>";
-    $require_fonts = "";
-    $require_css = "";
-    $require_js = "";
+
     
-    $require_css .= '<link rel="stylesheet" href="app/' . $arr[0]["folder"] . '/' . $arr[0]["file"] . '.css">';
-    $require_js .= '<script src="app/' . $arr[1]["folder"] . '/' . $arr[1]["file"] . '.js"></script>';
+    $url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+    if(strpos($url,"admin"))
+        $root = "app/admin-side/index.php";
+    else
+        $root = "app/user-side/index.php";
