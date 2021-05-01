@@ -63,7 +63,7 @@
 #content::-webkit-scrollbar{display:none;}
 #content{
     width:100%;
-    background:#eee;
+    background:white;
     padding:3vh 7vw;
     height:88vh;
     overflow-y:scroll;

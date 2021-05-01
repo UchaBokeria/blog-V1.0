@@ -19,7 +19,7 @@
 
 <div class="dark-bg"></div>
 
-<div id="content"> 
-    <?php require_once "home/home.php";?>
-    <!-- AJAX FILL --> 
+<div id="content">
+    <?php require_once "contact/contact.php";?>
+    <!-- AJAX FILL -->
 </div>
