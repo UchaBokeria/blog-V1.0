@@ -3,11 +3,12 @@
 }
 #exhibition h1{
   color: #252525;
-  font-family: bold;
+  font-family: RobotoBold;
 }
 #exhibition p{
   font-size: 12px;
   color: #121212;
+  font-family: RobotoLight;
 }
 .Carousel-container{
   margin: 2vh 0 2vh 0;
@@ -42,7 +43,7 @@
   justify-content: space-between;
   align-items: center;
   width: 60%;
-  height: 3vh;
+  height: 4vh;
   margin-left: 20%;
 }
 .page-item{
@@ -51,17 +52,20 @@
   align-items: center;
   width: 10%;
   height: inherit;
-  background: black;
+  background: #252525;
   color:white;
   border-radius: 3px;
+  font-family: Lobster;
 }
 
-@media only screen and (min-width:1024px){
+@media only screen and (min-width:1025px){
   #exhibition h1{
     font-size: 1.8vw;
+    font-family: RobotoBold;
   }
   #exhibition p{
     font-size: 1.2vw;
+    font-family: RobotoLight;
   }
   .Carousel-container{
     height: 50vh;
