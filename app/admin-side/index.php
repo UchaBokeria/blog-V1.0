@@ -1,4 +1,3 @@
-<?php ?>
 <div id="head">
     <p class="active-page">Ausstellung</p>
     <p class="aactive-page">My Blog</p>
@@ -14,9 +13,10 @@
         <p>Profil</p>
     </div>
 </div>
+
 <!-- <div class="dark-bg"></div> -->
 
 <div id="content" style="padding:3vh 5%;">
-    <?php require_once "admin-home/admin-home.php";?>
+    <?php require_once "admin-blog/admin-blog.php";?>
     <!-- AJAX FILL -->
 </div>
