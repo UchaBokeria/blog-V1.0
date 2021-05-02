@@ -1,25 +1,22 @@
 <?php ?>
-<div id="menu">
-    <i class='fas fa-moon'></i>
-    <p>Ausstellung</p>
-    <div class="glyphicon glyphicon-menu-hamburger toggle-navigation"></div>
+<div id="head">
+    <p class="active-page">Ausstellung</p>
+    <p class="aactive-page">My Blog</p>
+    <p class="aactive-page">Profil</p>
 </div>
 
-<div id="navigation">
+<div id="navigation" style="display:none;">
     <b class="active-page">Über uns </b>
     <i class="fa fa-close toggle-navigation"></i>
-
     <div>
         <p>Ausstellung</p>
         <p>Kontakt</p>
-        <p>Blog</p>
+        <p>Profil</p>
     </div>
-
 </div>
+<!-- <div class="dark-bg"></div> -->
 
-<div class="dark-bg"></div>
-
-<div id="content">
-    <?php require_once "contact/contact.php";?>
+<div id="content" style="padding:3vh 5%;">
+    <?php require_once "admin-home/admin-home.php";?>
     <!-- AJAX FILL -->
 </div>
