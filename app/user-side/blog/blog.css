@@ -40,17 +40,21 @@
 .user-text p{
   font-size: 2.5vw;
   color:#858585;
+  font-family: RobotoLight;
 }
 .user-text h1{
+  font-family: RobotoBold;
   font-size: 3.5vw;
   color:#252525;
 }
 
 .text h1{
+  font-family: RobotoBold;
   font-size: 16px;
   color: #252525;
 }
 .text p{
+  font-family: RobotoLight;
   margin-top: 2vh;
   font-size: 12px;
   color: #121212;
@@ -80,9 +84,10 @@
   background: black;
   color:white;
   border-radius: 3px;
+  font-family: Lobster;
 }
 
-@media only screen and (min-width:1024px){
+@media only screen and (min-width:1025px){
   .user-info{
     display: flex;
     align-items: center;

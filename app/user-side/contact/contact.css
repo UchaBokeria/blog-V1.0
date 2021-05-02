@@ -10,6 +10,7 @@
 h1{
   font-size: 18px;
   color: #000000;
+  font-family: RobotoBold;
 }
 input{
   background: #252525;
@@ -35,14 +36,16 @@ button{
   border-radius: 25px;
   font-size: 18px;
   color: #FFFFFF;
+  font-family: RobotoLight;
 }
 
 ::placeholder{
   font-size: 13px;
   color: #FFFFFF;
+  font-family: RobotoLight;
 }
 
-@media only screen and (min-width:1024px){
+@media only screen and (min-width:1025px){
   .Contact{
     width: 60%;
     margin-left: 20%;

@@ -38,10 +38,12 @@
   min-height: 15vh;
 }
 .admin-desc h1{
+  font-family: RobotoBold;
   font-size: 13px;
   color: #000000;
 }
 .admin-desc p{
+  font-family: RobotoLight;
   font-size: 12px;
   color: #121212;
 }
@@ -60,7 +62,7 @@
   display: none;
 }
 
-@media only screen and (min-width:1024px){
+@media only screen and (min-width:1025px){
   .admin-header {
     display: none;
   }
@@ -93,7 +95,9 @@
     font-size: 1.5vw;
     color: #000000;
   }
-
+  .web-admin-header h2{
+    font-family: RobotoLightItalic;
+  }
   .web-admin-desc{
     display: flex;
     flex-direction: column;
