@@ -24,7 +24,6 @@
   <hr style="border-bottom:1px solid #C4C4C4">
 </div>
 
-
 <div id="blog">
   <div class="user-info">
     <div class="user-image">
@@ -49,7 +48,6 @@
     sit amet,  con  Lorem ipsum dolor sit amet,  consectetur
     adipiscing elit ut aliquamLorem ipsum dolor sit amet,  con  .</p>
   </div>
-  <hr style="border-bottom:1px solid #C4C4C4">
 </div>
 
 <div class="pages">

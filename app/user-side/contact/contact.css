@@ -19,6 +19,7 @@ input{
   border-radius: 10px;
   text-indent: 10px;
   color: #FFFFFF;
+  padding-left: 4%;
 }
 textarea{
   resize: none;
@@ -60,18 +61,15 @@ button{
     background: #252525;
     height: 5vh;
     border-radius: 25px;
-    font-size: 2vw;
+    font-size: 1.3vw;
+    letter-spacing: 2px;
     color: #FFFFFF;
   }
 
   textarea{
-    padding: 2% 1%;
+    padding:5%;
   }
   ::placeholder{
     font-size: 1vw;
-  }
-
-  textarea:hover, input:hover, button:hover{
-    box-shadow: 1px 1px 5px 1px black;
   }
 }

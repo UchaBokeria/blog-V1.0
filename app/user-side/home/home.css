@@ -6,7 +6,7 @@
   font-family: RobotoBold;
 }
 #exhibition p{
-  font-size: 12px;
+  font-size: 16px;
   color: #121212;
   font-family: RobotoLight;
 }
@@ -31,6 +31,10 @@
   float: left;
 }
 
+.text{
+  font-size:1.2vw;
+}
+
 .rotateLeft{
   transform: rotate(90deg);
 }
@@ -45,6 +49,7 @@
   width: 60%;
   height: 4vh;
   margin-left: 20%;
+  cursor: pointer;
 }
 .page-item{
   display: flex;
@@ -77,6 +82,7 @@
     display: none;
   }
   .pages-web{
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;

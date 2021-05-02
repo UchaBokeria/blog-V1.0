@@ -6,7 +6,6 @@
   flex-direction: column;
   border-radius: 10px;
   margin-bottom: 5vh;
-  box-shadow: 0px 0px 5px 0px black;
 }
 
 .admin-header{
@@ -18,17 +17,26 @@
   align-items: center;
   background: #C4C4C4;
 }
+.header-info{
+  width: 55%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .admin-header i{
   font-size: 10vw;
+  cursor: pointer;
 }
-.admin-header img{
+.header-info img{
   border-radius: 100%;
   background: white;
-  width: 10%;
-  height: 5vh;
+  width: 20%;
+  height: auto;
   font-size: 22px;
 }
-
+.admin-header h1{
+  font-size: 3vw;
+}
 .admin-desc{
   display: flex;
   flex-direction: column;
@@ -38,14 +46,9 @@
   margin-left: 8%;
   min-height: 15vh;
 }
-.admin-desc h1{
-  font-family: RobotoBold;
-  font-size: 13px;
-  color: #000000;
-}
 .admin-desc p{
   font-family: RobotoLight;
-  font-size: 12px;
+  font-size: 3vw;
   color: #121212;
 }
 
@@ -56,62 +59,31 @@
   transform:rotate(180deg);
 }
 
-.web-admin-header{
-  display: none;
-}
-.web-admin-desc{
-  display: none;
-}
-
 @media only screen and (min-width:1025px){
-  .admin-header {
-    display: none;
-  }
-  .admin-desc{
-    display: none;
-  }
-
-  .web-admin-header{
+  .admin-header{
     width: 90%;
+    justify-content: space-between;
     margin-left: 5%;
-    height: 8vh;
-    border-radius: 10px;
+  }
+  .admin-header i{
+    font-size: 4vw;
+  }
+  .header-info{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #C4C4C4;
+    width: 20%;
   }
-  .web-admin-header i{
-    font-size: 5vw;
+  .admin-header img{
+    width: auto;
+    height: 6vh;
   }
-  .web-admin-header img{
-    border-radius: 100%;
-    background: white;
-    width: 5%;
-    height: 5vh;
-    font-size: 22px;
-    border:1px solid black;
-  }
-  .web-admin-header h1{
+  .admin-header h1{
     font-size: 1.5vw;
-    color: #000000;
   }
-  .web-admin-header h2{
-    font-family: RobotoLightItalic;
-  }
-  .web-admin-desc{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: right;
-    width: 84%;
-    margin-left: 8%;
-    min-height: 15vh;
-  }
-  .web-admin-desc p{
+  .admin-desc p{
     font-family: RobotoLight;
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     color: #121212;
-    letter-spacing: 1px;
   }
 }

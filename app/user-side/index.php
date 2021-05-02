@@ -1,4 +1,3 @@
-<?php ?>
 <div id="menu">
     <i class='fas fa-moon'></i>
     <p>Ausstellung</p>
@@ -30,7 +29,7 @@
 <div class="dark-bg"></div>
 
 <div id="content">
-    <?php require_once "blog/blog.php";?>
+    <?php require_once "home/home.php";?>
     <!-- AJAX FILL -->
 </div>
 
