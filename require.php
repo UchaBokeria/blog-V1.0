@@ -3,9 +3,12 @@
     $get = new View();
     $result = $get->pages();
 
-    $require_js = '<script src="app/user-side/index.js"></script>' ;
+    $require_js = ' <script src="app/user-side/index.js"></script>
+                    <script src="app/admin-side/admin-index.js"></script>' ;
+                    
     $require_css = '<link rel="stylesheet" href="assets/style/reset.css">
                     <link rel="stylesheet" href="app/user-side/index.css">
+                    <link rel="stylesheet" href="app/admin-side/admin-index.css">
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">' ;
 
     foreach($result AS $value){
@@ -24,7 +27,8 @@
     ";
 
 
-    $require_plugins = "<script src='plugins/emojiPicker/fgEmojiPicker.js'></script>";
+    $require_plugins = "<script src='plugins/emojiPicker/fgEmojiPicker.js'></script>
+                        <script src='https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js'></script>";
 
 
     $url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];

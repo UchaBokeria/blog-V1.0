@@ -76,6 +76,7 @@
   display: none;
 }
 
+
 @media only screen and (min-width:1025px){
   #menu{
     display: none;
@@ -109,7 +110,6 @@
     position: absolute;
     left: 7%;
   }
-
   .footer{
     display: flex;
     align-items: center;
