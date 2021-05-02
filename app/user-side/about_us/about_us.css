@@ -6,6 +6,7 @@
   flex-direction: column;
   border-radius: 10px;
   margin-bottom: 5vh;
+  box-shadow: 0px 0px 5px 0px black;
 }
 
 .admin-header{
@@ -108,6 +109,7 @@
     min-height: 15vh;
   }
   .web-admin-desc p{
+    font-family: RobotoLight;
     font-size: 1.3vw;
     color: #121212;
     letter-spacing: 1px;

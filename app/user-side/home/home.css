@@ -57,6 +57,9 @@
   border-radius: 3px;
   font-family: Lobster;
 }
+.pages-web{
+  display: none;
+}
 
 @media only screen and (min-width:1025px){
   #exhibition h1{
@@ -69,5 +72,16 @@
   }
   .Carousel-container{
     height: 50vh;
+  }
+  .pages{
+    display: none;
+  }
+  .pages-web{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    height: 4vh;
+    margin-left: 20%;
   }
 }

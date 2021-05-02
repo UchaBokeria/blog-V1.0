@@ -47,12 +47,18 @@
     <h1>Title of The Article</h1>
     <p>Lorem ipsum dolor sit amet,  consectetur adipiscing  elit ut aliquamLorem ipsum dolor
     sit amet,  con  Lorem ipsum dolor sit amet,  consectetur
-    adipiscing  elit ut aliquamLorem ipsum dolor sit amet,  con  .</p>
+    adipiscing elit ut aliquamLorem ipsum dolor sit amet,  con  .</p>
   </div>
   <hr style="border-bottom:1px solid #C4C4C4">
 </div>
 
 <div class="pages">
+  <div class="page-item"><i class="fa fa-angle-down rotateLeft"></i></div>
+  <div class="page-item">1</div>
+  <div class="page-item"><i class="fa fa-angle-down rotateRight"></i></div>
+</div>
+
+<div class="pages-web">
   <div class="page-item"><i class="fa fa-angle-down rotateLeft"></i></div>
   <div class="page-item">1</div>
   <div class="page-item">2</div>

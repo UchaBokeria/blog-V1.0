@@ -30,7 +30,7 @@
 <div class="dark-bg"></div>
 
 <div id="content">
-    <?php require_once "home/home.php";?>
+    <?php require_once "blog/blog.php";?>
     <!-- AJAX FILL -->
 </div>
 
