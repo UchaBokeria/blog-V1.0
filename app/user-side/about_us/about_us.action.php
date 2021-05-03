@@ -1,11 +1,12 @@
 <?php 
     include_once "../../module.php";
     $act = $_REQUEST["act"];
-    $limit = $_REQUEST["post_limit"];
+    //$limit = $_REQUEST["post_limit"];
     // if(!isset($_REQUEST["post_limit"]))
 
     $limit = 10;
     $result = array();
+    $result["content"] = "";
     $res = $get->about($limit);
 
     foreach ($res as $value) {
