@@ -12,6 +12,7 @@ $(document).on("click", "#send_mail", function () {
     $("#mail_text").val("");
 });
 $(document).on("keyup", "#mail_address", function () {
+    console.log(ValidMail);
     if (ValidMail.test($(this).val())) {
         $(this).css("border", "2px solid #AF1F1F");
    }
