@@ -5,12 +5,12 @@
 </div>
 
 <div class="web-menu">
-  <img src="https://cdn2.iconfinder.com/data/icons/social-media-black-white-1/1024/bw-4-512.png" alt="icon">
+  <img src="https://cdn2.iconfinder.com/data/icons/social-media-black-white-1/1024/bw-4-512.png" id="logo" data-page="home">
   <div class="web-menu-links">
-    <p>Ausstellung</p>
-    <p>Blog</p>
-    <p>Über uns</p>
-    <p>Kontakt</p>
+    <p data-page="home">Ausstellung</p>
+    <p data-page="blog">Blog</p>
+    <p data-page="about_us">Über uns</p>
+    <p data-page="contact">Kontakt</p>
   </div>
 </div>
 
@@ -28,8 +28,7 @@
 
 <div class="dark-bg"></div>
 
-<div id="content">
-    <?php require_once "home/home.php";?>
+<div id="content" class="ragac1">
     <!-- AJAX FILL -->
 </div>
 
