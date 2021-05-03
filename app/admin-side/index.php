@@ -1,7 +1,7 @@
 <div id="head">
-    <p class="active-page">Ausstellung</p>
-    <p class="aactive-page">My Blog</p>
-    <p class="aactive-page">Profil</p>
+    <p class="active-page" data-page="home">Ausstellung</p>
+    <p class="aactive-page" data-page="blog">My Blog</p>
+    <p class="aactive-page" data-page="profile">Profil</p>
 </div>
 
 <div id="navigation" style="display:none;">
@@ -17,6 +17,5 @@
 <!-- <div class="dark-bg"></div> -->
 
 <div id="content" style="padding:3vh 5%;">
-    <?php require_once "admin-blog/admin-blog.php";?>
     <!-- AJAX FILL -->
 </div>
