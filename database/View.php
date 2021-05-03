@@ -50,12 +50,13 @@
       }
       $param = array(["attr"=>$limit,"type"=>PDO::PARAM_INT]);
 
-      $sql = "SELECT  accounts.id,
+      $sql = "SELECT  posts.id,
                       accounts.profile_pic,
                       accounts.nickname,
                       posts.title,
                       posts.`desc`,
                       posts.createdAt,
+	                    `status`.title AS `status`,
                       CONCAT(files.dir,file_types.extension) AS path
                       
                     FROM
@@ -63,6 +64,7 @@
                       JOIN accounts ON posts.user_id = accounts.id
                       LEFT JOIN files ON files.post_id = posts.id
                       LEFT JOIN file_types ON files.type_id = file_types.id
+	                    LEFT JOIN `status` ON `status`.id = posts.status_id
                     WHERE
                       category_id = 1 
                     ORDER BY
@@ -75,12 +77,13 @@
         $limit = 1;
       }
       $param = array(["attr"=>$limit,"type"=>PDO::PARAM_INT]);
-      $sql = "SELECT  accounts.id,
+      $sql = "SELECT  posts.id,
                       accounts.profile_pic,
                       accounts.nickname,
                       posts.title,
                       posts.`desc`,
                       posts.createdAt,
+	                    `status`.title AS `status`,
                       CONCAT(files.dir,file_types.extension) AS path
                       
                     FROM
@@ -88,6 +91,7 @@
                       JOIN accounts ON posts.user_id = accounts.id
                       LEFT JOIN files ON files.post_id = posts.id
                       LEFT JOIN file_types ON files.type_id = file_types.id
+	                    LEFT JOIN `status` ON `status`.id = posts.status_id
                     WHERE
                       category_id = 2 
                     ORDER BY

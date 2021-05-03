@@ -31,12 +31,13 @@ function getAdminPage(page) {
 
 function loadAdminHtml(page) {
     $.ajax({
-        url: "app/admin-side/" + page + "/" + page + ".php",
-        data: {act:"get_posts",post_limit:10},
+        url: "app/admin-side/" + page + "/" + page + ".action.php",
+        data: {act:"get_posts"},
         dataType: "json",
         success: function (data) {
             $("#"+page).html(data.content);
             console.log(data);
+            console.log(page + "datvi");
         }
     });
 }

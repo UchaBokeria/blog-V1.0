@@ -110,6 +110,7 @@
     height: 7vh;
     border-radius: 5px;
     background-color: #c4c4c4c4;
+    margin-bottom: 5vh;
 }
 .post-edit-delete{
     top: 0vh;
@@ -130,9 +131,11 @@
     position: absolute;
 }
 .post-text p,b, .post-edit-delete i{
+    width: 33%;
+    text-align: center;
     cursor: pointer;
 }
-#show_more{
+.show_more{
     top:0;
     cursor: pointer;
     display: flex;
@@ -143,14 +146,13 @@
     font-size: 3.2vw;
 }
 
-
 .edit-window {    
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     top: 13vh;
     left:5%;
-    position: absolute;
+    position: relative;
     width: 90%;
     height: 110vh;
     background-color: #E8E8E8;
@@ -175,7 +177,46 @@
     padding: 0;
     letter-spacing: 1px;
 }
-#post_body_edit{
+
+.edit-window-ajax {    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 13vh;
+    left:5%;
+    position: absolute;
+    width: 90%;
+    height: 110vh;
+    background-color: #E8E8E8;
+    align-items: center;
+    border-radius: 10px;
+    z-index: 1000;
+    display: none;
+}
+.edit-window-ajax i{
+    position: absolute;
+    top:1vh;
+    left: 5%;
+    cursor: pointer;
+    font-size: 3vw;
+}
+.edit-window-ajax input{
+    width: 10%;
+    height: 7vh;
+    position: absolute;
+    top:1vh;
+    left: 45%;
+    padding: 0;
+    letter-spacing: 1px;
+}
+.post_body{
+    position: absolute;
+    display: none;
+    height: 10vh;
+    padding-left:5%;
+    width: 90%;
+}
+.post_body_edit{
     position: absolute;
     top:10vh;
     left: 5%;
@@ -184,10 +225,11 @@
     background-color: #8A8A8A;
     border-radius: 10px;
 }
-#edit_post_types{
+.edit_post_types{
     position: absolute;
-    left:80%;
-    top:0.5vh;
+    display: flex;
+    height: 5vh;
+    align-items: center;
 }
 .save-button{
     position: absolute;
@@ -208,7 +250,7 @@
     background-color: #AF1F1F;
 }
 .edit-post-type-select{
-    padding: 1vh;
+    padding-top:1vh ;
     top:1vh;
     right:5%;
     transition:0.3s;
@@ -225,7 +267,7 @@
 }
 .edit-post-type-select div{
     font-size: 2vw;
-    margin-bottom:1vh;
+    margin-bottom:2vh;
     height: 5vh;
     display: flex;
     justify-content: center;
@@ -249,5 +291,5 @@
     background-color: #c4c4c4c4;
 }
 .edit-post-type-select-active{
-    height:25vh;
+    height:28vh !important;
 }
