@@ -46,7 +46,7 @@ function getPage(page) {
 function loadHtml(page) {
     $.ajax({
         url: "app/user-side/" + page + "/" + page + ".action.php",
-        data: {act:"get_posts",post_limit:10},
+        data: {act:"get_posts"},
         dataType: "json",
         success: function (data) {
             $("#"+page).html(data.content);
