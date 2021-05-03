@@ -1,7 +1,7 @@
 <div id="head">
-    <p class="active-page" data-page="home">Ausstellung</p>
-    <p class="aactive-page" data-page="blog">My Blog</p>
-    <p class="aactive-page" data-page="profile">Profil</p>
+    <p class="active-page" data-page="admin-home">Ausstellung</p>
+    <p class="aactive-page" data-page="admin-blog">My Blog</p>
+    <p class="aactive-page" data-page="admin-profile">Profil</p>
 </div>
 
 <div id="navigation" style="display:none;">
@@ -16,6 +16,6 @@
 
 <!-- <div class="dark-bg"></div> -->
 
-<div id="content" style="padding:3vh 5%;">
+<div id="admin-content" style="padding:3vh 5%;">
     <!-- AJAX FILL -->
 </div>
