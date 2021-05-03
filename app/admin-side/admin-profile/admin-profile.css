@@ -97,28 +97,13 @@
     height:5vh;
 }
 
-.right-side-content label[for="birthdate"],
-.right-side-content label[for="role"]{
-    height:5vh;
-    width:45%;
-}
 .right-side-content label[for="birthdate"]{text-align:right;}
 
-.right-side-content select{
-    background:#DCDCDC;
-    float:left;
-    height:5vh;
-    border-radius:3px;
-    width:30%;
-    margin-right:30%;
-}
 .right-side-content input[type="date"]{
     cursor:pointer;
     float:left;
-    width:30%;
-
+    width:90%;
 }
-
 #save,
 #discard{
     width:30%;
