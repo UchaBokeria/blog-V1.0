@@ -1,17 +1,17 @@
 
 $(document).ready(function () {
-    getPage("home");
+    getAdminPage("admin-home");
 });
 
 $(document).on("click", "#head p", function () {
     var page = $(this).attr("data-page");
     $('#head p').removeClass('active-page');
     $(this).addClass('active-page');
-    getPage(page);
+    getAdminPage(page);
 });
 
-function getPage(page) {
-    var page_url = "app/admin-side/admin-" + page + "/admin-" + page + ".php";
+function getAdminPage(page) {
+    var page_url = "app/admin-side/" + page + "/" + page + ".php";
     console.log(page + " -> " + page_url);
 
     $.ajax({
@@ -19,8 +19,8 @@ function getPage(page) {
         data: {data:"data"},
         dataType: "html",
         success: function (response) {
-            loadHtml(page);
-            $("#content").html(response);
+            loadAdminHtml(page);
+            $("#admin-content").html(response);
         },
         error: function (response) {
             console.log(page + " == error");
@@ -29,9 +29,9 @@ function getPage(page) {
     });
 }
 
-function loadHtml(page) {
+function loadAdminHtml(page) {
     $.ajax({
-        url: "app/admin-side/admin-" + page + "/admin-" + page + ".php",
+        url: "app/admin-side/" + page + "/" + page + ".php",
         data: {act:"get_posts",post_limit:10},
         dataType: "json",
         success: function (data) {
