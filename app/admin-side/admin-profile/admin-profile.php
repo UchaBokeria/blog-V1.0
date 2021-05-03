@@ -1,5 +1,5 @@
 <div id="admin-profile">
-    <div class="left-side-content">
+    <!-- <div class="left-side-content">
         <div>
             <img src="assets/images/profile.png" id="profile_pic">
             <img src="assets/images/upload.png" id="upload">
@@ -48,5 +48,7 @@
             <button type="button" name="save" id="save">Speicher</button>
             <button type="button" name="discard" id="discard">Abbrechen</button>
         </div>
-    </div>
+    </div> -->
+
+    <!-- Aq mokled hovers ra etaka ar vici il try to fix -->
 </div>

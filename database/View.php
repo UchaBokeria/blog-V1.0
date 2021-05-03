@@ -112,4 +112,16 @@
                 ";
       return $this->getAll($sql);
     }
+    public function aboutAdmin($limit=1){
+      $sql = "SELECT  accounts.profile_pic, 
+                      accounts.username,  
+                      accounts.description, 
+                      accounts.birth_date, 
+                      accounts.nickname, 
+                      accounts.email
+              FROM accounts
+              WHERE accounts.id = 2
+              ";
+      return $this->getAll($sql);
+    }
   }
