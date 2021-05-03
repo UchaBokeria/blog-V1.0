@@ -2,6 +2,7 @@
 $(".dark-bg").hide();
 $("#navigation").hide();
 $("#navigation div,#navigation b").hide();
+const ValidMail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 $(document).ready(function () {
     getPage("home");

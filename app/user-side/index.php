@@ -28,9 +28,7 @@
 
 <div class="dark-bg"></div>
 
-<div id="content" class="ragac1">
-    <!-- AJAX FILL -->
-</div>
+<div id="content" class="ragac1"> <!-- AJAX FILLs --> </div>
 
 <div class="footer">
   <div class="footer-text">
