@@ -2,10 +2,10 @@ $('#toggle_info1').click(function () {
     $('.toggle1').fadeToggle(100);
     $("#toggle_info1").toggleClass("rotate");
 });
-
-$('#toggle_info').click(function () {
-    $('.toggle').fadeToggle(100);
-    $("#toggle_info").toggleClass("rotate");
+$(document).on("click", ".toggle_info", function () {
+    var toggle_id = $(this).attr("data-id");
+    $('.toggle[data-id="'+toggle_id+'"]').toggle(800);
+    $('.toggle_info[data-id="'+toggle_id+'"]').toggleClass("rotate");
 });
 
 $('#web-toggle_info').click(function () {

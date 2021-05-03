@@ -96,7 +96,8 @@
       return $this->get($sql,$param);
     }
     public function about(){
-      $sql = "SELECT	users.nickname,
+      $sql = "SELECT	users.id,
+                      users.nickname,
                       users.profile_pic,
                       GROUP_CONCAT(roles.`name`) AS role,
                       account_roles.`title` AS tipi_desc

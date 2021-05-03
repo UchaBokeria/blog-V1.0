@@ -37,7 +37,7 @@
                                     <h1>' . $value["title"] . '</h1>
                                     <p>' . $value["desc"] . '</p>
                                     </div>
-                                    <hr style="border-bottom:1px solid #C4C4C4">
+                                    <hr style="border-bottom:1px solid #C4C4C4; margin:6vh 0;">
                                 </div>';
     }
     

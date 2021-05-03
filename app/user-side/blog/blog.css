@@ -80,11 +80,11 @@
   cursor: pointer;
 }
 .page-item{
+  height: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 10%;
-  height: inherit;
   background: black;
   color:white;
   border-radius: 3px;

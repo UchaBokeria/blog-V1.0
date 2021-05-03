@@ -1,7 +1,8 @@
+
 .admin-info{
   width: 100%;
   height: auto;
-  background: #C4C4C4;
+  background: #EDEDED;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -15,7 +16,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: #C4C4C4;
+  background: #EDEDED;
 }
 .header-info{
   width: 55%;

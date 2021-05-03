@@ -16,10 +16,10 @@
                                         <img src="assets/uploads/' . $value["profile_pic"] . '" alt="">
                                         <h1>' . $value["nickname"] . '</h1>
                                     </div>
-                                    <i id="toggle_info" class="fa fa-angle-down"></i>
+                                    <i class="fa fa-angle-down toggle_info" data-id="'.$value["id"].'"></i>
                                     </div>
                                 
-                                    <div class="toggle">
+                                    <div class="toggle" data-id="'.$value["id"].'">
                                     <div class="admin-desc">
                                         <p>' . $value["tipi_desc"] . '</p>
                                     </div>

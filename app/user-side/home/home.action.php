@@ -10,7 +10,7 @@
     $res = $get->home($limit);
 
     foreach ($res as $value) {
-        $result["content"] .= ' <div id="exhibition">
+        $result["content"] .= ' <div id="exhibition" style="margin-bottom:8vh;">
                         <h1>' . $value["title"] . '</h1>
                         <div class="Carousel-container">
                             <div class="img-tmp">

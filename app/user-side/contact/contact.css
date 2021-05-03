@@ -73,3 +73,7 @@ button{
     font-size: 1vw;
   }
 }
+#mail_sent_res{
+  color:#1FAF1F;
+  font-size:1.5vw;
+}
