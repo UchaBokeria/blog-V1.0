@@ -85,3 +85,6 @@ body {
     transition:2s;
     background: rgb(179, 39, 39);; 
   }
+  html {
+    scroll-behavior: smooth;
+  }

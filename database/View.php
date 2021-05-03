@@ -34,9 +34,6 @@
                     LIMIT ? ";
       return $this->get($sql,$params);
     }
-    public function friends(){
-
-    }
 
     public function pages(){
       $sql = "SELECT 	pages.dir,
@@ -44,6 +41,70 @@
                       pages.menu_name
               FROM 		pages 
               WHERE 	pages.activated != 0; ";
+      return $this->getAll($sql);
+    }
+
+    public function home($limit=""){
+      if($limit == ""){
+        $limit = 1;
+      }
+      $param = array(["attr"=>$limit,"type"=>PDO::PARAM_INT]);
+
+      $sql = "SELECT  accounts.id,
+                      accounts.profile_pic,
+                      accounts.nickname,
+                      posts.title,
+                      posts.`desc`,
+                      posts.createdAt,
+                      CONCAT(files.dir,file_types.extension) AS path
+                      
+                    FROM
+                      posts
+                      JOIN accounts ON posts.user_id = accounts.id
+                      LEFT JOIN files ON files.post_id = posts.id
+                      LEFT JOIN file_types ON files.type_id = file_types.id
+                    WHERE
+                      category_id = 1 
+                    ORDER BY
+                      posts.createdAt DESC
+                    LIMIT ? ";
+      return $this->get($sql,$param);
+    }
+    public function blog($limit=1){
+      if($limit == ""){
+        $limit = 1;
+      }
+      $param = array(["attr"=>$limit,"type"=>PDO::PARAM_INT]);
+      $sql = "SELECT  accounts.id,
+                      accounts.profile_pic,
+                      accounts.nickname,
+                      posts.title,
+                      posts.`desc`,
+                      posts.createdAt,
+                      CONCAT(files.dir,file_types.extension) AS path
+                      
+                    FROM
+                      posts
+                      JOIN accounts ON posts.user_id = accounts.id
+                      LEFT JOIN files ON files.post_id = posts.id
+                      LEFT JOIN file_types ON files.type_id = file_types.id
+                    WHERE
+                      category_id = 2 
+                    ORDER BY
+                      posts.createdAt DESC
+                    LIMIT ? ";
+      return $this->get($sql,$param);
+    }
+    public function about(){
+      $sql = "SELECT	users.nickname,
+                      users.profile_pic,
+                      GROUP_CONCAT(roles.`name`) AS role,
+                      account_roles.`title` AS tipi_desc
+                FROM 		account_roles 
+                LEFT JOIN 		accounts AS users ON users.id = account_roles.user_id
+                LEFT JOIN 		role_details AS roles ON account_roles.role_id = roles.id
+                GROUP BY account_roles.user_id
+                ";
       return $this->getAll($sql);
     }
   }

@@ -30,6 +30,10 @@
   background: #C4C4C4 ;
   float: left;
 }
+.img-tmp img{
+  width:100%;
+  height:inherit;
+}
 
 .text{
   font-size:1.2vw;
