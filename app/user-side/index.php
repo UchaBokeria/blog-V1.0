@@ -1,6 +1,6 @@
 <div id="menu">
-    <i class='fas fa-moon'></i>
-    <p>Ausstellung</p>
+  <img src="https://cdn2.iconfinder.com/data/icons/social-media-black-white-1/1024/bw-4-512.png" id="logo" data-page="home" style="border:0;">
+    <p id="page-titlee">Ausstellung</p>
     <div class="glyphicon glyphicon-menu-hamburger toggle-navigation"></div>
 </div>
 
@@ -15,7 +15,7 @@
 </div>
 
 <div id="navigation">
-    <p class="active-page" data-page="home" class="choosen-pagee">Ausstellung</p>
+    <p class="active-page" data-page="home" id="choosen-pagee">Ausstellung</p>
     <i class="fa fa-close toggle-navigation"></i>
 
     <div>
