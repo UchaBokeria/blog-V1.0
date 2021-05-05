@@ -11,13 +11,18 @@ $(document).ready(function () {
 $(document).on("click", ".toggle-navigation", function () {
     $("#menu span").fadeToggle();
     $(".dark-bg").fadeToggle(400);
-    $("#navigation div,#navigation p").fadeToggle(800);
-    $("#navigation").slideToggle(200);
+    $("#navigation div,#navigation p").fadeToggle(10);
+    $("#navigation").slideToggle(300);
 });
 
 $(document).on("click", "#navigation p", function () {
+    
+    // make title in header
+    $("#page-titlee").html($(this).html());
+
     var choosenForMobileVal = $(this).html();
     var choosenForMobileAttr = $(this).attr("data-page");
+
 
     console.log("choosenForMobileVal");
     console.log(choosenForMobileVal);
@@ -30,8 +35,16 @@ $(document).on("click", "#navigation p", function () {
     var tmpVal = $("#navigation p:first-child").html();
     var tmpAttr = $("#navigation p:first-child").attr("data-page");
 
-    $("#navigation p:first-child").html(choosenForMobileVal);
-    $("#navigation p:first-child").attr("data-page", choosenForMobileAttr);
+
+    console.log("tmpVal");
+    console.log(tmpVal);
+
+
+    console.log("tmpAttr");
+    console.log(tmpAttr);
+
+    $("#choosen-pagee").html(choosenForMobileVal);
+    $("#choosen-pagee").attr("data-page", choosenForMobileAttr);
     
     $(this).html(tmpVal);
     $(this).attr("data-page",tmpAttr);

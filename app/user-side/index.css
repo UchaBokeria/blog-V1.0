@@ -9,14 +9,14 @@
     position:relative;
     font-family: RobotoBold;
 }
-#menu i,
+#menu img,
 #menu div{
     position:absolute;
     z-index:1;
     font-size:10vw;
     cursor:pointer;
 }
-#menu i{left:6vw;}
+#menu img{left:6vw;width:auto;height:8vh;}
 #menu div{right:6vw;top:3vh;}
 
 .web-menu{
@@ -37,7 +37,7 @@
     z-index:10000;
     background:#252525;
     color:white;
-    width:80%;
+    width:75%;
     height:100vh;
     top:0;
     right:0;
@@ -46,9 +46,9 @@
     justify-content:center;
     flex-direction:column;
 }
-#navigation > .choosen-pagee {
+#navigation > #choosen-pagee {
     position:absolute;
-    top:3vh;
+    top:4vh;
     left:6vw;
 }
 #navigation div {
@@ -136,7 +136,7 @@
 }
 
 @media only screen and (min-width:500px){
-  #menu div, #menu i, #menu{
+  #menu div, #menu img, #menu{
     font-size:4vw;
   }
   #menu div{right:6vw;top: 4vh;} 
