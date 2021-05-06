@@ -28,7 +28,7 @@
 
 
     $require_plugins = "<script src='plugins/emojiPicker/fgEmojiPicker.js'></script>
-                        <script src='https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js'></script>";
+                        <script src='https://cdn.ckeditor.com/ckeditor5/27.1.0/decoupled-document/ckeditor.js'></script>";
 
 
     $url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
