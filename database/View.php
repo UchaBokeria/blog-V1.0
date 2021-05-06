@@ -114,6 +114,7 @@
     }
     public function aboutAdmin($limit=1){
       $sql = "SELECT  accounts.profile_pic, 
+                      accounts.id,
                       accounts.username,  
                       accounts.description, 
                       accounts.birth_date, 
