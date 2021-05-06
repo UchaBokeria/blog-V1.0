@@ -19,7 +19,7 @@
 .left-side-content input{
     box-shadow: none;
     height:45%;
-    padding:0% 0%;
+    width: 100%;
     background:#DCDCDC;
     color:#252525;
 }
@@ -31,38 +31,59 @@
     border-radius:5px;
     width:100%;
     height:100%;
-    
-}
-.left-side-content div:hover > #profile_pic {
-    transition:2s;
-    opacity:0.9;
-    cursor:pointer;
-    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
-}
-.left-side-content div:hover > #upload{
-    transition:1s;
-    opacity:1;
-    cursor:pointer;
-}
-#profile_pic{
-    -moz-box-shadow:    inset 0 0 10px #000000;
-    -webkit-box-shadow: inset 0 0 10px #000000;
-    box-shadow:         inset 0 0 10px #000000;
-    transition:2s;
-}
-#upload{
-    
-    transition:1s;
-    top:0;
-    left:20%;
-    width:60%;
-    height:45%;
-    opacity:0;
-    position:absolute;
 }
 
+.profile_pic{
+    width: 100%;
+    height: 37vh;
+    transition:2s;
+}
+.profile_pic img{
+    width: 100%;
+    height: 37vh;
+}
+
+.upload_image{
+    position: absolute;
+    width:100%;
+    height:35vh !important;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+}
+.upload_image:hover{
+    opacity: 1;
+    display: flex;
+}
+.upload_image:hover > .upload_image img{
+    display: none; 
+    /* aq unda iyos ro uploadis icon ro amova profile pic rac ari cota opacity misces mara chgemi yle hovers ar shveba */
+}
+.upload_image input[type="file"]{
+    opacity: 0;
+    z-index: -1; 
+    position: absolute;
+}
+.upload_image label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:url("assets/images/upload.png") ;
+    width: 100%;
+    height: 30vh;
+}
+.upload_image label img{
+    cursor: pointer;
+    width: 60%;
+}
+.upload_image input[type="submit"]{
+    width: 30%;
+    text-align: center;
+    height: 5vh;
+    border-radius: 25px;
+}
 /* right */
 
 .right-side-content {
@@ -99,7 +120,6 @@
     border-radius:4px;
     height:5vh;
 }
-
 .right-side-content label[for="birthdate"]{text-align:right;}
 
 .right-side-content input[type="date"]{
@@ -107,8 +127,8 @@
     float:left;
     width:90%;
 }
-#save,
-#discard{
+.save,
+.discard{
     width:30%;
     color:white;
     background:#AF1F1F;
@@ -120,7 +140,7 @@
     font-size:1.3vw;
     letter-spacing:3px;
 }
-#save{
+.save{
     background:#1FAF1F;
     margin-right:30%;
 }
