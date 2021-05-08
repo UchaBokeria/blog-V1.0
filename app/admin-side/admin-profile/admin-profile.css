@@ -42,11 +42,12 @@
     width: 100%;
     height: 37vh;
 }
-
+.upload_image:hover > .profile_pic{
+    width: 20%;
+}
 .upload_image{
     position: absolute;
-    width:100%;
-    height:35vh !important;
+    height:37vh !important;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -56,10 +57,6 @@
 .upload_image:hover{
     opacity: 1;
     display: flex;
-}
-.upload_image:hover > .upload_image img{
-    display: none; 
-    /* aq unda iyos ro uploadis icon ro amova profile pic rac ari cota opacity misces mara chgemi yle hovers ar shveba */
 }
 .upload_image input[type="file"]{
     opacity: 0;
@@ -72,18 +69,22 @@
     align-items: center;
     background-image:url("assets/images/upload.png") ;
     width: 100%;
-    height: 30vh;
+    height: 25vh;
 }
 .upload_image label img{
     cursor: pointer;
     width: 60%;
 }
 .upload_image input[type="submit"]{
-    width: 30%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: green;
+    align-items: center;
+    width: 40%;
     height: 5vh;
     border-radius: 25px;
 }
+
 /* right */
 
 .right-side-content {
@@ -98,7 +99,6 @@
     flex-direction:column;
     align-items:center;
 }
-
 .right-side-content div{
     width:100%;
     height:10vh;
@@ -127,6 +127,7 @@
     float:left;
     width:90%;
 }
+
 .save,
 .discard{
     width:30%;
@@ -144,5 +145,6 @@
     background:#1FAF1F;
     margin-right:30%;
 }
+
 .right-side-content i[data-type="error"]{ color:#AF1F1F; }
 .right-side-content i[data-type="done"]{ color:#1FAF1F; }

@@ -32,13 +32,13 @@
                         <div class="left-side-content">
                             <input type="hidden" name="id" id="id" value="'.$value["id"].'">
                             <div class="profile_pic">
-                                <img src="assets/uploads/test.jpg">
+                                <img src="assets/uploads/test.jpg" id="user_image">
                             </div>
 
                             <div class="upload_image">
                                 <input type="file" id="file" name="file" />
                                 <label for="file"><img src="assets/images/upload.png"></label>
-                                <input type="submit" class="button" value="Upload" id="but_upload"> 
+                                <input type="submit" value="Upload" id="but_upload"> 
                             </div>
                             <p>Beschreibung</p>
                             <input type="text" name="description" value="'.$value["description"].'" id="description">
