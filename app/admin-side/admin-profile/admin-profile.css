@@ -50,7 +50,6 @@
     align-items: center;
     opacity: 0;
     z-index:1;
-    cursor: pointer;
 }
 .upload_image:hover > .upload_form{
     opacity: 1;
@@ -60,6 +59,10 @@
 }
 .upload_form input[type="file"]{
     display: none;
+}
+.upload_form label{
+    
+    cursor: pointer;
 }
 /* right */
 

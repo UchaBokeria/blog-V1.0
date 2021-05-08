@@ -1,5 +1,6 @@
 <?php 
     include_once "../../module.php";
+    session_start();
     $act = $_REQUEST["act"];
 
     //$limit = $_REQUEST["post_limit"];
@@ -9,7 +10,7 @@
     $result = array();
     $result["content"] = "";
     $res = $get->aboutAdmin($limit);
-
+    $userid = 1;
     switch($act){
         case 'SetAdmin':
             $userid = $_REQUEST['userid'];
@@ -20,7 +21,8 @@
             $email = $_REQUEST['email'];
             $password = $_REQUEST['password'];
             echo $birth_date;
-            $res = $set->updateAccount($userid,$username,$description,$birth_date,$nickname,$email); //passord unda gaetanos da sheicvalos
+
+            $res = $set->updateAccount($userid,$username,$description,$birth_date,$nickname,$email,$password); //passord unda gaetanos da sheicvalos
 
             $result['content'] .= "<p>Good</p>";
             
@@ -40,7 +42,7 @@
                                 </div>
 
                                 <div class="profile_pic">
-                                    <img src="assets/uploads/test.jpg" id="user_image">
+                                    <img src="assets/uploads/'.$value['profile_pic'].'" id="user_image">
                                 </div>
                             </div>
 
@@ -58,7 +60,7 @@
                             <div>
                                 <label for="fullname">Vorname Nachname</label>
                                 <input type="text" name="fullname" value="'.$value["username"].'" id="Fullname">
-                                <i class="material-icons" data-type="error">done</i>
+                                <i class="material-icons" data-type="done">done</i>
                             </div>
                 
                             <div>
@@ -69,7 +71,7 @@
                 
                             <div>
                                 <label for="password">Passwort</label>
-                                <input type="text" name="password" value="'.$value["password"].'" id="Password" data-name="Password">
+                                <input type="text" name="password" value="" id="Password" data-name="Password">
                                 <i class="material-icons" data-type="done" data-name="Password">done </i>
                             </div>
                 
@@ -86,7 +88,7 @@
                             <p  id="alert_text">Fields are not ready to update</p>
                             <div>  
                                 <button type="button" name="save" class="save" id="saveProfile">Speicher</button>
-                                <button type="button" name="discard" class="discard">Abbrechen</button>
+                                <button type="button" name="discard" class="discard" id="Discard">Abbrechen</button>
                             </div>
                         </div>
                         ';
@@ -94,9 +96,11 @@
             break;
         case 'upload_image':
             if(isset($_FILES['file']['name'])){
+
                 $name = $_FILES['file']['name'];
-            
+                
                 $dir = "../../../assets/uploads/".$name;
+
                 $imageFileType = pathinfo($dir,PATHINFO_EXTENSION);
             
             
@@ -130,8 +134,16 @@
                 }
             
                 if(empty($img_var)){ //Tu DB shi profile_pic ari carieli mashin sheva ifshi da dbshic atvirtavs da foldershic chaagdebs
-                    $set->uppdateAccountPicutre($userid,$name);
+
+                    $filename = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);
+                    $userid .= ".";
+                    $filename .= $userid .= pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+
+                    $dir = "../../../assets/uploads/".$filename;
+
                     if(move_uploaded_file($_FILES['file']['tmp_name'],$dir)){
+                        $set->uppdateAccountPicutre($userid,$filename);
+                        unlink("../../../assets/uploads/tmp/".$name);
                         $response = $dir;
                     }
                 }
@@ -139,6 +151,8 @@
                     $dir = "../../../assets/uploads/".$img_var;
                     if(file_exists($dir)){
                         unlink($dir);
+                        unlink("../../../assets/uploads/tmp/".$name);
+                        echo "es unda naxo uechveli";
                         $response = $dir;
                     }
                     move_uploaded_file($_FILES['file']['tmp_name'],$dir);
@@ -152,8 +166,10 @@
             break;
         case 'tmp_upload':
             $name = $_FILES['file']['name'];
-        
+
             $dir = "../../../assets/uploads/tmp/".$name;
+
+            $global_div = $dir;
             $imageFileType = pathinfo($dir,PATHINFO_EXTENSION);
         
             $imgType = strtolower(pathinfo($dir,PATHINFO_EXTENSION));
@@ -183,11 +199,16 @@
         
             if(move_uploaded_file($_FILES['file']['tmp_name'],$dir)){
                 $response = $dir;
+                $_SESSION['image'] = $dir;
             }
 
             echo $response;
             exit;
             echo 0;
+            break;
+        case 'delete_tmp_image':
+            $name = $_FILES['file']['name'];
+            unlink($_SESSION['image']);
             break;
     }
 
@@ -201,4 +222,4 @@
 
 
 
-
+$global_div = "";

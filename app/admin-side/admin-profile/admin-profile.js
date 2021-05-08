@@ -1,4 +1,20 @@
+var imgChecker = 0;
+var pasChecker = 0;
+
+$(document).ready( function(){
+    $.ajax({
+        url:"app/admin-side/admin-profile/admin-profile.action.php/?act=delete_tmp_image",
+        type: 'post',
+        success: function(response){
+        },
+        error: function(response) {
+            alert("error");
+        }
+    });
+});
+
 $(document).on("click","#saveProfile",function(){
+
     obj = new Object();
     obj.act = "SetAdmin";
     obj.userid = $("#id").val();
@@ -8,8 +24,8 @@ $(document).on("click","#saveProfile",function(){
     obj.nickname = $("#Nickname").val();
     obj.email = $("#Email").val();
     obj.password = $("#Password").val();
+
     var repeat = $("#Repeat").val();
-    console.log(obj.password);
     
     var check = 0;
 
@@ -23,22 +39,13 @@ $(document).on("click","#saveProfile",function(){
         $("#alert_text").html("Email is empty");
         check =1;
     }
-    else if(obj.password == "" || obj.password.length < 8){
+    else if(pasChecker == 1){
         $("#alert_text").show();
-        $("#alert_text").html("Password must containt at leas 8 characters");
-        check =1;
+        $("#alert_text").html("Repeat password correctly");
+        var check = 1;
     }
-    else if($("#pas_repeat").is(":visible")){
-        if(obj.password != repeat){
-            $("#alert_text").show();
-            $("#alert_text").html("Repeat password correctly");
-            check =1;
-        }
-    }
+
     if(check == 0){
-        $("#alert_text").show();
-        $("#alert_text").html("Monacemebi sheicvala");
-        console.log(obj.birth_date)
         $.ajax({
             url:"app/admin-side/admin-profile/admin-profile.action.php",
             data:obj,
@@ -50,20 +57,40 @@ $(document).on("click","#saveProfile",function(){
             }
         });
     }
-    else{
-        $("#alert_text").show();
-        $("#alert_text").html("Something wend wrong");
+
+    if(imgChecker != 0 && check == 0){
+        var obj = new FormData();
+        var files = $('#file')[0].files;
+    
+        if(files.length > 0){
+            
+            obj.append('file',files[0]);
+    
+            $.ajax({
+                url:"app/admin-side/admin-profile/admin-profile.action.php/?act=upload_image",
+                type: 'post',
+                data:obj,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    console.log(files[0]['name']);
+                },
+                error: function(response) {
+                    alert("error");
+                }
+            });
+        }
+        console.log(files[0]);
     }
+
 
 });
 
 $(document).on("change","#file",function (){
-
     var obj = new FormData();
     var files = $('#file')[0].files;
 
     if(files.length > 0){
-        alert($('#file').val());
         obj.append('file',files[0]);
 
         $.ajax({
@@ -73,7 +100,9 @@ $(document).on("change","#file",function (){
             contentType: false,
             processData: false,
             success: function(response){
-                console.log(files[0]['name'])
+                console.log(files[0]['name']);
+                imgChecker = 1;
+                imgPath = response;
                 if(response != 0){
                     $('#user_image').attr('src',"assets/uploads/tmp/" + files[0]['name']);
                 }
@@ -85,32 +114,21 @@ $(document).on("change","#file",function (){
     }
     console.log(files[0]);  
 })
-// $(document).on("click","#but_upload",function(){
 
-//     var obj = new FormData();
-//     var files = $('#file')[0].files;
-//     if(files.length > 0){
-//         obj.append('file',files[0]);
+$(document).on("click","#Discard",function (){
 
-//         $.ajax({
-//             url:"app/admin-side/admin-profile/admin-profile.action.php/?act=upload_image",
-//             type: 'post',
-//             data:obj,
-//             contentType: false,
-//             processData: false,
-//             success: function(response){
-//                 alert("Image Uploaded Succsessfully");
-//                 if(response != 0){
-//                     console.log("uploaded");
-//                 }
-//             },
-//             error: function(response) {
-//                 alert("error");
-//             }
-//         });
-//     }
-//     console.log(files[0]);  
-// });
+    $.ajax({
+        url:"app/admin-side/admin-profile/admin-profile.action.php/?act=delete_tmp_image",
+        type: 'post',
+        success: function(response){
+        },
+        error: function(response) {
+            alert("error");
+        }
+    });
+
+    getAdminPage('admin-profile');
+})
 
 $(document).on("keyup","#Password, #Nickname",function() { 
 
@@ -129,7 +147,6 @@ $(document).on("keyup","#Password, #Nickname",function() {
         $("input[data-name='" + $(this).attr("data-name") + "']").css("border", "1px solid #252525");
     }
 })
-
 
 $(document).on("keyup","#Password",function() {
     $("#pas_repeat").show();
@@ -152,3 +169,21 @@ $(document).on("keyup"," #Email",function() {
     }
 })
 
+$(document).on("keyup","#Repeat, #Password",function(){
+    if($("#Repeat").val() == $("#Password").val()){
+        pasChecker = 0;
+        $("#alert_text").hide();
+
+        $("#Repeat").css("color","black");
+        $("#Repeat").css("border", "1px solid #252525");
+    }
+    else{
+        pasChecker = 1;
+        $("#alert_text").show();
+        $("#alert_text").html("Repeat password correctly");
+
+        $("#Repeat").css("color","#AF1F1F");
+        $("#Repeat").css("border", "2px solid #AF1F1F");
+        
+    }
+});
