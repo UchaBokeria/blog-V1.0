@@ -26,3 +26,4 @@
 <div id="edit-window"></div> 
 
 <div id="message"></div>
+<div id="dialog"></div>
