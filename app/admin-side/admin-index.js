@@ -37,7 +37,7 @@ function loadAdminHtml(page) {
         success: function (data) {
             $("#"+page).html(data.content);
             console.log(data);
-            console.log(page + "datvi");
         }
     });
 }
+

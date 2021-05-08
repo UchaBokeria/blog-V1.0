@@ -27,7 +27,7 @@
 
       for ($i=0,$bindInd=0; $i < $length; $i++) {
         $bindInd++;
-        $stmt->bindParam($bindInd, $params[$i]);
+        $stmt->bindParam($bindInd, $params[$i]['attr']);
       }
       $stmt->execute();
     }
