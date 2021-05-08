@@ -140,7 +140,7 @@
                       accounts.id,
                       accounts.username,  
                       accounts.description, 
-                      accounts.birth_date, 
+                      DATE(accounts.birth_date) AS birth_date, 
                       accounts.nickname, 
                       accounts.email,
                       accounts.password
