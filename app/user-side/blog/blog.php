@@ -27,7 +27,7 @@
 
 
 
-<div class="pages">
+<!-- <div class="pages">
   <div class="page-item"><i class="fa fa-angle-down rotateLeft"></i></div>
   <div class="page-item">1</div>
   <div class="page-item"><i class="fa fa-angle-down rotateRight"></i></div>
@@ -41,4 +41,4 @@
   <div class="page-item">4</div>
   <div class="page-item">5</div>
   <div class="page-item"><i class="fa fa-angle-down rotateRight"></i></div>
-</div>
+</div> -->

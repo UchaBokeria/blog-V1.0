@@ -10,13 +10,15 @@
     $res = $get->home($limit);
 
     foreach ($res as $value) {
-        $result["content"] .= ' <div id="exhibition" style="margin-bottom:8vh;">
+        $result["content"] .= ' 
+                    <div id="exhibition" style="margin-bottom:8vh;">
+
                         <h1>' . $value["title"] . '</h1>
+
                         <div class="Carousel-container">
-                            <div class="img-tmp">
-                                <img src="' . $value["path"] . '">
-                            </div>
+                            <img src="' . $value["path"] . '">
                         </div>
+
                         <div class="text">
                             <p>' . htmlspecialchars_decode($value["desc"]) . '</p>
                         </div>

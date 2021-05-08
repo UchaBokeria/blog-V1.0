@@ -1,6 +1,3 @@
 $('swiper-button-prev').click(function () {
-    $("#menu span").fadeToggle();
-});
-
-$(document).ready(function () {
+    $("#menu span").fadeToggle(10110);
 });
