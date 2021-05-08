@@ -7,6 +7,7 @@
     $limit = 10;
     $result = array();
     $result["content"] = "";
+    $result["error"] = "";
 
     switch ($act) {
         case 'get_posts':
@@ -15,7 +16,7 @@
             foreach ($res as $value) {
                 $result["content"] .= " <div class='exhibition-posts' data-id=".$value['id'].">
                                             <div class='post-text'>
-                                                <b>".$value['title']."</b>
+                                                <b data-id=".$value['id'].">".$value['title']."</b>
                                                 <p>".$value['status']."</p>
                                                 <p>".$value['createdAt']."</p>
                                             </div>
@@ -35,8 +36,11 @@
             }
             break;
         case 'get_edit':
-            $id = $_REQUEST["user_id"];
+            $id = $_REQUEST["id"];
             $res = $get->home($limit,$id);
+            if(count($res) != 1)
+                echo " მოთხოვნილი პოსტის აიდი არის განმეორებული ვაი ვაი როგორ შეიძლება";
+
             foreach ($res as $value) {
                 $result["content"].="<div class='edit-window-ajax'  data-id=".$value['id']." >
                                         <i class='material-icons close-ajax-edit' data-id=".$value['id']." >close</i>
@@ -55,12 +59,11 @@
                                             <div class='editor-body' data-id=".$value['id']." id='text_fix_cke'></div>
                                         </div>
                                     
-                                        <button class='save-button' type='button'>speicher</button>
+                                        <button class='save-button'   type='button' id='".$value['id']."'>speicher</button>
                                         <br>
                                         <button class='cancel-button' type='button'>abbrechen</button>
                                     </div>";
             }
-            
             break;
         case 'get_new':
                 $result["content"] .="<div class='edit-window-ajax' id='newpost'>
@@ -88,6 +91,7 @@
             
             break;
         
+   
         default:
             # code...
             break;

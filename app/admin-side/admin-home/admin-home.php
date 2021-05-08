@@ -24,3 +24,5 @@
 <div id="admin-home"></div>
 
 <div id="edit-window"></div> 
+
+<div id="message"></div>
