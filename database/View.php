@@ -142,7 +142,8 @@
                       accounts.description, 
                       accounts.birth_date, 
                       accounts.nickname, 
-                      accounts.email
+                      accounts.email,
+                      accounts.password
               FROM accounts
               WHERE accounts.id = 2
               ";
