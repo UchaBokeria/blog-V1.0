@@ -1,5 +1,6 @@
 var id = "empty";
 
+
 $(document).on("click", "#create_new", function () {
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
@@ -112,7 +113,6 @@ $(document).on("click", "#create_new", function () {
             }
     });
 });
-
 
 $(document).on("click", ".edit,.post-text > b", function () {
     id = $(this).attr("data-id");
@@ -341,4 +341,25 @@ $(document).on("click", ".show_more", function () {
 $(document).on("click", "#show_post_types", function () {
     $(".post-type-select").toggleClass("dropdown-select-type");
     $("#show_post_types").toggleClass("dropdown-select-type-button");
+});
+
+$(document).on("click", ".post-type-select > div", function () {
+    var type_id = $(this).attr("data-type");
+    var type_html = $(this).html();
+
+    $(".post-type-select > div").removeAttr("id");
+    var newChild = "<div data-type='" + type_id + "' id='activated'>" + type_html + "</div>";
+
+    $(".post-type-select").prepend(newChild);
+    $(this).remove();
+});
+
+$(document).on("click", "#filter", function () {
+    params = new Object();
+    params.searchWord = $("#search_text").val();
+    params.status = $(".post-type-select #activated").attr("data-type");
+    params.start_date = $("#start_date").val();
+    params.end_date = $("#end_date").val();
+    console.log(params);
+    loadAdminHtml("admin-home",params);
 });

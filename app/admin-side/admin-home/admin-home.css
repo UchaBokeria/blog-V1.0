@@ -13,6 +13,9 @@
 #start_date,#end_date{
     font-size:12px;
     padding: 0;
+    width:15%;
+    cursor:text;
+    user-select:all;
 }
 .admin-filter input[type="date"]{
     width:15%;

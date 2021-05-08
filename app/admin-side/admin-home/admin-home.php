@@ -14,9 +14,8 @@
         <i class="fa fa-angle-down" id="show_post_types"></i>
     </div>
 
-
-    <input type="date" name="start_date" value="" id="start_date">
-    <input type="date" name="end_date" value="" id="end_date">
+    <input type="date" name="start_date" value="<?php echo date('Y-m-d'); ?>" id="start_date">
+    <input type="date" name="end_date" value="<?php echo date('Y-m-d'); ?>" id="end_date">
 
     <button type="button" id="filter">Filter</button>
 </div>
