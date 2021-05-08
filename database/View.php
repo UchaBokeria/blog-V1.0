@@ -140,9 +140,10 @@
                       accounts.id,
                       accounts.username,  
                       accounts.description, 
-                      accounts.birth_date, 
+                      DATE(accounts.birth_date) AS birth_date, 
                       accounts.nickname, 
-                      accounts.email
+                      accounts.email,
+                      accounts.password
               FROM accounts
               WHERE accounts.id = 2
               ";
