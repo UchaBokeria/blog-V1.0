@@ -14,11 +14,11 @@
                         <h1>' . $value["title"] . '</h1>
                         <div class="Carousel-container">
                             <div class="img-tmp">
-                                <img src="assets/uploads/' . $value["path"] . '">
+                                <img src="' . $value["path"] . '">
                             </div>
                         </div>
                         <div class="text">
-                        <p>' . $value["desc"] . '</p>
+                            <p>' . htmlspecialchars_decode($value["desc"]) . '</p>
                         </div>
                     </div>';
     }

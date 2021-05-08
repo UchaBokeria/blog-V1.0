@@ -1,3 +1,5 @@
+var id = "empty";
+
 $(document).on("click", "#create_new", function () {
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
@@ -106,14 +108,14 @@ $(document).on("click", "#create_new", function () {
                 } );
             },
             error: function () {
-                console.log("edit error");
+                console.log("create error");
             }
     });
 });
 
 
 $(document).on("click", ".edit,.post-text > b", function () {
-    var id = $(this).attr("data-id");
+    id = $(this).attr("data-id");
 
     param = new Object();
     param.act = "get_edit";
@@ -250,12 +252,14 @@ $(document).on("click", ".edit-post-type-select > div", function () {
 });
 
 
-$(document).on("click", ".delete", function () {
-    var id = $(this).attr("data-id");
+$(document).on("click", "#delete_dialog_yes", function () {
+    $("#dialog").css("opacity", "0");
+    $("#dialog").html("");
 
+    // delete if into the dialog pressed yes
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
-        data: {id: id},
+        data: {act:"delete_post",id: id},
         dataType: "json",
         success: function (response) {
             if (response.error == "") {
@@ -270,6 +274,24 @@ $(document).on("click", ".delete", function () {
         }
     });
 });
+    
+$(document).on("click", "#delete_dialog_no", function () {
+    $("#dialog").css("opacity", "0");
+    $("#dialog").html("");
+});
+    
+$(document).on("click", ".delete", function () {
+    id = $(this).attr("data-id");
+    $("#dialog").css("opacity", "1");
+    $.ajax({
+        url: "app/admin-side/admin-home/admin-home.action.php",
+        data: {act:"get_delete_dialog"},
+        dataType: "json",
+        success: function (data) {
+            $("#dialog").html(data.content);
+        }
+    });
+});
 
 $(document).on("click", "#message", function () {
     $("#message").css("opacity","0");
@@ -277,7 +299,29 @@ $(document).on("click", "#message", function () {
 
 
 $(document).on("click", ".save-button", function () {
- //save
+    param = new Object();
+    param.act = "create_post";
+
+    param.title = $("#new_title").val();
+    param.desc = editor.getData();
+    //param.desc = $("#asd").val();
+    param.status_id = $(".edit-post-type-select > #activated").attr("data-type");
+    param.category_id = 1; // exhebition is 1, blog = 2
+
+    console.log(param);
+
+    $.ajax({
+        url: "app/admin-side/admin-home/admin-home.action.php",
+        data: param,
+        success: function (response) {
+            $("#edit-window").html("");
+            $("#edit-window").hide();
+
+            $("#message").css("opacity","1");
+            $("#message").html("Ihr Beitrag wurde gespeichert");
+            setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
+        }
+    });
 });
 
 $(document).on("click", ".close-ajax-edit,.cancel-button", function () {

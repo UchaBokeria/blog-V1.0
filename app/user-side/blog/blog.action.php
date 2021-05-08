@@ -23,19 +23,19 @@
                                 
                                     <div class="Carousel-container">
                                         <div class="img-tmp">
-                                            <img src="assets/uploads/' . $value["path"] . '">
+                                            <img src="' . $value["path"] . '">
                                         </div>
                                         <div class="img-tmp">
-                                            <img src="assets/uploads/' . $value["path"] . '">
+                                            <img src="' . $value["path"] . '">
                                         </div>
                                         <div class="img-tmp">
-                                            <img src="assets/uploads/' . $value["path"] . '">
+                                            <img src="' . $value["path"] . '">
                                         </div>
                                     </div>
                                 
                                     <div class="text">
                                     <h1>' . $value["title"] . '</h1>
-                                    <p>' . $value["desc"] . '</p>
+                                    <div>' . htmlspecialchars_decode($value["desc"]) . '</div>
                                     </div>
                                     <hr style="border-bottom:1px solid #C4C4C4; margin:6vh 0;">
                                 </div>';

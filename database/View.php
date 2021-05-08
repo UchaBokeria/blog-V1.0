@@ -81,6 +81,7 @@
                         posts.`desc`,
                         posts.createdAt,
                         `status`.title AS `status`,
+                        posts.status_id AS `status_id`,
                         CONCAT(files.dir,file_types.extension) AS path
                         
                       FROM
@@ -148,5 +149,17 @@
               WHERE accounts.id = 2
               ";
       return $this->getAll($sql);
+    }
+
+    public function StatusList($except){
+      if($except == ""){
+        $sql = "SELECT  * FROM status";
+        return $this->getAll($sql);
+      }
+      else{
+        $param = array(["attr"=>$except,"type"=>PDO::PARAM_INT]);
+        $sql = "SELECT  * FROM status WHERE id NOT IN(?,1) AND activated = 1";
+        return $this->get($sql,$param);
+      }
     }
   }

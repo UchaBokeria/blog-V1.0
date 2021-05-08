@@ -345,3 +345,26 @@
     transition:2s;
     bottom:0;
 }
+
+#dialog button{
+    background:#eeeeee;
+    color:black;
+    letter-spacing:2px;
+    width:10%;
+    border-radius: 5px;
+}
+#dialog{
+    width:40vw;
+    left:30vw;
+    min-height:20vh;
+    background:#252525;
+    color:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border-radius:10px;
+    position:fixed;
+    opacity:0;
+    transition:0.6s;
+    top:30vh;
+}
