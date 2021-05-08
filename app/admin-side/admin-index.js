@@ -29,10 +29,10 @@ function getAdminPage(page) {
     });
 }
 
-function loadAdminHtml(page) {
+function loadAdminHtml(page,data=null) {
     $.ajax({
         url: "app/admin-side/" + page + "/" + page + ".action.php",
-        data: {act:"get_posts"},
+        data: {act:"get_posts",data:JSON.stringify(data)},
         dataType: "json",
         success: function (data) {
             $("#"+page).html(data.content);

@@ -4,15 +4,21 @@
     //$limit = $_REQUEST["post_limit"];
     // if(!isset($_REQUEST["post_limit"]))
 
-    $limit = 10;
+    $limit = 1000;
     $result = array();
     $result["content"] = "";
     $result["error"] = "";
 
     switch ($act) {
         case 'get_posts':
-            $res = $get->home($limit);
-
+            if(json_decode($_REQUEST["data"]) != null){
+                $filterParameters = json_decode($_REQUEST["data"],true);
+                $res = $get->filter($limit,$filterParameters,1);
+            }
+            else
+                $res = $get->home($limit);
+                
+            
             foreach ($res as $value) {
                 $result["content"] .= " <div class='exhibition-posts' data-id=".$value['id'].">
                                             <div class='post-text'>
@@ -53,20 +59,20 @@
                                         <div class='edit-post-type-select'>
                                             <i class='fa fa-angle-down ' id='edit_post_types' style='top:1vh;'></i>";
                 
-                $selectedCategory = " hey i am empty cuz i was bron as error";
-                $selectedCategory = " <div data-type='" .$value["category_id"]. "' id='activated'>öffentlich</div>";
-                for ($i=1; $i < 5; $i++) { 
-                    
+                $selectedStatus = " hey i am empty cuz i was bron as error";
+                $selectedStatus = " <div data-type='" .$value["status_id"]. "' id='activated'>".$value["status"]."</div>";
+                
+                // get all statuses except this post status id
+                $elseStatuses = $get->StatusList($value["status_id"]);
+                foreach ($elseStatuses as  $status) {
+                    $selectedStatus .= " <div data-type='" .$status["id"]. "' >".$status["title"]."</div>";
                 }
-
-
-                $result["content"].= $selectedCategory;                          
+                $result["content"].= $selectedStatus;                          
                 $result["content"].="   </div>
-                                    
                                         <!-- CKEditor  -->
                                         <div class='post_body_edit' data-id='".$value['id']."'>
                                             <div class='editor-head' data-id=".$value['id']."></div>
-                                            <div class='editor-body' data-id=".$value['id']." id='text_fix_cke'>" .htmlspecialchars_decode($value["desc"]). "</div>
+                                            <div class='editor-body' data-id=".$value['id']." id='text_fix_cke'>" . htmlspecialchars_decode($value['desc']) . "</div>
                                         </div>
                                     
                                         <button class='save-button'   type='button' id='".$value['id']."'>speicher</button>
@@ -74,6 +80,7 @@
                                         <button class='cancel-button' type='button'>abbrechen</button>
                                     </div>";
             }
+            //echo $result["content"];
             break;
         case 'get_new':
                 $result["content"] .="<div class='edit-window-ajax' id='newpost'>

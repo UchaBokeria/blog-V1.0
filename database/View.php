@@ -43,6 +43,40 @@
               WHERE 	pages.activated != 0; ";
       return $this->getAll($sql);
     }
+    
+    public function filter($limit,$filterParams,$category_id){
+      $param = array( ["attr"=>'%' . $filterParams["searchWord"] . '%',"type"=>PDO::PARAM_STR],
+                      ["attr"=>$filterParams["start_date"] . " 00:00","type"=>PDO::PARAM_STR],
+                      ["attr"=>$filterParams["end_date"] . " 23:59",  "type"=>PDO::PARAM_STR],
+                      ["attr"=>$category_id,  "type"=>PDO::PARAM_INT] );
+
+      $filter = " AND posts.title like ? AND posts.createdAt BETWEEN ? AND ? AND posts.category_id IN(?) ";
+      if($filterParams["status"] != 1){
+        array_push($param,["attr"=>$filterParams["status"],    "type"=>PDO::PARAM_INT]);
+        $filter .= "  AND posts.status_id = ? ";
+      }
+
+                  
+      $sql = "SELECT  posts.id,
+                      accounts.profile_pic,
+                      accounts.nickname,
+                      posts.title,
+                      posts.`desc`,
+                      posts.createdAt,
+                      `status`.title AS `status`,
+                      posts.status_id AS `status_id`,
+                      CONCAT(files.dir,file_types.extension) AS path
+                      
+                    FROM
+                      posts
+                      JOIN accounts ON posts.user_id = accounts.id
+                      LEFT JOIN files ON files.post_id = posts.id
+                      LEFT JOIN file_types ON files.type_id = file_types.id
+                      LEFT JOIN `status` ON `status`.id = posts.status_id
+                    WHERE posts.activated = 1 " . $filter;
+      //echo $sql;
+      return $this->get($sql,$param);
+    }
 
     public function home($limit="",$id=""){
       if($limit == ""){
@@ -57,6 +91,7 @@
                         posts.`desc`,
                         posts.createdAt,
                         `status`.title AS `status`,
+                        posts.status_id AS `status_id`,
                         CONCAT(files.dir,file_types.extension) AS path
                         
                       FROM
@@ -66,7 +101,7 @@
                         LEFT JOIN file_types ON files.type_id = file_types.id
                         LEFT JOIN `status` ON `status`.id = posts.status_id
                       WHERE
-                        category_id = 1 
+                        category_id = 1 AND posts.activated = 1
                       ORDER BY
                         posts.createdAt DESC
                       LIMIT ? ";
@@ -91,11 +126,12 @@
                         LEFT JOIN file_types ON files.type_id = file_types.id
                         LEFT JOIN `status` ON `status`.id = posts.status_id
                       WHERE
-                        category_id = 1 AND posts.id = ?";
+                        category_id = 1 AND posts.activated = 1 AND posts.id = ?";
 
       }
       return $this->get($sql,$param);
     }
+
     public function blog($limit=1){
       if($limit == ""){
         $limit = 1;
@@ -117,12 +153,13 @@
                       LEFT JOIN file_types ON files.type_id = file_types.id
 	                    LEFT JOIN `status` ON `status`.id = posts.status_id
                     WHERE
-                      category_id = 2 
+                      category_id = 2 AND posts.activated = 1
                     ORDER BY
                       posts.createdAt DESC
                     LIMIT ? ";
       return $this->get($sql,$param);
     }
+
     public function about(){
       $sql = "SELECT	users.id,
                       users.nickname,
@@ -136,6 +173,7 @@
                 ";
       return $this->getAll($sql);
     }
+
     public function aboutAdmin($limit=1){
       $sql = "SELECT  accounts.profile_pic, 
                       accounts.id,
