@@ -10,7 +10,7 @@
         <input type="text" value="" placeholder="Suchen" id="search_text">
 
         <div class="post-type-select">
-            <div data-type="1">Alle</div>
+            <div data-type="1" id="activated">Alle</div>
             <div data-type="2">öffentlich</div>
             <div data-type="3">Privat</div>
             <div data-type="4">Projekt</div>

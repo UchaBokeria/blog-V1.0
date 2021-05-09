@@ -16,14 +16,14 @@
     use PHPMailer\PHPMailer\Exception;
 
     $mail = new PHPMailer();
-	//$mail->SMTPDebug = 4;
+	$mail->SMTPDebug = 4;
     $mail->isSMTP();
     $mail->Host = "smtp.hostinger.com";
     $mail->SMTPAuth = "true";
     $mail->SMTPSecure = "tls";
     $mail->Port = "587";
     $mail->Username = "test@vulventempel.de";
-    $mail->Password = "Test1234";
+    $mail->Password = "Pepela22";
     $mail->Subject = "vulventempel message FROM: " . $address . ", Full Name: " . $fullname;
     $mail->setFrom("test@vulventempel.de");
     $mail->isHTML(true);
