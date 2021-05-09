@@ -115,7 +115,7 @@
                         posts.createdAt,
                         `status`.title AS `status`,
                         posts.status_id AS `status_id`,
-                        CONCAT(files.dir,file_types.extension) AS path
+                        GROUP_CONCAT(CONCAT(files.dir,file_types.extension)) AS `path`
                         
                       FROM
                         posts
@@ -142,7 +142,7 @@
                       posts.`desc`,
                       posts.createdAt,
 	                    `status`.title AS `status`,
-                      CONCAT(files.dir,file_types.extension) AS path
+                      GROUP_CONCAT(CONCAT(files.dir,file_types.extension)) AS `path`
                       
                     FROM
                       posts
@@ -152,6 +152,8 @@
 	                    LEFT JOIN `status` ON `status`.id = posts.status_id
                     WHERE
                       category_id = 2 AND posts.activated = 1
+                    GROUP BY  
+                      posts.id
                     ORDER BY
                       posts.createdAt DESC
                     LIMIT ? ";

@@ -22,6 +22,8 @@
         <p data-page="blog">Blog</p>
         <p data-page="about_us">Über uns</p>
         <p data-page="contact">Kontakt</p>
+        <a href="assets/footer-info.html">Impressum</a>
+        <a href="assets/footer-info.html">Datenschutz</a>
     </div>
 
 </div>
