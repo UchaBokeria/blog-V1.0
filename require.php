@@ -34,7 +34,13 @@
 
     $url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
     
-    if(strpos($url,"admin"))
-        header("login.php");
+    if(strpos($url,"admin")){
+        if(!isset($_SESSION["token"]))
+            header("Location:login.php");
+        else{
+            echo $_SESSION["token"];
+            $root = "app/admin-side/admin-index.php";
+        }
+    }
     else
         $root = "app/user-side/index.php";

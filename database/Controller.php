@@ -1,15 +1,38 @@
 <?php
-  class Controller extends Model
-  {
+  class Controller extends Model{
+    public function login($username,$password){
+      $sql = "SELECT token, password from users WHERE username = ?;";
+      $param = array(["attr"=>$username,"type"=>PDO::PARAM_STR]);
 
-    public function login($user,$pwd)
-    {
-
+      $results = $this->getAll($sql,$param);
+      foreach ($results as $value)
+        return  password_verify($password, $value["password"]) ? 
+                array(["token"=>$value["token"], "result"=> true]) : 
+                array(["token"=>$value["token"], "result"=> false]) ;
     }
 
-    public function register($user,$pwd,$email,$role)
+    public function register($user,$pwd)
     {
+      $password = password_hash($pwd,PASSWORD_DEFAULT);
+      $token = "";
 
+      while(true){
+        $token = bin2hex(random_bytes(32));
+
+        $sql = "SELECT COUNT(*) FROM accounts WHERE token = ?";
+        $param = array(["attr"=>$token,"type"=>PDO::PARAM_STR]);
+
+        $resCount = $this->get($sql,$param);
+        if(COUNT($resCount) < 1)
+          break;
+      }
+
+      $sql = "INSERT INTO accounts SET username=?,password=?,token=?;";
+      $param = array(["attr"=>$user,"type"=>PDO::PARAM_STR], 
+                     ["attr"=>$password,"type"=>PDO::PARAM_STR], 
+                     ["attr"=>$token,"type"=>PDO::PARAM_STR]);
+
+      $this->set($sql,$param);
     }
     
     public function updateAccount($userId,$username,$description,$birth_date,$nickname,$email,$password){
