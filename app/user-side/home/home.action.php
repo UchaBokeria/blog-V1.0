@@ -29,8 +29,8 @@
 
         $result["content"] .= 
                         '
-                        <button class="w3-button w3-black w3-display-right nextBut" slide-id="'.$value["id"].'">&#10095;</button>
-                        <button class="w3-button w3-black w3-display-left prevBut"  slide-id="'.$value["id"].'">&#10094;</button>
+                        <button class="w3-black w3-display-right nextBut" slide-id="'.$value["id"].'">&#10095;</button>
+                        <button class="w3-black w3-display-left prevBut"  slide-id="'.$value["id"].'">&#10094;</button>
 
                         </div>
 

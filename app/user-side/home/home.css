@@ -14,26 +14,21 @@
   display:block  !important;
 }
 .Carousel-container{
-  margin: 2vh 0 2vh 0;
+  display: flex;
   width: 100%;
-  height: 30vh;
-  background: #FFFFFF;
-  display: block;
+  height: 30vh !important;
+  overflow-x: scroll;
   position: relative;
-  background-color: red;
-}
-.Carousel-container::-webkit-scrollbar{
-  display:none;
 }
 .Carousel-container img{
-  position: absolute;
-  width: 100%;
-  height: auto;
+  display: block;
+  margin-right: 10%;
+  min-width: 100%;
+  height: 30vh ;
 }
 .text{
   width: 100%;
   height:10vh;
-  background-color: red;
   font-size:1.2vw;
   overflow:hidden;
   word-wrap: break-word;
@@ -42,6 +37,9 @@
   display: none;
 }
 .mySlides{
+  display: none;
+}
+.nextBut,.prevBut{
   display: none;
 }
 /* .rotateLeft{
@@ -85,7 +83,17 @@
     font-family: RobotoLight;
   }
   .Carousel-container{
-    height: 50vh;
+    margin: 2vh 0 2vh 0;
+    width: 100%;
+    height: 50vh !important;
+    background: #FFFFFF;
+    display: block;
+    position: relative;
+  }
+  .Carousel-container img{
+    position: absolute;
+    width: 100%;
+    height: 50vh !important;
   }
   .pages{
     display: none;
@@ -98,5 +106,19 @@
     width: 60%;
     height: 4vh;
     margin-left: 20%;
+  }
+  .nextBut,.prevBut{
+    display: block;
+    width:4%;
+    border-radius:5px;
+    opacity:0.5;
+    outline:0;
+    border:0;
+  }
+  .nextBut:hover,.prevBut:hover{
+    background-color: black;
+    outline:0;
+    border:0;
+    opacity: 1;
   }
 }
