@@ -363,3 +363,38 @@ $(document).on("click", "#filter", function () {
     console.log(params);
     loadAdminHtml("admin-home",params);
 });
+
+$(document).on("click", ".edit_img",function() {
+    $(".post_body_edit").hide();
+    $(".edit_upload_image").show();
+});
+
+$(document).on("click", ".edit_desc",function() {
+    $(".post_body_edit").show();
+    $(".edit_upload_image").hide();
+});
+
+$(document).on("change","#post_file",function (){
+    var obj = new FormData();
+    var files = $('#file')[0].files;
+
+    if(files.length > 0){
+        obj.append('file',files[0]);
+        $.ajax({
+            url:"app/admin-side/admin-home/admin-home.action.php/?act=tmp_upload",
+            type: 'post',
+            data:obj,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                if(response != 0){
+                    $(".images_output").hide();
+                    // 'src',"assets/uploads/tmp/" + files[0]['name']
+                }
+            },
+            error: function() {
+            }
+        });
+    }
+    console.log("ifis merea vapshebolo");
+})

@@ -11,7 +11,7 @@
     $result = array();
     $result["content"] = "";
     $result["error"] = "";
-
+    $img_counter = 0;
     switch ($act) {
         case 'get_posts':
             if(json_decode($_REQUEST["data"]) != null){
@@ -57,6 +57,8 @@
             foreach ($res as $value) {
                 $result["content"].="<div class='edit-window-ajax'  data-id=".$value['id']." >
                                         <i class='material-icons close-ajax-edit' data-id=".$value['id']." >close</i>
+                                        <h1 class='edit_desc'>Description</h1>
+                                        <h1 class='edit_img'>Photo</h1>
                                         <input type='text' name=".$value['title']." value='".$value['title']."'>
                                         
                                         <div class='edit-post-type-select'>
@@ -77,7 +79,18 @@
                                             <div class='editor-head' data-id=".$value['id']."></div>
                                             <div class='editor-body' data-id=".$value['id']." id='text_fix_cke'>" . htmlspecialchars_decode($value['desc']) . "</div>
                                         </div>
-                                    
+                                        <div class='edit_upload_image'>
+                                            <div class='upload_form'>                                
+                                                <input type='file' id='file' name='file' >
+                                                <label for='file'><img src='assets/images/upload.png'></label>
+                                            </div>
+                                            <div class='image_counter'>
+                                                <h1>".$img_counter."</h1>
+                                            </div>
+                                            <div class='images_output'>
+                                                <img src='assets/uploads/blog1.jpg' >
+                                            </div>
+                                        </div>
                                         <button class='save-button'   type='button' id='".$value['id']."'>speicher</button>
                                         <br>
                                         <button class='cancel-button' type='button'>abbrechen</button>
@@ -141,9 +154,49 @@
             $status_id = $_REQUEST["status_id"];
             $category_id = $_REQUEST["category_id"];
             $set->editPost($title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
-        break;
             break;
-   
+        case 'tmp_upload':
+            $name = $_FILES['file']['name'];
+
+            $dir = "../../../assets/uploads/tmp/".$name;
+
+            $global_div = $dir;
+            $imageFileType = pathinfo($dir,PATHINFO_EXTENSION);
+        
+            $imgType = strtolower(pathinfo($dir,PATHINFO_EXTENSION));
+        
+            $response = 0;
+        
+            //size
+            if($_FILES["file"]["size"] > 50000){
+                echo "File is too big";
+                $response = 1;
+            }
+        
+            //type
+            if($imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif"){
+                echo "This ile is not an image";
+                $response = 1;
+            }
+        
+            //if failed
+            if($response == 1){
+                echo "There is a problem and post_file is not uploaded";
+            }
+            
+            
+            $userid = 2;
+
+        
+            if(move_uploaded_file($_FILES['file']['tmp_name'],$dir)){
+                $response = $dir;
+                $_SESSION['image'] = $dir;
+            }
+
+            echo $response;
+            exit;
+            echo 0;
+            break;
         default:
             # code...
             break;

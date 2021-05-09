@@ -198,6 +198,24 @@
     border-radius: 10px;
     z-index: 1000;
 }
+.edit_img{
+    position: absolute;
+    top:4vh;
+    left:10%;
+    z-index:1000000;
+    font-size:1.4vw;
+    cursor: pointer;
+    color: black;
+}
+.edit_desc{
+    position: absolute;
+    top:4vh;
+    left:15%;
+    z-index:1000000;
+    font-size:1.4vw;
+    cursor: pointer;
+    color: black;
+}
 .close-ajax-edit{
     position: absolute;
     top:3vh;
@@ -253,6 +271,52 @@
     font-size:1vw;
     left:1vw;
     align-items: center;
+}
+.edit_upload_image{
+    position: absolute;
+    width: 90%;
+    height: 80vh;
+    display: none;
+}
+.upload_form{
+    position: absolute;
+    top:0vh;
+    width: 20%;
+    height: 30vh;
+    opacity: 1 !important;
+}
+.image_counter{
+    position: absolute;
+    top:35vh;
+    left:5%;
+    width: 10%;
+    height: 15vh;
+    border-radius: 100%;
+    border:1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.upload_form input{
+    display: none;
+}
+.upload_form img{
+    width: 100%;
+}
+.images_output{
+    position: absolute;
+    left:20%;
+    top:0;
+    border:1px solid black;
+    width: 80%;
+    height: 80vh;
+}
+.images_output img{
+    width: 20%;
+    height: 25vh;
+    margin-left: 5%;
+    position: absolute;
+    top:5vh;
 }
 .save-button{
     position: absolute;
