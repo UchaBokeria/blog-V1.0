@@ -119,7 +119,8 @@
   .user-image img{
     border-radius: 100% !important;
     width: auto;
-    height: 8vh;
+    max-width:5vw;
+    min-height: 8vh;
   }
   .user-text{
     display: flex;
