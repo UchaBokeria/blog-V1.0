@@ -16,8 +16,9 @@
             color:white;
             border:1px solid black;
             border-radius:10px;
-            margin:5vh 0 0 32.5%;
+            margin:8vh 0 0 32.5%;
             background:black;
+
         }
         input{
             width:80%;
@@ -27,10 +28,13 @@
             outline:0;
             background:#1e1e1e;
             padding-left:5%;
-            font-size:1.2vw;
+            font-size:1vw;
             color:white;
+            letter-spacing:1px;
+            font-family:Roboto;
         }
         input::placeholder{
+            letter-spacing:1px;
             font-family:Lobster;
         }
         button{
@@ -40,21 +44,23 @@
             height:8vh;
             border-radius:10px;
             color:white;
-            font-size:2vw;
+            font-size:1.8vw;
+            letter-spacing:2px;
             outline:0;
             border:0;
             font-family:Roboto;
         }
         h1{
+            letter-spacing:5px;
             font-family:Roboto;
         }
     </style>
 </head>
 <body>
     <form action="checker.php" method="post">
-        <h1>Log in</h1>
-        <input type="text" name="" id="" placeholder="Username">
-        <input type="password" name="" id="" placeholder="Password">
+        <h1>LOG IN</h1>
+        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="password" name="password" id="password" placeholder="Password">
         <button>Login</button>
     </form>
 </body>
