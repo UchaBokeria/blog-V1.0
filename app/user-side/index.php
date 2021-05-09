@@ -32,7 +32,7 @@
 
 <div class="footer">
   <div class="footer-text">
-    <p>Impressum</p>
-    <p>Datenschutz</p>
+    <a href="assets/footer-info.html">Impressum</a>
+    <a href="assets/footer-info.html">Datenschutz</a>
   </div>
 </div>
