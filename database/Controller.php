@@ -34,7 +34,12 @@
 
       $this->set($sql,$param);
     }
-    
+    public function checkToken($token){
+      $param = array(["attr"=>$token,"type"=>PDO::PARAM_STR]);
+      $sql = "SELECT token FROM accounts WHERE token = ?";
+      $res = $this->get($sql,$param);
+      return COUNT($res) != 1 ? false : true;
+    }
     public function updateAccount($userId,$username,$description,$birth_date,$nickname,$email,$password){
 
       $password = password_hash($password, PASSWORD_DEFAULT);

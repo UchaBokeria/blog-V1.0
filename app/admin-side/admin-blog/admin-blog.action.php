@@ -1,4 +1,7 @@
 <?php 
+    session_start();
+    if(!isset($_SESSION["token"]))
+        header("Location:../../../assets/wildcard.php"); 
     include_once "../../module.php";
     $act = $_REQUEST["act"];
     //$limit = $_REQUEST["post_limit"];

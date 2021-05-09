@@ -17,8 +17,6 @@ $(document).on("click", "#send_mail", function () {
         param.body = $("#mail_text").val();
         param.subject = $("#mail_name").val();
 
-        param.cc_address = $("#mail_address1").val();//to
-        param.bcc_address = $("#mail_address2").val();//from
         console.log(param);
         
         $.ajax({
