@@ -1,15 +1,18 @@
 <?php
   class DBH
   {
-    // private $DBhost = "localhost";
-    // private $DBuser = "root";
-    // private $DBpwd = "";
-    // private $DBname = "api";
+    // // // SO THIS IS PIZZI CONF
+    // private $DBhost = "out27.keliweb.com";
+    // private $DBuser = "udkedhjd_dev";
+    // private $DBpwd = 'as@$asfaskjpjAFaks2';
+    // private $DBname = "udkedhjd_test";
     // private $DBport = "3306";
-    private $DBhost = "out27.keliweb.com";
-    private $DBuser = "udkedhjd_dev";
-    private $DBpwd = 'as@$asfaskjpjAFaks2';
-    private $DBname = "udkedhjd_test";
+
+    // // // SO THIS IS VULVENTEMPEL HOSTINGER CONF NEW!!!!
+    private $DBhost = "nl-srv-web447.main-hosting.eu";
+    private $DBuser = "u205928446_WacheDesTemp";
+    private $DBpwd = 'MsDZ1G#AF1sA$as1';
+    private $DBname = "u205928446_Blog";
     private $DBport = "3306";
 
     protected function connect()
