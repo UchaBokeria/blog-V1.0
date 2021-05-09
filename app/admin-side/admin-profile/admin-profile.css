@@ -32,59 +32,38 @@
     width:100%;
     height:100%;
 }
-
-.profile_pic{
+.upload_image{
     width: 100%;
-    height: 37vh;
-    transition:2s;
+    height: 40vh;
 }
 .profile_pic img{
-    width: 100%;
-    height: 37vh;
+    height: 38vh;
+    transition: 1s;
+    z-index: 0;
 }
-.upload_image:hover > .profile_pic{
-    width: 20%;
-}
-.upload_image{
+.upload_form{
+    height: 40vh;
     position: absolute;
-    height:37vh !important;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    opacity: 0;
-}
-.upload_image:hover{
     opacity: 1;
     display: flex;
-}
-.upload_image input[type="file"]{
+    justify-content: center;
+    align-items: center;
     opacity: 0;
-    z-index: -1; 
-    position: absolute;
+    z-index:1;
 }
-.upload_image label{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image:url("assets/images/upload.png") ;
-    width: 100%;
-    height: 25vh;
+.upload_image:hover > .upload_form{
+    opacity: 1;
 }
-.upload_image label img{
+.upload_image:hover > .profile_pic img{
+    opacity: 0.5;
+}
+.upload_form input[type="file"]{
+    display: none;
+}
+.upload_form label{
+    
     cursor: pointer;
-    width: 60%;
 }
-.upload_image input[type="submit"]{
-    display: flex;
-    justify-content: center;
-    background-color: green;
-    align-items: center;
-    width: 40%;
-    height: 5vh;
-    border-radius: 25px;
-}
-
 /* right */
 
 .right-side-content {
@@ -127,7 +106,9 @@
     float:left;
     width:90%;
 }
-
+#pas_repeat{
+    display: none;
+}
 .save,
 .discard{
     width:30%;
@@ -148,3 +129,8 @@
 
 .right-side-content i[data-type="error"]{ color:#AF1F1F; }
 .right-side-content i[data-type="done"]{ color:#1FAF1F; }
+
+#alert_text{
+    color:#AF1F1F;
+    display: none;
+}

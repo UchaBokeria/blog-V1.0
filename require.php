@@ -33,7 +33,8 @@
 
 
     $url = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+    
     if(strpos($url,"admin"))
-        $root = "app/admin-side/index.php";
+        header("login.php");
     else
         $root = "app/user-side/index.php";

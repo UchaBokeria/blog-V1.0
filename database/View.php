@@ -84,27 +84,25 @@
       }
       if($id == ""){
         $param = array(["attr"=>$limit,"type"=>PDO::PARAM_INT]);
-        $sql = "SELECT  posts.id,
-                        accounts.profile_pic,
-                        accounts.nickname,
-                        posts.title,
-                        posts.`desc`,
-                        posts.createdAt,
-                        `status`.title AS `status`,
-                        posts.status_id AS `status_id`,
-                        CONCAT(files.dir,file_types.extension) AS path
-                        
-                      FROM
-                        posts
-                        JOIN accounts ON posts.user_id = accounts.id
-                        LEFT JOIN files ON files.post_id = posts.id
-                        LEFT JOIN file_types ON files.type_id = file_types.id
-                        LEFT JOIN `status` ON `status`.id = posts.status_id
-                      WHERE
-                        category_id = 1 AND posts.activated = 1
-                      ORDER BY
-                        posts.createdAt DESC
-                      LIMIT ? ";
+        $sql = "SELECT    posts.id,
+                          accounts.profile_pic,
+                          accounts.nickname,
+                          posts.title,
+                          posts.`desc`,
+                          posts.createdAt,
+                          `status`.title AS `status`,
+                          posts.status_id AS `status_id`,
+                          GROUP_CONCAT(CONCAT(files.dir,file_types.extension)) AS `path`
+                        FROM
+                          posts
+                          JOIN      accounts ON posts.user_id = accounts.id
+                          LEFT JOIN files ON files.post_id = posts.id
+                          LEFT JOIN file_types ON files.type_id = file_types.id
+                          LEFT JOIN `status` ON `status`.id = posts.status_id
+                        WHERE     category_id = 1 AND posts.activated = 1
+                          GROUP BY  posts.id
+                          ORDER BY  posts.createdAt DESC
+                          LIMIT ? ";
       }
       else{
         $param = array(["attr"=>$id,"type"=>PDO::PARAM_INT]);

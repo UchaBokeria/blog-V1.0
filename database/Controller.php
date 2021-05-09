@@ -12,14 +12,18 @@
 
     }
     
-    public function updateAccount($userId,$username,$description,$birth_date,$nickname,$email){
-      
+    public function updateAccount($userId,$username,$description,$birth_date,$nickname,$email,$password){
+
+      $password = password_hash($password, PASSWORD_DEFAULT);
+      echo $password;
+
       $params = array(
         ["attr"=>$username,"type"=> PDO::PARAM_STR],
         ["attr"=>$description,"type"=> PDO::PARAM_STR],
         ["attr"=>$birth_date,"type"=> PDO::PARAM_STR],
         ["attr"=>$nickname,"type"=> PDO::PARAM_STR],
         ["attr"=>$email,"type"=> PDO::PARAM_STR],
+        ["attr"=>$password,"type"=> PDO::PARAM_STR],
         ["attr"=>$userId,"type"=> PDO::PARAM_INT]
       );
       
@@ -28,7 +32,8 @@
                       `description` = ?,
                       birth_date = ?,
                       nickname = ?,
-                      email = ?
+                      email = ?,
+                      `password` = ?
               WHERE accounts.id = ?
               ";
       return $this->set($sql,$params);
