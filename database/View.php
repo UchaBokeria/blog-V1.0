@@ -140,7 +140,7 @@
                       accounts.nickname,
                       posts.title,
                       posts.`desc`,
-                      posts.createdAt,
+											DATE(posts.createdAt) AS createdAt,
 	                    `status`.title AS `status`,
                       GROUP_CONCAT(CONCAT(files.dir,file_types.extension)) AS `path`
                       
