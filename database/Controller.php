@@ -1,14 +1,14 @@
 <?php
   class Controller extends Model{
     public function login($username,$password){
-      $sql = "SELECT token, password from users WHERE username = ?;";
+      $sql = "SELECT token, `password` from accounts WHERE username = ? ;";
       $param = array(["attr"=>$username,"type"=>PDO::PARAM_STR]);
 
-      $results = $this->getAll($sql,$param);
+      $results = $this->get($sql,$param);
       foreach ($results as $value)
         return  password_verify($password, $value["password"]) ? 
-                array(["token"=>$value["token"], "result"=> true]) : 
-                array(["token"=>$value["token"], "result"=> false]) ;
+                ["token"=>$value["token"], "result"=> true] : 
+                ["token"=>0, "result"=> false] ;
     }
 
     public function register($user,$pwd)
@@ -19,7 +19,7 @@
       while(true){
         $token = bin2hex(random_bytes(32));
 
-        $sql = "SELECT COUNT(*) FROM accounts WHERE token = ?";
+        $sql = "SELECT id FROM accounts WHERE token = ?";
         $param = array(["attr"=>$token,"type"=>PDO::PARAM_STR]);
 
         $resCount = $this->get($sql,$param);

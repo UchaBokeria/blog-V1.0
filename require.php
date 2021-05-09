@@ -37,10 +37,8 @@
     if(strpos($url,"admin")){
         if(!isset($_SESSION["token"]))
             header("Location:login.php");
-        else{
-            echo $_SESSION["token"];
-            $root = "app/admin-side/admin-index.php";
-        }
+        else
+            $root = "app/admin-side/index.php";
     }
     else
         $root = "app/user-side/index.php";

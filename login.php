@@ -57,7 +57,7 @@
     </style>
 </head>
 <body>
-    <form action="checker.php" method="post">
+    <form action="checker.php" method="POST">
         <h1>LOG IN</h1>
         <input type="text" name="username" id="username" placeholder="Username">
         <input type="password" name="password" id="password" placeholder="Password">

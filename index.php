@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 <?php include_once "require.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
