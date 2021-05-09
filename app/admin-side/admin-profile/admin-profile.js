@@ -8,7 +8,6 @@ $(document).ready( function(){
         success: function(response){
         },
         error: function(response) {
-            alert("error");
         }
     });
 });
@@ -76,7 +75,6 @@ $(document).on("click","#saveProfile",function(){
                     console.log(files[0]['name']);
                 },
                 error: function(response) {
-                    alert("error");
                 }
             });
         }
@@ -108,7 +106,6 @@ $(document).on("change","#file",function (){
                 }
             },
             error: function(response) {
-                alert("error");
             }
         });
     }
@@ -123,7 +120,6 @@ $(document).on("click","#Discard",function (){
         success: function(response){
         },
         error: function(response) {
-            alert("error");
         }
     });
 

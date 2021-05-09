@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION["token"]))
+        header("Location:../../../assets/wildcard.php"); 
+?>
 <!-- <div class="admin-filter">
     <i class="material-icons" id="blog_create_new">add_circle_outline</i>
 
