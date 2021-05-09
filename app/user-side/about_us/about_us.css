@@ -19,10 +19,13 @@
   background: #EDEDED;
 }
 .header-info{
-  width: 55%;
+  width: 60% !important;
   display: flex;
-  justify-content: space-between;
+  justify-content:left !important;
   align-items: center;
+}
+.header-info h1{
+  margin-left: 8%;
 }
 .admin-header i{
   font-size: 10vw;
@@ -73,7 +76,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 20%;
+    width: 25%;
   }
   .admin-header img{
     width: auto;

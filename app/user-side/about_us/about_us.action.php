@@ -21,7 +21,7 @@
                                 
                                     <div class="toggle" data-id="'.$value["id"].'">
                                     <div class="admin-desc">
-                                        <p>' . $value["tipi_desc"] . '</p>
+                                        <p>' . $value["desc"] . '</p>
                                     </div>
                                     </div>
                                 </div>';
