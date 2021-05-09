@@ -165,7 +165,7 @@
                       users.nickname,
                       users.profile_pic,
                       GROUP_CONCAT(roles.`name`) AS role,
-                      account_roles.`title` AS tipi_desc
+                      users.description AS `desc`
                 FROM 		account_roles 
                 LEFT JOIN 		accounts AS users ON users.id = account_roles.user_id
                 LEFT JOIN 		role_details AS roles ON account_roles.role_id = roles.id
