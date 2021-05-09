@@ -4,7 +4,7 @@ $('#toggle_info1').click(function () {
 });
 $(document).on("click", ".toggle_info", function () {
     var toggle_id = $(this).attr("data-id");
-    $('.toggle[data-id="'+toggle_id+'"]').toggle(800);
+    $('.toggle[data-id="'+toggle_id+'"]').toggle(100);
     $('.toggle_info[data-id="'+toggle_id+'"]').toggleClass("rotate");
 });
 
