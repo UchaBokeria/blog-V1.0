@@ -235,10 +235,13 @@
 }
 .post_body{
     position: absolute;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
     display: none;
     height: 10vh;
     padding-left:5%;
-    width: 90%;
+    width: 95%;
 }
 
 .editor-body strong{font-family: 'RobotoBold' !important;}
@@ -390,6 +393,7 @@
     position: relative;
     width: 100%;
     min-height: 25vh;
+    height: auto;
     border-radius: 5px;
     background-color: #c4c4c4c4;
 }

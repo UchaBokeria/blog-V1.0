@@ -16,7 +16,7 @@
     font-size:10vw;
     cursor:pointer;
 }
-#menu img{left:6vw;width:auto;height:8vh;}
+#menu img{left:6vw;width:auto;height:3vh;}
 #menu div{right:6vw;top:3vh;}
 
 .web-menu{
@@ -71,6 +71,24 @@
     background:white;
     padding:3vh 7vw;
     min-height:86vh;
+}
+.menu_footer{
+  display: flex;
+  justify-content: space-around;
+  font-size: 5vw;
+  position: absolute;
+  top:80vh;
+  left:0;
+  color: white;
+}
+a{
+  color: white;
+  text-decoration: none;
+  font-family: italic;
+}
+a:hover{
+  text-decoration: none;
+  color: white;
 }
 .footer{
   display: none;
@@ -131,6 +149,15 @@
     color: white;
     cursor: pointer;
     font-family: RobotoLightItalic;
+  }
+  a{
+    color: white;
+    text-decoration: none;
+    font-family: italic;
+  }
+  a:hover{
+    color: white;
+    text-decoration: none;
   }
 }
 @media only screen and (min-width:500px){

@@ -13,17 +13,18 @@
 #slideImgActive{
   display:block  !important;
 }
-.Carousel-container{
+.home-Carousel-container{
   display: flex;
   width: 100%;
   height: 30vh !important;
   overflow-x: scroll;
   position: relative;
 }
-.Carousel-container img{
+.home-Carousel-container img{
   display: block;
   margin-right: 10%;
-  min-width: 100%;
+  width: auto;
+  max-width: 100%;
   height: 30vh ;
 }
 .text{
@@ -32,6 +33,14 @@
   font-size:1.2vw;
   overflow:hidden;
   word-wrap: break-word;
+}
+.text h1{
+  cursor: pointer;
+  font-size: 5vw;
+  background-color: white;
+}
+.see_more_height{
+  height: auto !important;
 }
 #input_test{
   display: none;
@@ -83,7 +92,7 @@
     font-size: 1.2vw;
     font-family: RobotoLight;
   }
-  .Carousel-container{
+  .home-Carousel-container{
     margin: 2vh 0 2vh 0;
     width: 100%;
     height: 80vh !important;
@@ -91,11 +100,11 @@
     display: block;
     position: relative;
   }
-  .Carousel-container img{
+  .home-Carousel-container img{
     position: absolute;
-    width: auto;
-    max-width: 100%;
-    height: 80vh !important;
+    min-width: 60% !important;
+    max-width: 100% !important;
+    height: 80vh;
   }
   .pages{
     display: none;

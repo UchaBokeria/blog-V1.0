@@ -90,9 +90,11 @@
 
                         </div>
 
-                        <div class="text">
+                        <div class="blog_text" see-id='.$value["id"].'>
+                            <h1 class="blog_see_more" see-id='.$value["id"].'>See More</h1>
                             <p>' . htmlspecialchars_decode($value["desc"]) . '</p>
                         </div>
+                        
                         <hr style="border-bottom:1px solid #C4C4C4; margin:6vh 0;">
                     </div>';
     }

@@ -17,6 +17,8 @@
     border-bottom:1px solid #252525;
 }
 .logout_but{
-    width:10%;
-    display: none;
+    position: absolute;
+    right: 5%;
+    border-radius: 5px;
+    width:9%;
 }

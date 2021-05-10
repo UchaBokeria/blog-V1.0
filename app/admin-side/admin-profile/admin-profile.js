@@ -49,10 +49,12 @@ $(document).on("click","#saveProfile",function(){
             url:"app/admin-side/admin-profile/admin-profile.action.php",
             data:obj,
             succsess:function(data){
-                console.log("admin updated");
+                $("#alert_text").show();
+                $("#alert_text").html("Profile updated");
             },
             error:function(data){
-                console.log("admin updated");
+                $("#alert_text").show();
+                $("#alert_text").html("Something went wrong try again");
             }
         });
     }
@@ -74,14 +76,9 @@ $(document).on("click","#saveProfile",function(){
                 success: function(response){
                     console.log(files[0]['name']);
                 },
-                error: function(response) {
-                }
             });
         }
-        console.log(files[0]);
     }
-
-
 });
 
 $(document).on("change","#file",function (){
