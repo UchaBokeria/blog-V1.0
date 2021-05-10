@@ -88,6 +88,7 @@ class View extends Model
                         accounts.profile_pic,
                         accounts.nickname,
                         posts.title,
+                        posts.body,
                         posts.`desc`,
                         posts.createdAt,
                         `status`.title AS `status`,
@@ -111,6 +112,7 @@ class View extends Model
                       accounts.profile_pic,
                       accounts.nickname,
                       posts.title,
+                      posts.body,
                       posts.`desc`,
                       posts.createdAt,
                       `status`.title AS `status`,
@@ -130,15 +132,16 @@ class View extends Model
     return $this->get($sql,$param);
   }
 
-  public function blog($limit=1){
+  public function blog($limit=10){
     if($limit == ""){
-      $limit = 1;
+      $limit = 10;
     }
     $param = array(["attr"=>$limit,"type"=>PDO::PARAM_INT]);
     $sql = "SELECT  posts.id,
                     accounts.profile_pic,
                     accounts.nickname,
                     posts.title,
+                    posts.body,
                     posts.`desc`,
                     posts.createdAt,
                     `status`.title AS `status`,
