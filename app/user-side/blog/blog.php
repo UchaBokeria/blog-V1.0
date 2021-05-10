@@ -25,6 +25,11 @@
   </div> -->
 </div>
 
+<div id="detail_post">
+  <h1 id="detail_title">Title</h1>
+  <i class='material-icons' id="detail_close">close</i>
+  <div id="detail_body"></div>
+</div>
 
 
 <!-- <div class="pages">

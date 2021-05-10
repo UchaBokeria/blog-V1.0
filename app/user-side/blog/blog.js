@@ -79,3 +79,18 @@ $(document).on("click",".blog_see_more",function(){
     console.log(post_id);
     $(".blog_text[see-id = "+ post_id +"]").toggleClass("blog_see_more_height");
 });
+
+// show up pop up
+$(document).on("click", ".text > h1", function () {
+    var bodyhtml = "...";
+    var title = $(this).attr("data-title");
+    bodyhtml = $(this).attr("data-html");
+
+    $("#detail_post > #detail_title").html(title);
+    $("#detail_post > #detail_body").html(bodyhtml);
+
+    $("#detail_post").show();
+});
+$(document).on("click", "#detail_post > #detail_close", function () {
+    $("#detail_post").hide();
+});

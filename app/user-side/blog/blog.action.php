@@ -94,7 +94,9 @@
                             <h1 class="blog_see_more" see-id='.$value["id"].'>See More</h1>
                             <p>' . htmlspecialchars_decode($value["desc"]) . '</p>
                         </div>
-                        
+                        <div class="text">
+                            <h1 style="cursor:pointer" data-id="'.$value["id"].'" data-title="'.$value["title"].'" data-html="'.htmlspecialchars_decode($value["body"]).'">Mehr sehen</h1>
+                        </div>
                         <hr style="border-bottom:1px solid #C4C4C4; margin:6vh 0;">
                     </div>';
     }
