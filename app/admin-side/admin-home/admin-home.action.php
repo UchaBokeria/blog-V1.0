@@ -139,7 +139,7 @@
             $user_id = 1;
             $status_id = $_REQUEST["status_id"];
             $category_id = $_REQUEST["category_id"];
-            $set->createPost($title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
+            $set->createPost($title,$body,$desc,$user_id,$status_id,$category_id);
             break;
         case 'delete_post':
             $id = $_REQUEST["id"];
