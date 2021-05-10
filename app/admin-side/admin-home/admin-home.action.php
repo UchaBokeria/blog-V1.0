@@ -81,14 +81,14 @@
                                         </div>
                                         <div class='edit_upload_image'>
                                             <div class='upload_form'>                                
-                                                <input type='file' id='file' name='file' >
-                                                <label for='file'><img src='assets/images/upload.png'></label>
+                                                <input type='file' id='post_file' name='file' >
+                                                <label for='post_file'><img src='assets/images/upload.png'></label>
                                             </div>
                                             <div class='image_counter'>
                                                 <h1>".$img_counter."</h1>
                                             </div>
                                             <div class='images_output'>
-                                                <img src='assets/uploads/blog1.jpg' >
+                                                <img src='' id='test_img_gtxov'>
                                             </div>
                                         </div>
                                         <button class='save-button'   type='button' id='".$value['id']."'>speicher</button>

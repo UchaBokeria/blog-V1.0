@@ -6,7 +6,7 @@
     <p class="active-page" data-page="admin-home">Ausstellung</p>
     <p class="aactive-page" data-page="admin-blog">My Blog</p>
     <p class="aactive-page" data-page="admin-profile">Profil</p>
-    <form action="app/admin-side/index.php" method="POST"><button name="logout">log out</button></form>
+    <form action="app/admin-side/index.php" method="POST"><button class="logout_but" name="logout">log out</button></form>
 </div>
 
 <div id="navigation" style="display:none;">

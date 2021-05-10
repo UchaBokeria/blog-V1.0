@@ -34,7 +34,6 @@
 
 <div class="footer">
   <div class="footer-text">
-    <a href="assets/footer-info.html">Impressum</a>
-    <a href="assets/footer-info.html">Datenschutz</a>
+    <a href="assets/footer-info.html">Impressum & Datenschutz</a>
   </div>
 </div>

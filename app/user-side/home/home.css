@@ -42,6 +42,7 @@
 .nextBut,.prevBut{
   display: none;
 }
+  
 /* .rotateLeft{
   transform: rotate(90deg);
 }
@@ -85,15 +86,16 @@
   .Carousel-container{
     margin: 2vh 0 2vh 0;
     width: 100%;
-    height: 50vh !important;
+    height: 80vh !important;
     background: #FFFFFF;
     display: block;
     position: relative;
   }
   .Carousel-container img{
     position: absolute;
-    width: 100%;
-    height: 50vh !important;
+    width: auto;
+    max-width: 100%;
+    height: 80vh !important;
   }
   .pages{
     display: none;

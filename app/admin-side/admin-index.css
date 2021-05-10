@@ -16,3 +16,7 @@
 .active-page{
     border-bottom:1px solid #252525;
 }
+.logout_but{
+    width:10%;
+    display: none;
+}

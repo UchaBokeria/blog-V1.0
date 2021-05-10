@@ -376,7 +376,7 @@ $(document).on("click", ".edit_desc",function() {
 
 $(document).on("change","#post_file",function (){
     var obj = new FormData();
-    var files = $('#file')[0].files;
+    var files = $('#post_file')[0].files;
 
     if(files.length > 0){
         obj.append('file',files[0]);
@@ -388,8 +388,8 @@ $(document).on("change","#post_file",function (){
             processData: false,
             success: function(response){
                 if(response != 0){
-                    $(".images_output").hide();
-                    // 'src',"assets/uploads/tmp/" + files[0]['name']
+                    console.log("kargia succsesia");
+                    $("#test_img_gtxov").attr('src',"assets/uploads/tmp/" + files[0]['name']);
                 }
             },
             error: function() {
