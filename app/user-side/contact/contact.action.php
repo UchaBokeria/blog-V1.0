@@ -16,19 +16,20 @@
     use PHPMailer\PHPMailer\Exception;
 
     $mail = new PHPMailer();
-	$mail->SMTPDebug = 4;
+	//$mail->SMTPDebug = 4;
     $mail->isSMTP();
     $mail->Host = "smtp.hostinger.com";
     $mail->SMTPAuth = "true";
     $mail->SMTPSecure = "tls";
     $mail->Port = "587";
-    $mail->Username = "test@vulventempel.de";
-    $mail->Password = "Pepela22";
+    $mail->Username = "offiziell@vulventempel.de";
+    $mail->Password = "Vka1Gassk12asdk";
     $mail->Subject = "vulventempel message FROM: " . $address . ", Full Name: " . $fullname;
-    $mail->setFrom("test@vulventempel.de");
+    $mail->setFrom("offiziell@vulventempel.de");
     $mail->isHTML(true);
     $mail->Body = $msg;
-    $mail->addAddress($address);
+    //$mail->addAddress("ucha1bokeria@gmail.com");
+    $mail->addAddress("vulventempel@gmail.com");
     if(!$mail->send()){
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     }

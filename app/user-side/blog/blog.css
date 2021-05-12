@@ -44,10 +44,16 @@
 
 .blog_text{
   width: 100%;
+  display:none;
   height:10vh;
+  letter-spacing: 1px;
   font-size:1.2vw;
+  font-family: RobotoLight;
   overflow:hidden;
   word-wrap: break-word;
+}
+.blog_text p {
+  line-height:1.2;
 }
 .blog_text h1{
   cursor: pointer;
@@ -182,7 +188,7 @@
   align-items:center;
   justify-content:center;
 }
-#detail_post i {
+#detail_close {
   position:absolute;
   top:3vh;
   left:3vw;

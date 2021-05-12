@@ -1,13 +1,10 @@
 <?php 
     include_once "../../module.php";
     $act = $_REQUEST["act"];
-    //$limit = $_REQUEST["post_limit"];
-    // if(!isset($_REQUEST["post_limit"]))
 
-    $limit = 10;
     $result = array();
     $result["content"] = "";
-    $res = $get->about($limit);
+    $res = $get->about();
 
     foreach ($res as $value) {
         $result["content"] .= '<div class="admin-info">

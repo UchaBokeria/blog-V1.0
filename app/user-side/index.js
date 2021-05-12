@@ -43,7 +43,7 @@ $(document).on("click", "#navigation p", function () {
     $("#navigation").slideToggle(200);
 });
 
-$(document).on("click", ".web-menu-links p,#logo", function () {
+$(document).on("click", ".web-menu-links p,#logo,#Mlogo", function () {
     var page = $(this).attr("data-page");
     $(".web-menu-links p").removeClass("active-page")
     $(this).toggleClass("active-page");
@@ -52,7 +52,6 @@ $(document).on("click", ".web-menu-links p,#logo", function () {
 
 function getPage(page) {
     var page_url = "app/user-side/" + page + "/" + page + ".php";
-    console.log(page + " -> " + page_url);
 
     $.ajax({
         url: page_url,
@@ -76,7 +75,6 @@ function loadHtml(page) {
         dataType: "json",
         success: function (data) {
             $("#"+page).html(data.content);
-            console.log(data);
         }
     });
 }
