@@ -17,7 +17,6 @@ $(document).on("click", "#send_mail", function () {
         param.body = $("#mail_text").val();
         param.subject = $("#mail_name").val();
 
-        console.log(param);
         
         $.ajax({
             url: "app/user-side/contact/contact.action.php",

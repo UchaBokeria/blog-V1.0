@@ -5,7 +5,7 @@
 </div>
 
 <div class="web-menu">
-  <img src="assets/images/logo.jpeg" data-page="home">
+  <img src="assets/images/logo.jpeg" id="Mlogo" data-page="home" >
   <div class="web-menu-links">
     <p data-page="home" class="active-page">Ausstellung</p>
     <p data-page="blog">Blog</p>

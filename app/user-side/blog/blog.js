@@ -1,95 +1,70 @@
 
 var inc = 0;
 
-$(".mySlides").hide();
-$(".mySlides[data-id="+inc+"]").show();
+$(".Carousel-container .mySlides").hide();
+$(".Carousel-container .mySlides[data-id=0]").show();
 
-$(document).on("click",".prevBut",function(){
+$(document).on("click",".Carousel-container .prevBut",function(){
     var post_id = $(this).attr("slide-id");
 
-    var last = $(".mySlides[slide-id = "+post_id+"]").length;
+    var last = $(".Carousel-container .mySlides[slide-id = "+post_id+"]").length;
     
     inc--;
     if(inc < 0){
         inc = last-1;
     }
-    $(".mySlides[slide-id = "+post_id+"]").hide();
-    $(".mySlides[data-id="+inc+"][slide-id = "+post_id+"]").show();
+    $(".Carousel-container .mySlides[slide-id = "+post_id+"]").hide();
+    $(".Carousel-container .mySlides[data-id="+inc+"][slide-id = "+post_id+"]").show();
     
 });
 
-$(document).on("click",".nextBut",function(){
+$(document).on("click",".Carousel-container .nextBut",function(){
     var post_id = $(this).attr("slide-id");
 
-    var last = $(".mySlides[slide-id = "+post_id+"]").length;
+    var last = $(".Carousel-container .mySlides[slide-id = "+post_id+"]").length;
     
     inc++;
     if(inc > last-1){
         inc = 0;
     }
     
-    $(".mySlides[slide-id = "+post_id+"]").hide();
-    $(".mySlides[data-id="+inc+"][slide-id = "+post_id+"]").show();
-    
-});
-function slide(){
-    $(".mySlides").hide();
-}
-
-
-var inc = 0;
-
-$(".mySlides").hide();
-$(".mySlides[data-id="+inc+"]").show();
-
-$(document).on("click",".prevBut",function(){
-    var post_id = $(this).attr("slide-id");
-
-    var last = $(".mySlides[slide-id = "+post_id+"]").length;
-    
-    inc--;
-    if(inc < 0){
-        inc = last-1;
-    }
-    $(".mySlides[slide-id = "+post_id+"]").hide();
-    $(".mySlides[data-id="+inc+"][slide-id = "+post_id+"]").show();
+    $(".Carousel-container .mySlides[slide-id = "+post_id+"]").hide();
+    $(".Carousel-container .mySlides[data-id="+inc+"][slide-id = "+post_id+"]").show();
     
 });
 
-$(document).on("click",".nextBut",function(){
-    var post_id = $(this).attr("slide-id");
+// // // description dropdown version
+// $(document).on("click",".blog_see_more",function(){
+//     var post_id = $(this).attr("see-id");
+//     $(".blog_text[see-id = "+ post_id +"]").toggleClass("blog_see_more_height");
+// });
 
-    var last = $(".mySlides[slide-id = "+post_id+"]").length;
-    
-    inc++;
-    if(inc > last-1){
-        inc = 0;
-    }
-    
-    $(".mySlides[slide-id = "+post_id+"]").hide();
-    $(".mySlides[data-id="+inc+"][slide-id = "+post_id+"]").show();
-    
-});
-function slide(){
-    $(".mySlides").hide();
-}
 
-$(document).on("click",".blog_see_more",function(){
-    var post_id = $(this).attr("see-id");
-    console.log(post_id);
-    $(".blog_text[see-id = "+ post_id +"]").toggleClass("blog_see_more_height");
-});
-
-// show up pop up
-$(document).on("click", ".text > h1", function () {
+// show up blog post pop up
+$(document).on("click", ".text > h1,.text > h2", function () {
     var bodyhtml = "...";
     var title = $(this).attr("data-title");
-    bodyhtml = $(this).attr("data-html");
-
+    bodyhtmlID = $(this).attr("data-html-id");
     $("#detail_post > #detail_title").html(title);
-    $("#detail_post > #detail_body").html(bodyhtml);
 
-    $("#detail_post").show();
+    param = new Object();
+    param.act = "post_details";
+    param.post_id = bodyhtmlID;
+
+    $.ajax({
+        url: "app/user-side/blog/blog.action.php",
+        data: param,
+        dataType: "json",
+        success: function (html) {
+            $("#detail_body").html(html.content);
+            $("#detail_body").addClass("ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred");
+            $("#detail_body").attr("lang","de");
+            $("#detail_body").attr("dir","ltr");
+            $("#detail_body").attr("role","textbox");
+            $("#detail_body").attr("lang","de");
+            $("#detail_post").show();
+        }
+    });
 });
 $(document).on("click", "#detail_post > #detail_close", function () {
     $("#detail_post").hide();
