@@ -5,14 +5,12 @@
         header("Location:../../../assets/wildcard.php"); 
     $act = $_REQUEST["act"];
 
-    //$limit = $_REQUEST["post_limit"];
-    // if(!isset($_REQUEST["post_limit"]))
-
     $limit = 10;
     $result = array();
     $result["content"] = "";
-    $res = $get->aboutAdmin($limit);
-    $userid = 1;
+    
+    $res = $get->aboutAdmin();
+    $user_id = 1;
     switch($act){
         case 'SetAdmin':
             $userid = $_REQUEST['userid'];
@@ -22,7 +20,6 @@
             $nickname = $_REQUEST['nickname'];
             $email = $_REQUEST['email'];
             $password = $_REQUEST['password'];
-            echo $birth_date;
 
             $res = $set->updateAccount($userid,$username,$description,$birth_date,$nickname,$email,$password); //passord unda gaetanos da sheicvalos
 
@@ -31,7 +28,7 @@
             break;
 
         case 'get_posts':
-            $res = $get->aboutAdmin($limit);
+            $res = $get->aboutAdmin();
             foreach ($res as $value) {
                     $result["content"] .= '
                         <div class="left-side-content">
@@ -214,14 +211,4 @@
             break;
     }
 
-    
-    
     echo json_encode($result);
-
-
-
-
-
-
-
-$global_div = "";

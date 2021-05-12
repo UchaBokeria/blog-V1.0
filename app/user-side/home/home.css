@@ -10,6 +10,9 @@
   color: #121212;
   font-family: RobotoLight;
 }
+.text h3{
+  font-size: 5vw;
+}
 #slideImgActive{
   display:block;
 }
@@ -30,7 +33,7 @@
 .text{
   width: 100%;
   height:10vh;
-  font-size:1.2vw;
+  font-size:3vw;
   overflow:hidden;
   word-wrap: break-word;
 }
@@ -84,6 +87,7 @@
 } */
 
 @media only screen and (min-width:1025px){
+  .text{font-size:1.2vw;}
   .exhibition h1{
     font-size: 1.8vw;
     font-family: RobotoBold;
@@ -131,5 +135,9 @@
     outline:0;
     border:0;
     opacity: 1;
+  }
+  
+  .text h3{
+    font-size: 1.2vw;
   }
 }

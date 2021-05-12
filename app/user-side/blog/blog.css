@@ -2,6 +2,12 @@
 .Carousel-container::-webkit-scrollbar, .home-Carousel-container::-webkit-scrollbar{
   display:none;
 }
+.text h3{
+  font-size: 5vw;
+}
+.user-text p{
+  font-size:5vw;
+}
 
 .Carousel-container{
   display: flex;
@@ -28,7 +34,8 @@
 
 .user-info{
   display: flex;
-  width: 100%;
+  justify-content: space-between;
+  width: 70%;
   height: 5vh;
   margin-bottom: 2vh;
 }
@@ -38,7 +45,8 @@
 }
 .user-image img{
   border-radius: 100% !important;
-  width: 100%;
+  max-width:10vw;
+  width: auto;
   height: 5vh;
 }
 
@@ -98,10 +106,15 @@
 
 
 @media only screen and (min-width:1025px){
+  .text h3{
+    font-size: 1.2vw;
+  }
+
   .user-info{
     display: flex;
     align-items: center;
-    justify-content: right;
+    width:24%;
+    justify-content: space-between;
     height: 8vh;
   }
 
@@ -120,13 +133,13 @@
     flex-direction: column;
     justify-content: space-around;
     height: inherit;
-    margin-left: 2%;
+    margin-right: 4vw;
   }
   .user-text h1{
     font-size: 1.5vw;
   }
   .user-text p{
-    font-size: 1.1vw;
+    font-size: 0.8vw;
   }
 
   .text h1{
