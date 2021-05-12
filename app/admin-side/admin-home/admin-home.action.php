@@ -11,7 +11,9 @@
     $result = array();
     $result["content"] = "";
     $result["error"] = "";
-
+    $img_counter = 0;
+    $count = 4;
+    $_SESSION['image']=array();
     switch ($act) {
         case 'get_posts':
             if(json_decode($_REQUEST["data"]) != null){
@@ -47,7 +49,7 @@
         case 'get_edit':
             $id = $_REQUEST["id"];
             $res = $get->home($limit,$id);
-
+            $j=0;
             if(count($res) != 1){
                 $result["error"] = " მოთხოვნილი პოსტის აიდი არის განმეორებული ვაი ვაი როგორ შეიძლება";
                 echo $result["error"];
@@ -57,7 +59,9 @@
             foreach ($res as $value) {
                 $result["content"].="<div class='edit-window-ajax'  data-id=".$value['id']." >
                                         <i class='material-icons close-ajax-edit' data-id=".$value['id']." >close</i>
-                                        <input type='text' name=".$value['title']." value='".$value['title']."'>
+                                        <h1 class='edit_desc'>Description</h1>
+                                        <h1 class='edit_img'>Photo</h1>
+                                        <input type='text' id='new_title' name=".$value['title']." value='".$value['title']."'>
                                         
                                         <div class='edit-post-type-select'>
                                             <i class='fa fa-angle-down ' id='edit_post_types' style='top:1vh;'></i>";
@@ -77,8 +81,20 @@
                                             <div class='editor-head' data-id=".$value['id']."></div>
                                             <div class='editor-body' data-id=".$value['id']." id='text_fix_cke'>" . htmlspecialchars_decode($value['desc']) . "</div>
                                         </div>
-                                    
-                                        <button class='save-button'   type='button' id='".$value['id']."'>speicher</button>
+                                        <div class='edit_upload_image'>
+                                            <div class='upload_form'>  
+                                            <form id='mmmm' enctype='multipart/form-data'>         12                     
+                                                <input type='file' id='post_file' name='file[]' multiple>
+                                                <label for='post_file'><img src='assets/images/upload.png'></label>
+                                            </form>
+                                            </div>
+                                            <div class='image_counter'>
+                                                <h1 class='counter'>".$img_counter."</h1>
+                                            </div>
+                                            <div class='images_output'>
+                                            </div>  
+                                        </div>
+                                        <button class='save-button' type='button' id='".$value['id']."'>speicher</button>
                                         <br>
                                         <button class='cancel-button' type='button'>abbrechen</button>
                                     </div>";
@@ -126,7 +142,7 @@
             $user_id = 1;
             $status_id = $_REQUEST["status_id"];
             $category_id = $_REQUEST["category_id"];
-            $set->createPost($title,$body,$desc,$user_id,$status_id,$category_id);
+            $set->createPost($title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
             break;
         case 'delete_post':
             $id = $_REQUEST["id"];
@@ -136,14 +152,45 @@
             $title = $_REQUEST["title"];
             $body = $_REQUEST["body"];
             $desc = $_REQUEST["desc"];
+            $post_id = $_REQUEST["id"];
             //$user_id = $SESSION["user_id"];
             $user_id = 1;
             $status_id = $_REQUEST["status_id"];
             $category_id = $_REQUEST["category_id"];
-            $set->editPost($title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
-        break;
+            $set->editPost($post_id,$title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
             break;
-   
+        case 'tmp_upload':
+            $img_counter = count($_FILES["file"]["name"]);
+            $count = $img_counter;
+            $response = $img_counter;
+
+            for($i=0;$i!=$img_counter;$i++){
+
+                $name = $_FILES['file']['name'][$i];
+
+                $dir = "../../../assets/uploads/tmp/".$name;
+
+                $global_div = $dir;
+                $imageFileType = pathinfo($dir,PATHINFO_EXTENSION);
+                $imgType = strtolower(pathinfo($dir,PATHINFO_EXTENSION));   
+            
+                //type
+                if($imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif"){
+                    echo "This ile is not an image";
+                }
+
+                if(move_uploaded_file($_FILES['file']['tmp_name'][$i],$dir)){
+                    array_push($_SESSION['image'],$dir);
+                }
+                $dir = "assets/uploads/tmp/".$name;
+
+                echo $result[$i]["content"] = "<img src='".$dir."' class='test_img_gtxov' alt='".$i."' row-id='".$i."'>";
+            }
+            exit;
+            break;
+        case 'edit_post_img':
+            $id = $_REQUEST["id"];
+            
         default:
             # code...
             break;

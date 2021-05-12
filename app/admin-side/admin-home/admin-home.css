@@ -235,13 +235,10 @@
 }
 .post_body{
     position: absolute;
-    overflow-y:scroll;
-    overflow-x: hidden;
-    word-wrap: break-word;
     display: none;
     height: 10vh;
     padding-left:5%;
-    width: 95%;
+    width: 90%;
 }
 
 .editor-body strong{font-family: 'RobotoBold' !important;}
@@ -313,13 +310,13 @@
     border:1px solid black;
     width: 80%;
     height: 80vh;
+    overflow-y:scroll ;
 }
 .images_output img{
     width: 20%;
     height: 25vh;
-    margin-left: 5%;
-    position: absolute;
-    top:5vh;
+    float: left;
+    margin:5vh 2.5% 0 2.5%;
 }
 .save-button{
     position: absolute;
@@ -393,7 +390,6 @@
     position: relative;
     width: 100%;
     min-height: 25vh;
-    height: auto;
     border-radius: 5px;
     background-color: #c4c4c4c4;
 }

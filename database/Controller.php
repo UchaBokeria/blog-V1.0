@@ -11,8 +11,7 @@
                 ["token"=>0, "result"=> false] ;
     }
 
-    public function register($user,$pwd)
-    {
+    public function register($user,$pwd){
       $password = password_hash($pwd,PASSWORD_DEFAULT);
       $token = "";
 
@@ -80,7 +79,6 @@
 
       return $this->set($sql,$params);
     }
-
     public function createPost($title,$body,$desc,$user_id,$status_id,$category_id){
 
       $params = array(
@@ -103,15 +101,15 @@
 
       return $this->set($sql,$params);
     }
-
-    public function editPost($title,$body,$desc,$user_id,$status_id,$category_id){
+    public function editPost($post_id,$title,$body,$desc,$user_id,$status_id,$category_id){
       $params = array(
         ["attr"=>$title,"type"=> PDO::PARAM_STR ],
         ["attr"=>$body,"type"=> PDO::PARAM_STR ],
         ["attr"=>$desc,"type"=> PDO::PARAM_STR ],
         ["attr"=>$user_id,"type"=> PDO::PARAM_INT],
         ["attr"=>$status_id,"type"=> PDO::PARAM_INT],
-        ["attr"=>$category_id,"type"=> PDO::PARAM_INT]
+        ["attr"=>$category_id,"type"=> PDO::PARAM_INT],
+        ["attr"=>$post_id,"type"=> PDO::PARAM_INT]
       );
 
       $sql = "UPDATE posts 
@@ -121,12 +119,12 @@
                     `user_id` 		= ?,
                     `status_id` 	= ?,
                     `category_id` = ?,
-                    `updatedAt`	 	= NOW();";
+                    `updatedAt`	 	= NOW()
+              WHERE id = ?";
 
       return $this->set($sql,$params);
       
     }
-
     public function deletePost($id,$restorable = true){
       $params = array( ["attr"=>$id,"type"=> PDO::PARAM_INT ] );
 
@@ -138,6 +136,18 @@
       }
       else
         $sql = "DELETE FROM posts WHERE id = ?";
+      return $this->set($sql,$params);
+    }
+    public function editImage($pos_id,){
+      $params = array(
+        ["attr"=>$pos_id,"type"=> PDO::PARAM_STR ],
+      );
+
+      $sql = "UPDATE  files 
+                SET   dir= ?,
+                    `updatedAt`	 	= NOW()
+              WHERE id = ?";
+
       return $this->set($sql,$params);
     }
   }

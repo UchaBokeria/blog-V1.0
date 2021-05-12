@@ -25,6 +25,7 @@
     <!-- AJAX FILL -->
 </div>
 
+<div id="message"></div>
 <!-- logout -->
 <?php 
     if(isset($_POST["logout"])) {

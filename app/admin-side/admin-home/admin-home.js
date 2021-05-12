@@ -300,18 +300,18 @@ $(document).on("click", "#message", function () {
 
 $(document).on("click", ".save-button", function () {
     param = new Object();
-    param.act = "create_post";
-
+    param.act = "edit_post";
     param.title = $("#new_title").val();
     param.desc = editor.getData();
     //param.desc = $("#asd").val();
     param.status_id = $(".edit-post-type-select > #activated").attr("data-type");
     param.category_id = 1; // exhebition is 1, blog = 2
-
+    param.id = $(this).attr("id");
     console.log(param);
-
+    
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
+        type:"POST",
         data: param,
         success: function (response) {
             $("#edit-window").html("");
@@ -320,8 +320,17 @@ $(document).on("click", ".save-button", function () {
             $("#message").css("opacity","1");
             $("#message").html("Ihr Beitrag wurde gespeichert");
             setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
+            getAdminPage("admin-home");
         }
-    });
+    });    
+    param = new Object();
+    param.act = "edit_post_img";
+    param.id = $(this).attr("id");
+
+    $.ajax({
+        url: "app/admin-side/admin-home/admin-home.action.php",
+        type:"POST",
+    })
 });
 
 $(document).on("click", ".close-ajax-edit,.cancel-button", function () {
@@ -376,25 +385,27 @@ $(document).on("click", ".edit_desc",function() {
 
 $(document).on("change","#post_file",function (){
     var obj = new FormData();
-    var files = $('#post_file')[0].files;
+    var files = $(this)[0].files;
 
-    if(files.length > 0){
-        obj.append('file',files[0]);
-        $.ajax({
-            url:"app/admin-side/admin-home/admin-home.action.php/?act=tmp_upload",
-            type: 'post',
-            data:obj,
-            contentType: false,
-            processData: false,
-            success: function(response){
-                if(response != 0){
-                    console.log("kargia succsesia");
-                    $("#test_img_gtxov").attr('src',"assets/uploads/tmp/" + files[0]['name']);
-                }
-            },
-            error: function() {
-            }
-        });
+    for(var i=0;i!=files.length;i++){
+        obj.append('file[]',files[i]);    
     }
-    console.log("ifis merea vapshebolo");
-})
+    var test = 0;
+    $.ajax({
+        url:"app/admin-side/admin-home/admin-home.action.php/?act=tmp_upload",
+        type:"post",
+        data:obj,
+        contentType: false,
+        processData: false,
+        success: function(data){
+            console.log(files.length);
+            for(var i=0;i!=files.length;i++){
+                $(".images_output").html(data);
+                test++;
+            }
+            $(".counter").html(files.length);
+        }
+    });
+
+});
+

@@ -209,8 +209,9 @@
             echo 0;
             break;
         case 'delete_tmp_image':
-            $name = $_FILES['file']['name'];
-            unlink($_SESSION['image']);
+            for($i=0;$i!=count($_SESSION["image"]);$i++){
+                unlink($_SESSION['image'][$i]);
+            }
             break;
     }
 
