@@ -3,24 +3,22 @@
     if(!isset($_SESSION["token"]))
         header("Location:../../../assets/wildcard.php"); 
     include_once "../../module.php";
-    $act = $_REQUEST["act"];
-    //$limit = $_REQUEST["post_limit"];
-    // if(!isset($_REQUEST["post_limit"]))
 
-    $limit = 1000;
+    $act = $_REQUEST["act"];
     $result = array(); 
     $result["content"] = "";
     $result["error"] = "";
-    $count = 4;
-    $user_id = 1;
+
+    $user_id = $_SESSION["user_id"];
     $_SESSION['image'] = array();
     $_SESSION["tmp_img_numb"];
     $all_img_numb = $_SESSION["numb"];
+    
     switch ($act) {
         case 'get_posts':
             if(json_decode($_REQUEST["data"]) != null){
                 $filterParameters = json_decode($_REQUEST["data"],true);
-                $res = $get->filter($limit,$filterParameters,1);
+                $res = $get->filter(1,$filterParameters,$user_id);
             }
             else
                 $res = $get->posts(1,"",$user_id);
@@ -49,7 +47,6 @@
             }
             break;
         case 'get_edit':
-            $user_id = 1;
             $id = $_REQUEST["id"];
             $res = $get->posts(1,$id,$user_id);
             $j=0;
@@ -125,9 +122,9 @@
 
                                         <input type='text' placeholder='Erstelle neu' id='new_title'>
                                         
-                                        <div class='edit-post-type-select'>
-                                            <i class='fa fa-angle-down ' id='edit_post_types' style='top:1vh;'></i>
-                                            <div data-type='2'>öffentlich</div>
+                                        <div class='edit-post-type-select-new'>
+                                            <i class='fa fa-angle-down ' id='edit_post_types-new' style='top:1vh;'></i>
+                                            <div data-type='2' id='activated'>öffentlich</div>
                                             <div data-type='3'>Privat</div>
                                             <div data-type='4'>Projekt</div>
                                         </div>
@@ -172,11 +169,9 @@
             $title = $_REQUEST["title"];
             $body = $_REQUEST["body"];
             $desc = $_REQUEST["desc"];
-            //$user_id = $SESSION["user_id"];
-            $user_id = 1;
             $status_id = $_REQUEST["status_id"];
             $category_id = $_REQUEST["category_id"];
-            $set->createPost($title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
+            $set->createPost($title,"",htmlspecialchars($desc),$user_id,$status_id,$category_id);
             break;
         case 'delete_post':
             $id = $_REQUEST["id"];
@@ -187,8 +182,6 @@
             $body = "";
             $desc = $_REQUEST["desc"];
             $post_id = $_REQUEST["id"];
-            //$user_id = $SESSION["user_id"];
-            $user_id = 1;
             $status_id = $_REQUEST["status_id"];
             $category_id = $_REQUEST["category_id"];
             $set->editPost($post_id,$title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
@@ -197,8 +190,6 @@
             $title = $_REQUEST["title"];
             $body = "";
             $desc = $_REQUEST["desc"];
-            //$user_id = $SESSION["user_id"];
-            $user_id = 1;
             $status_id = $_REQUEST["status_id"];
             $category_id = $_REQUEST["category_id"];
             $set->createPost($title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
@@ -225,7 +216,9 @@
                 if($imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif"){
                     echo "This ile is not an image";
                 }
-
+                if(file_exists($dir)){
+                    $dir .= $user_id;
+                }
                 if(move_uploaded_file($_FILES['file']['tmp_name'][$i],$dir)){
                     array_push($imgArra,$name);
                 }

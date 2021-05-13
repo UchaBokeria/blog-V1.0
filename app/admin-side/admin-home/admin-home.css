@@ -171,6 +171,12 @@
     position: absolute;
     cursor:pointer;
 }
+#edit_post_types-new{
+    top: 1vh;
+    left: 1vw;
+    position: absolute;
+    cursor:pointer;
+}
 #edit-window input{
     width: 10%;
     height: 7vh;
@@ -393,6 +399,32 @@
     align-items: center;
     cursor: pointer;
 }
+.edit-post-type-select-new{
+    transition:1s;
+    padding-top:1vh ;
+    top:3vh;
+    right:5%;
+    text-align:center;  
+    width:15%;
+    height:7vh;
+    overflow:hidden;
+    position:absolute;
+    z-index:1000;
+    background:#252525;
+    color:#FFFFFF;
+    border-radius: 5px;
+    font-size: 2.3vw;
+}
+.edit-post-type-select-new div{
+    transition:1s;
+    font-size: 2vw;
+    margin-bottom:2vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
 .admin-filter button,
 .admin-filter input{
     box-shadow:none;
@@ -407,6 +439,9 @@
     position: relative;
     width: 100%;
     min-height: 25vh;
+    height:auto;
+    overflow-x:hidden;
+    overflow-y:scroll;
     border-radius: 5px;
     background-color: #c4c4c4c4;
 }
@@ -423,6 +458,7 @@
     display:flex;
     justify-content:center;
     align-items:center;
+    text-align:center;
     border-radius:3px;
     position:fixed;
     opacity:0;
