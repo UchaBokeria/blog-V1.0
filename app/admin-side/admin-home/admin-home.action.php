@@ -14,6 +14,7 @@
     $count = 4;
     $user_id = 1;
     $_SESSION['image'] = array();
+    $_SESSION["tmp_img_numb"];
     $all_img_numb = $_SESSION["numb"];
     switch ($act) {
         case 'get_posts':
@@ -205,7 +206,9 @@
         case 'tmp_upload':
             $img_counter = count($_FILES["file"]["name"]);
             $imgArra = array();
+
             $_SESSION["tmp_img_numb"] = count($_FILES["file"]["name"]);;
+
             $all_img_numb += $img_counter;
             $result["count"] = $all_img_numb;
             for($i=0;$i!=$img_counter;$i++){
