@@ -44,15 +44,14 @@
 .upload_form{
     height: 40vh;
     position: absolute;
-    opacity: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
+    opacity: 0 !important;
     z-index:1;
 }
 .upload_image:hover > .upload_form{
-    opacity: 1;
+    opacity: 1 !important;
 }
 .upload_image:hover > .profile_pic img{
     opacity: 0.5;
@@ -61,7 +60,6 @@
     display: none;
 }
 .upload_form label{
-    
     cursor: pointer;
 }
 /* right */
@@ -131,6 +129,8 @@
 .right-side-content i[data-type="done"]{ color:#1FAF1F; }
 
 #alert_text{
+    position: absolute;
+    top:70vh;
     color:#AF1F1F;
     display: none;
 }
