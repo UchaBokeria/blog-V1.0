@@ -8,7 +8,7 @@
     // if(!isset($_REQUEST["post_limit"]))
 
     $limit = 1000;
-    $result = array();
+    $result = array(); 
     $result["content"] = "";
     $result["error"] = "";
     $count = 4;
