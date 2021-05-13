@@ -1,9 +1,9 @@
-<?php 
+<?php  
     include_once "../../module.php";
 
     $act = $_REQUEST["act"];
-    $result = array();
     $result["content"] = "";
+    $result = array();
 
     $res = $get->posts(1); // 1 means home sections posts
     
