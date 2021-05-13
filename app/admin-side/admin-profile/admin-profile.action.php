@@ -11,7 +11,6 @@
     $limit = 10;
     $result = array();
     $result["content"] = "";
-    $res = $get->aboutAdmin($limit);
     $userid = 1;
     switch($act){
         case 'SetAdmin':
@@ -32,6 +31,7 @@
 
         case 'get_posts':
             $res = $get->aboutAdmin($limit);
+            print_r ($res);
             foreach ($res as $value) {
                     $result["content"] .= '
                         <div class="left-side-content">

@@ -198,7 +198,7 @@
     border-radius: 10px;
     z-index: 1000;
 }
-.edit_img{
+.edit_img, .add_img{
     position: absolute;
     top:4vh;
     left:10%;
@@ -207,7 +207,7 @@
     cursor: pointer;
     color: black;
 }
-.edit_desc{
+.edit_desc, .add_desc{
     position: absolute;
     top:4vh;
     left:15%;
@@ -303,22 +303,39 @@
 .upload_form img{
     width: 100%;
 }
-.images_output{
+.images_output, .add_images_output{
     position: absolute;
     left:20%;
     top:0;
     border:1px solid black;
     width: 80%;
     height: 80vh;
-    overflow-y:scroll ;
+    overflow-y:scroll;
+    
 }
-.images_output img{
+.images_output div, .add_images_output div{
+    position: relative;
+    display: flex;
+    justify-items: center;
+    align-items: center;
     width: 20%;
     height: 25vh;
     float: left;
-    margin:5vh 2.5% 0 2.5%;
+    margin:2.5vh 2.5%;
 }
-.save-button{
+.images_output img, .add_images_output img{
+    width: 100%;
+    height: 25vh;
+}
+.images_output i, .add_images_output i{
+    position: absolute;
+    top:1vh;
+    right:0.5vw;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+}
+.save-button, .add-save-button{
     position: absolute;
     bottom:3vh;
     left:5%;

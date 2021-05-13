@@ -138,16 +138,25 @@
         $sql = "DELETE FROM posts WHERE id = ?";
       return $this->set($sql,$params);
     }
-    public function editImage($pos_id,){
+    public function addImage($dir,$post_id,){
       $params = array(
-        ["attr"=>$pos_id,"type"=> PDO::PARAM_STR ],
+        ["attr"=>$dir,"type"=> PDO::PARAM_STR],
+        ["attr"=>$post_id,"type"=> PDO::PARAM_INT ]
       );
 
-      $sql = "UPDATE  files 
-                SET   dir= ?,
-                    `updatedAt`	 	= NOW()
-              WHERE id = ?";
+      $sql = "INSERT INTO files(dir,post_id)
+              VALUE(?,?)";
+      ;
+      return $this->set($sql,$params);
+    }
+    
+    public function delImage($name){
+      $params = array(
+        ["attr"=>$name,"type"=> PDO::PARAM_STR ]
+      );
 
+      $sql = "DELETE FROM files WHERE dir = ?";
+      
       return $this->set($sql,$params);
     }
   }

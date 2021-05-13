@@ -11,9 +11,10 @@
     $result = array();
     $result["content"] = "";
     $result["error"] = "";
-    $img_counter = 0;
     $count = 4;
-    $_SESSION['image']=array();
+    $user_id = 1;
+    $_SESSION['image'] = array();
+    $all_img_numb = $_SESSION["numb"];
     switch ($act) {
         case 'get_posts':
             if(json_decode($_REQUEST["data"]) != null){
@@ -21,7 +22,7 @@
                 $res = $get->filter($limit,$filterParameters,1);
             }
             else
-                $res = $get->home($limit);
+                $res = $get->posts(1,"",$user_id);
                 
             
             foreach ($res as $value) {
@@ -47,8 +48,9 @@
             }
             break;
         case 'get_edit':
+            $user_id = 1;
             $id = $_REQUEST["id"];
-            $res = $get->home($limit,$id);
+            $res = $get->posts(1,$id,$user_id);
             $j=0;
             if(count($res) != 1){
                 $result["error"] = " მოთხოვნილი პოსტის აიდი არის განმეორებული ვაი ვაი როგორ შეიძლება";
@@ -57,6 +59,9 @@
             }
 
             foreach ($res as $value) {
+                $imgNumb = explode(",",$value["path"]);
+                $img_counter += count($imgNumb);
+                $_SESSION["numb"] = $img_counter;
                 $result["content"].="<div class='edit-window-ajax'  data-id=".$value['id']." >
                                         <i class='material-icons close-ajax-edit' data-id=".$value['id']." >close</i>
                                         <h1 class='edit_desc'>Description</h1>
@@ -83,7 +88,7 @@
                                         </div>
                                         <div class='edit_upload_image'>
                                             <div class='upload_form'>  
-                                            <form id='mmmm' enctype='multipart/form-data'>         12                     
+                                            <form id='mmmm' enctype='multipart/form-data'>                           
                                                 <input type='file' id='post_file' name='file[]' multiple>
                                                 <label for='post_file'><img src='assets/images/upload.png'></label>
                                             </form>
@@ -91,8 +96,17 @@
                                             <div class='image_counter'>
                                                 <h1 class='counter'>".$img_counter."</h1>
                                             </div>
-                                            <div class='images_output'>
-                                            </div>  
+                                            <div class='images_output'>";
+                                            for($i=0;$i != count($imgNumb); $i++){
+                                                if(count($imgNumb) != 0){
+                                                    $result["content"].="<div class='img_output_div' del-id='".($i+50)."'> 
+                                                                            <img src='assets/uploads/".$imgNumb[$i]."' > 
+                                                                            <i class='material-icons' id='delete_image' del-id='".($i+50)."' data-type='1' data-path='".$imgNumb[$i]."'>close</i>
+                                                                        </div>";
+                                                }
+                                            }
+
+                         $result["content"].=" </div>  
                                         </div>
                                         <button class='save-button' type='button' id='".$value['id']."'>speicher</button>
                                         <br>
@@ -104,6 +118,10 @@
         case 'get_new':
                 $result["content"] .="<div class='edit-window-ajax' id='newpost'>
                                         <i class='material-icons close-ajax-edit' >close</i>
+
+                                        <h1 class='add_desc'>Description</h1>
+                                        <h1 class='add_img'>Photo</h1>
+
                                         <input type='text' placeholder='Erstelle neu' id='new_title'>
                                         
                                         <div class='edit-post-type-select'>
@@ -118,8 +136,23 @@
                                             <div class='editor-head'></div>
                                             <div class='editor-body'></div>
                                         </div>
-                                    
-                                        <button class='save-button' type='button'>speicher</button>
+
+                                        <div class='edit_upload_image'>
+                                            <div class='upload_form'>  
+                                                <form id='mmmm' enctype='multipart/form-data'>                           
+                                                    <input type='file' id='post_file' name='file[]' multiple>
+                                                    <label for='post_file'><img src='assets/images/upload.png'></label>
+                                                </form>
+                                            </div>
+
+                                            <div class='image_counter'>
+                                                <h1 class='counter'>".$_SESSION["tmp_img_numb"]."</h1>
+                                            </div>
+
+                                            <div class='images_output'>
+                                            </div>  
+                                        </div>
+                                        <button class='add-save-button' type='button'>speicher</button>
                                         <br>
                                         <button class='cancel-button' type='button'>abbrechen</button>
                                     </div>";
@@ -150,7 +183,7 @@
             break;
         case 'edit_post':            
             $title = $_REQUEST["title"];
-            $body = $_REQUEST["body"];
+            $body = "";
             $desc = $_REQUEST["desc"];
             $post_id = $_REQUEST["id"];
             //$user_id = $SESSION["user_id"];
@@ -159,11 +192,22 @@
             $category_id = $_REQUEST["category_id"];
             $set->editPost($post_id,$title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
             break;
+        case 'add_post':
+            $title = $_REQUEST["title"];
+            $body = "";
+            $desc = $_REQUEST["desc"];
+            //$user_id = $SESSION["user_id"];
+            $user_id = 1;
+            $status_id = $_REQUEST["status_id"];
+            $category_id = $_REQUEST["category_id"];
+            $set->createPost($title,htmlspecialchars($body),htmlspecialchars($desc),$user_id,$status_id,$category_id);
+            break;
         case 'tmp_upload':
             $img_counter = count($_FILES["file"]["name"]);
-            $count = $img_counter;
-            $response = $img_counter;
-
+            $imgArra = array();
+            $_SESSION["tmp_img_numb"] = count($_FILES["file"]["name"]);;
+            $all_img_numb += $img_counter;
+            $result["count"] = $all_img_numb;
             for($i=0;$i!=$img_counter;$i++){
 
                 $name = $_FILES['file']['name'][$i];
@@ -180,17 +224,59 @@
                 }
 
                 if(move_uploaded_file($_FILES['file']['tmp_name'][$i],$dir)){
-                    array_push($_SESSION['image'],$dir);
+                    array_push($imgArra,$name);
                 }
-                $dir = "assets/uploads/tmp/".$name;
-
-                echo $result[$i]["content"] = "<img src='".$dir."' class='test_img_gtxov' alt='".$i."' row-id='".$i."'>";
+                
+                $result["content"] .= "<div class='img_output_div'  del-id='".$i."'> 
+                                        <img src='assets/uploads/tmp/".$name."' data-path='".$name."' class='test_img_gtxov' >
+                                        <i class='material-icons' id='delete_image' data-type='2' del-id='".$i."' data-path='".$name."'>close</i>
+                                    </div>";
             }
-            exit;
+
+            $result["tmp_upload"] = $imgArra;
             break;
         case 'edit_post_img':
+            $dir = $_REQUEST["test"];
+            $id = $_REQUEST["id"];  
+
+            for($i=0;$i!=count($dir);$i++){
+                rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
+                $set->addImage($dir[$i],$id);
+            }
+            break;
+        case 'add_post_img':
+
+            $dir = $_REQUEST["test"];
+            $title = $_REQUEST["title"];
+            echo $title;
+            $id = $get->getPostId($title);
+            foreach($id as $value){
+                $new_id = $value['id'];
+            }
+            for($i=0;$i!=count($dir);$i++){
+                rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
+                $set->addImage($dir[$i],$new_id);
+            }
+            break;
+        case 'delete_image':
             $id = $_REQUEST["id"];
-            
+            $path = $_REQUEST["path"];
+            $name = $_REQUEST["name"];
+            echo $path;
+            unlink($path);
+            if($id == 1){
+                $set->delImage($name);
+            }
+            break;
+        case 'delete_tmp_folder':
+            $folder_path = "../../../assets/uploads/tmp";
+            $files = glob($folder_path.'/*'); 
+            foreach($files as $file) {
+                echo $files;
+                if(is_file($file)){
+                    unlink($file); 
+                }
+            }
         default:
             # code...
             break;

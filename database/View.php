@@ -79,11 +79,10 @@
                           posts.createdAt,
                           `status`.title AS `status`,
                           posts.status_id AS `status_id`,
-                          GROUP_CONCAT(CONCAT(files.dir,file_types.extension)) AS `path`
+                          GROUP_CONCAT(files.dir) AS `path`
                 FROM      posts
                 JOIN      accounts ON posts.user_id = accounts.id
                 LEFT JOIN files ON files.post_id = posts.id
-                LEFT JOIN file_types ON files.type_id = file_types.id
                 LEFT JOIN `status` ON `status`.id = posts.status_id AND `status`.activated = 1
                 WHERE     posts.activated = 1 $filter
                 GROUP BY  posts.id
@@ -105,8 +104,10 @@
       return $this->getAll($sql);
     }
 
-    public function aboutAdmin(){
+    public function aboutAdmin($limit){
       $user_id = 1;
+
+      $param = array(["attr"=>$user_id,"type"=>PDO::PARAM_INT]);
       $sql = "SELECT  accounts.profile_pic, 
                       accounts.id,
                       accounts.username,  
@@ -117,7 +118,8 @@
                       accounts.password
               FROM    accounts
               WHERE   accounts.id = ? ";
-      return $this->get($sql,$user_id);
+              
+      return $this->get($sql,$param);
     }
 
     public function StatusList($except){
@@ -130,5 +132,16 @@
         $sql = "SELECT  * FROM status WHERE id NOT IN(?,1) AND activated = 1";
         return $this->get($sql,$param);
       }
+    }
+
+    public function getPostId($title){
+      
+      $param = array(["attr"=>$title,"type"=>PDO::PARAM_INT]);
+
+      $sql =" SELECT id
+              FROM posts
+              WHERE posts.title = ?";
+
+      return $this->get($sql,$param);
     }
   }
