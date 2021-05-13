@@ -203,7 +203,6 @@
             $all_img_numb += $img_counter;
             $result["count"] = $all_img_numb;
             for($i=0;$i!=$img_counter;$i++){
-
                 $name = $_FILES['file']['name'][$i];
 
                 $dir = "../../../assets/uploads/tmp/".$name;
@@ -217,7 +216,9 @@
                     echo "This ile is not an image";
                 }
                 if(file_exists($dir)){
-                    $dir .= $user_id;
+                    $withoutExtension = pathinfo($dir);
+                    $dir = $withoutExtension["dirname"] . '/' . $withoutExtension["filename"] . $user_id .'.'. $withoutExtension["extension"];
+           
                 }
                 if(move_uploaded_file($_FILES['file']['tmp_name'][$i],$dir)){
                     array_push($imgArra,$name);
@@ -244,7 +245,6 @@
 
             $dir = $_REQUEST["test"];
             $title = $_REQUEST["title"];
-            echo $title;
             $id = $get->getPostId($title);
             foreach($id as $value){
                 $new_id = $value['id'];
