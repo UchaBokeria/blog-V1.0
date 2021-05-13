@@ -20,7 +20,7 @@
             if($i == 0){
                 $showImg = ' id="slideImgActive" ';
             }
-            $result["content"] .= '<div class="mySlides" slide-id="'.$value["id"].'" data-id="'.$i.'" ><img src="assets/uploads/'.$res_images[$i].'" '.$showImg.'></div>';
+            $result["content"] .= '<div class="mySlides" slide-id="'.$value["id"].'" data-id="'.$i.'" '.$showImg.' ><img src="assets/uploads/'.$res_images[$i].'" ></div>';
         }
 
         $result["content"] .=   
