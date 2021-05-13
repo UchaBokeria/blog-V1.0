@@ -1,13 +1,13 @@
 <?php
   class Controller extends Model{
     public function login($username,$password){
-      $sql = "SELECT token, `password` from accounts WHERE username = ? ;";
+      $sql = "SELECT token, `password`, id from accounts WHERE username = ? ;";
       $param = array(["attr"=>$username,"type"=>PDO::PARAM_STR]);
 
       $results = $this->get($sql,$param);
       foreach ($results as $value)
         return  password_verify($password, $value["password"]) ? 
-                ["token"=>$value["token"], "result"=> true] : 
+                ["token"=>$value["token"], "user_id"=>$value["id"], "result"=> true] : 
                 ["token"=>0, "result"=> false] ;
     }
 
@@ -132,21 +132,21 @@
         $sql = "UPDATE posts 
                   SET `activated` 			= 0,
                       `updatedAt`	 	= NOW()
-                WHERE id = ?;";
+                WHERE  id = ?;";
       }
       else
         $sql = "DELETE FROM posts WHERE id = ?";
       return $this->set($sql,$params);
     }
-    public function addImage($dir,$post_id,){
+    public function addImage($dir,$post_id){
       $params = array(
         ["attr"=>$dir,"type"=> PDO::PARAM_STR],
-        ["attr"=>$post_id,"type"=> PDO::PARAM_INT ]
+        ["attr"=>$post_id,"type"=> PDO::PARAM_INT]
       );
 
       $sql = "INSERT INTO files(dir,post_id)
               VALUE(?,?)";
-      ;
+      
       return $this->set($sql,$params);
     }
     

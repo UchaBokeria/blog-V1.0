@@ -17,6 +17,7 @@
 
         if($result["result"] == true){
             $_SESSION["token"] = $result["token"];
+            $_SESSION["user_id"] = $result["user_id"];
             header("Location:index.php?admin");
         }
         else 

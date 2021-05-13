@@ -12,7 +12,6 @@ $(document).on("click", "#head p", function () {
 
 function getAdminPage(page) {
     var page_url = "app/admin-side/" + page + "/" + page + ".php";
-    console.log(page + " -> " + page_url);
 
     $.ajax({
         url: page_url,
@@ -36,7 +35,6 @@ function loadAdminHtml(page,data=null) {
         dataType: "json",
         success: function (data) {
             $("#"+page).html(data.content);
-            console.log(data);
         }
     });
 }

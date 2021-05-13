@@ -2,13 +2,14 @@ var id = "empty";
 var img_arr;
 
 $(document).ready(function(){
-    $.ajax({
-        url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
-        type:"post",
-        success: function(data){
-            console.log(img_arr);
-        }
-    });
+    // ES BUGS SHEQMNIS
+    // $.ajax({
+    //     url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
+    //     type:"post",
+    //     success: function(data){
+    //         console.log(img_arr);
+    //     }
+    // });
 });
 
 
@@ -51,7 +52,6 @@ $(document).on("click", "#create_new", function () {
                                 '|',
                                 'imageUpload',
                                 'insertTable',
-                                'mediaEmbed',
                                 'codeBlock',
                                 'undo',
                                 'redo'
@@ -120,7 +120,7 @@ $(document).on("click", "#create_new", function () {
                 } );
             },
             error: function () {
-                console.log("create error");
+                console.log(" CKE create error");
             }
     });
 });
@@ -139,7 +139,6 @@ $(document).on("click", ".edit,.post-text > b", function () {
         success: function (data) {
             $("#edit-window").html(data.content);
             $("#edit-window").show();
-            console.log(data.content);
 
             var cb = function () { return (new Date()).getTime() }
 
@@ -172,7 +171,6 @@ $(document).on("click", ".edit,.post-text > b", function () {
                             '|',
                             'imageUpload',
                             'insertTable',
-                            'mediaEmbed',
                             'codeBlock',
                             'undo',
                             'redo'
@@ -241,7 +239,7 @@ $(document).on("click", ".edit,.post-text > b", function () {
                 } );
             },
             error: function () {
-                console.log("edit error");
+                console.log("CKE edit error");
             }
     });
     
@@ -251,6 +249,10 @@ $(document).on("click", "#edit_post_types", function () {
     $(this).toggleClass("rotate");
     $(".edit-post-type-select").toggleClass('edit-post-type-select-active');
 });
+$(document).on("click", "#edit_post_types-new", function () {
+    $(this).toggleClass("rotate");
+    $(".edit-post-type-select-new").toggleClass('edit-post-type-select-active');
+});
 
 $(document).on("click", ".edit-post-type-select > div", function () {
     var type_id = $(this).attr("data-type");
@@ -259,6 +261,15 @@ $(document).on("click", ".edit-post-type-select > div", function () {
     $(".edit-post-type-select > div").removeAttr("id");
     var newChild = "<div data-type='" + type_id + "' id='activated'>" + type_html + "</div>";
     $(".edit-post-type-select").prepend(newChild);
+    $(this).remove();
+});
+$(document).on("click", ".edit-post-type-select-new > div", function () {
+    var type_id = $(this).attr("data-type");
+    var type_html = $(this).html();
+
+    $(".edit-post-type-select-new > div").removeAttr("id");
+    var newChild = "<div data-type='" + type_id + "' id='activated'>" + type_html + "</div>";
+    $(".edit-post-type-select-new").prepend(newChild);
     $(this).remove();
 });
 
@@ -316,7 +327,6 @@ $(document).on("click", ".save-button", function () {
     param.status_id = $(".edit-post-type-select > #activated").attr("data-type");
     param.category_id = 1; // exhebition is 1, blog = 2
     param.id = $(this).attr("id");
-    console.log(param);
     
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
@@ -328,6 +338,7 @@ $(document).on("click", ".save-button", function () {
 
             $("#message").css("opacity","1");
             $("#message").html("Ihr Beitrag wurde gespeichert");
+            loadAdminHtml("admin-home");
             setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
         }
     });    
@@ -336,20 +347,18 @@ $(document).on("click", ".save-button", function () {
         url:"app/admin-side/admin-home/admin-home.action.php/?act=edit_post_img",
         data:{test:img_arr,id:$(this).attr("id")},
         success: function(data){
-            console.log(data);
         }
     });
 });
 
 $(document).on("click", ".add-save-button", function () {
     param = new Object();
-    param.act = "add_post";
+    param.act = "create_post";
     param.title = $("#new_title").val();
     param.desc = editor.getData();
     //param.desc = $("#asd").val();
-    param.status_id = $(".edit-post-type-select > #activated").attr("data-type");
+    param.status_id = $(".edit-post-type-select-new > #activated").attr("data-type");
     param.category_id = 1; // exhebition is 1, blog = 2
-    console.log(param);
     
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
@@ -361,17 +370,14 @@ $(document).on("click", ".add-save-button", function () {
 
             $("#message").css("opacity","1");
             $("#message").html("Ihr Beitrag wurde gespeichert");
+            loadAdminHtml("admin-home");
             setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
         }
     });    
-
-    console.log("ajaxshi sheva axla");
-
     $.ajax({
         url:"app/admin-side/admin-home/admin-home.action.php/?act=add_post_img",
         data:{test:img_arr,title:param.title},
         success: function(data){
-            console.log(data);
         }
     });
 });
@@ -383,7 +389,6 @@ $(document).on("click", ".close-ajax-edit,.cancel-button", function () {
         url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
         type:"post",
         success: function(data){
-            console.log(img_arr);
         }
     });
 });
@@ -418,7 +423,6 @@ $(document).on("click", "#filter", function () {
     params.status = $(".post-type-select #activated").attr("data-type");
     params.start_date = $("#start_date").val();
     params.end_date = $("#end_date").val();
-    console.log(params);
     loadAdminHtml("admin-home",params);
 });
 
@@ -453,7 +457,6 @@ $(document).on("change","#post_file",function (){
             param = new Object();
             // param.tmp_file_names = JSON.stringify(data.tmp_upload);
             img_arr = data.tmp_upload;
-            console.log(img_arr);
         }
     });
 
