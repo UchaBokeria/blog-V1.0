@@ -45,12 +45,14 @@ $(document).on("click","#saveProfile",function(){
     }
 
     if(check == 0){
+        $("#alert_text").show();
+        $("#alert_text").css("color","#1FAF1F");
+
+        $("#alert_text").html("Profile updated");
         $.ajax({
             url:"app/admin-side/admin-profile/admin-profile.action.php",
             data:obj,
             succsess:function(data){
-                $("#alert_text").show();
-                $("#alert_text").html("Profile updated");
             },
             error:function(data){
                 $("#alert_text").show();

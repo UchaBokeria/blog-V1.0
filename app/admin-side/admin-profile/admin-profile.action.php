@@ -3,10 +3,8 @@
     session_start();
     if(!isset($_SESSION["token"]))
         header("Location:../../../assets/wildcard.php"); 
+        
     $act = $_REQUEST["act"];
-
-    //$limit = $_REQUEST["post_limit"];
-    // if(!isset($_REQUEST["post_limit"]))
 
     $limit = 10;
     $result = array();
@@ -31,7 +29,6 @@
 
         case 'get_posts':
             $res = $get->aboutAdmin($limit);
-            print_r ($res);
             foreach ($res as $value) {
                     $result["content"] .= '
                         <div class="left-side-content">
@@ -215,14 +212,4 @@
             break;
     }
 
-    
-    
-    echo json_encode($result);
-
-
-
-
-
-
-
-$global_div = "";
+echo json_encode($result);
