@@ -74,7 +74,7 @@
                 
                 // get all statuses except this post status id
                 $elseStatuses = $get->StatusList($value["status_id"]);
-                foreach ($elseStatuses as  $status) {
+                foreach ($elseStatuses as  $status) { 
                     $selectedStatus .= " <div data-type='" .$status["id"]. "' >".$status["title"]."</div>";
                 }
                 $result["content"].= $selectedStatus;                          
