@@ -28,8 +28,8 @@
     $mail->setFrom("offiziell@vulventempel.de");
     $mail->isHTML(true);
     $mail->Body = $msg;
-    //$mail->addAddress("ucha1bokeria@gmail.com");
-    $mail->addAddress("vulventempel@gmail.com");
+    $mail->addAddress("ucha1bokeria@gmail.com");
+    //$mail->addAddress("vulventempel@gmail.com");
     if(!$mail->send()){
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     }

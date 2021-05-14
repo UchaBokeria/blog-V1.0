@@ -16,7 +16,6 @@ $(document).on("click","#saveProfile",function(){
 
     obj = new Object();
     obj.act = "SetAdmin";
-    obj.userid = $("#id").val();
     obj.username = $("#Fullname").val();
     obj.description = $("#description").val();
     obj.birth_date = $("#birthdate").val();
@@ -76,7 +75,6 @@ $(document).on("click","#saveProfile",function(){
                 contentType: false,
                 processData: false,
                 success: function(response){
-                    console.log(files[0]['name']);
                 },
             });
         }
@@ -97,7 +95,6 @@ $(document).on("change","#file",function (){
             contentType: false,
             processData: false,
             success: function(response){
-                console.log(files[0]['name']);
                 imgChecker = 1;
                 imgPath = response;
                 if(response != 0){
@@ -108,7 +105,6 @@ $(document).on("change","#file",function (){
             }
         });
     }
-    console.log(files[0]);  
 })
 
 $(document).on("click","#Discard",function (){

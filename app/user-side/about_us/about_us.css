@@ -80,7 +80,8 @@
   }
   .admin-header img{
     width: auto;
-    max-width: 4vw;
+    min-width: 4vw;
+    max-width: 6vw;
     min-height: 6vh;
   }
   .admin-header h1{

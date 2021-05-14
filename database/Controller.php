@@ -42,8 +42,6 @@
     public function updateAccount($userId,$username,$description,$birth_date,$nickname,$email,$password){
 
       $password = password_hash($password, PASSWORD_DEFAULT);
-      echo $password;
-
       $params = array(
         ["attr"=>$username,"type"=> PDO::PARAM_STR],
         ["attr"=>$description,"type"=> PDO::PARAM_STR],
