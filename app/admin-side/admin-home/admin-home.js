@@ -358,14 +358,16 @@ $(document).on("click", ".save-button", function () {
 
 $(document).on("click", ".add-save-button", function () {
 
+    console.log("giorgi var bijo");
     param = new Object();
     param.act = "create_post";
     param.title = $("#new_title").val();
     param.desc = editor.getData();
     //param.desc = $("#asd").val();
-    param.status_id = $(".edit-post-type-select > #activated").attr("data-type");
+    param.status_id = $(".edit-post-type-select-new > #activated").attr("data-type");
     param.category_id = 1; // exhebition is 1, blog = 2
-    
+    console.log(param.status_id);
+
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
         type: "POST",
@@ -376,6 +378,7 @@ $(document).on("click", ".add-save-button", function () {
 
             $("#message").css("opacity", "1");
             $("#message").html("Ihr Beitrag wurde gespeichert");
+            loadAdminHtml("admin-home");
             setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
         }
     });
