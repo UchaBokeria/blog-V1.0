@@ -91,9 +91,7 @@
                                                 <label for='blog_post_file'><img src='assets/images/upload.png'></label>
                                             </form>
                                             </div>
-                                            <div class='blog_image_counter'>
-                                                <h1 class='blog_counter'>".$img_counter."</h1>
-                                            </div>
+                                            
                                             <div class='blog_images_output'>";
                                             for($i=0;$i != count($imgNumb); $i++){
                                                 if(count($imgNumb) != 0){
@@ -144,10 +142,6 @@
                                                     <input type='file' id='blog_post_file' name='file[]' multiple>
                                                     <label for='blog_post_file'><img src='assets/images/upload.png'></label>
                                                 </form>
-                                            </div>
-
-                                            <div class='blog_image_counter'>
-                                                <h1 class='blog_counter'>".$_SESSION["tmp_img_numb"]."</h1>
                                             </div>
 
                                             <div class='blog_images_output'>
@@ -229,7 +223,7 @@
                 
                 $result["content"] .= "<div class='blog_img_output_div'  del-id='".$i."'> 
                                         <img src='assets/uploads/tmp/".$name."' data-path='".$name."' class='blog_test_img_gtxov' >
-                                        <i class='material-icons' class='blog_delete_image' data-type='2' del-id='".$i."' data-path='".$name."'>close</i>
+                                        <i class='material-icons blog_delete_image' data-type='2' del-id='".$i."' data-path='".$name."'>close</i>
                                     </div>";
             }
 

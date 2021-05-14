@@ -94,9 +94,7 @@
                                                     <label for='post_file'><img src='assets/images/upload.png'></label>
                                                 </form>
                                             </div>
-                                            <div class='image_counter'>
-                                                <h1 class='counter'>".$counter."</h1>
-                                            </div>
+                                            
                                             <div class='images_output'>";
                                                 foreach ($imgNumb as $test){
                                                     $i++;
@@ -143,10 +141,6 @@
                                                     <input type='file' id='post_file' name='file[]' multiple>
                                                     <label for='post_file'><img src='assets/images/upload.png'></label>
                                                 </form>
-                                            </div>
-
-                                            <div class='image_counter'>
-                                            <h1 class='counter'>".$counter."</h1>
                                             </div>
 
                                             <div class='images_output'>
@@ -269,7 +263,7 @@
         case 'delete_tmp_folder':
             $path = $_REQUEST["path"];
             for($i=0;$i!=count($path);$i++){
-                $dir = "./././assets/uploads/tmp/".$path[$i];
+                $dir = "../../../assets/uploads/tmp/".$path[$i];
                 unlink($dir); 
             }
         default:
@@ -278,6 +272,10 @@
     }
     echo json_encode($result);
 
+    
+// <div class='image_counter'>
+//     <h1 class='counter'>".$counter."</h1>
+// </div>
 
 
 

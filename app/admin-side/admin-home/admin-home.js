@@ -404,10 +404,13 @@ $(document).on("click", ".close-ajax-edit , .cancel-button", function () {
     });
 });
 $(document).ready(function () {
+    var img = img_arr;
     $.ajax({
         url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
-        data:{path:img_arr},
-        success: function(data){
+        data:{path:img},
+        success: function (data) {
+            $("#edit-window").html("");
+            $("#edit-window").hide();
         }
     });
 })
