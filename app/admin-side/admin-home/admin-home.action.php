@@ -11,9 +11,8 @@
 
     $user_id = $_SESSION["user_id"];
     $_SESSION['image'] = array();
-    $_SESSION["tmp_img_numb"];
-    $all_img_numb = $_SESSION["numb"];
-    
+    $counter;
+    $i = 0;
     switch ($act) {
         case 'get_posts':
             if(json_decode($_REQUEST["data"]) != null){
@@ -57,9 +56,13 @@
             }
 
             foreach ($res as $value) {
-                $imgNumb = explode(",",$value["path"]);
-                $img_counter += count($imgNumb);
-                $_SESSION["numb"] = $img_counter;
+                if(empty($value["path"])){
+                    $imgNumb = 0;
+                }
+                else{
+                    $imgNumb = explode(",",$value["path"]);
+                    $counter = count($imgNumb);
+                }
                 $result["content"].="<div class='edit-window-ajax'  data-id=".$value['id']." >
                                         <i class='material-icons close-ajax-edit' data-id=".$value['id']." >close</i>
                                         <h1 class='edit_desc'>Description</h1>
@@ -85,24 +88,23 @@
                                             <div class='editor-body' data-id=".$value['id']." id='text_fix_cke'>" . htmlspecialchars_decode($value['desc']) . "</div>
                                         </div>
                                         <div class='edit_upload_image'>
-                                            <div class='upload_form'>  
-                                            <form id='mmmm' enctype='multipart/form-data'>                           
-                                                <input type='file' id='post_file' name='file[]' multiple>
-                                                <label for='post_file'><img src='assets/images/upload.png'></label>
-                                            </form>
+                                            <div class='home_upload_form'>  
+                                                <form id='mmmm' enctype='multipart/form-data'>                           
+                                                    <input type='file' id='post_file' name='file[]' multiple>
+                                                    <label for='post_file'><img src='assets/images/upload.png'></label>
+                                                </form>
                                             </div>
                                             <div class='image_counter'>
-                                                <h1 class='counter'>".$img_counter."</h1>
+                                                <h1 class='counter'>".$counter."</h1>
                                             </div>
                                             <div class='images_output'>";
-                                            for($i=0;$i != count($imgNumb); $i++){
-                                                if(count($imgNumb) != 0){
+                                                foreach ($imgNumb as $test){
+                                                    $i++;
                                                     $result["content"].="<div class='img_output_div' del-id='".($i+50)."'> 
-                                                                            <img src='assets/uploads/".$imgNumb[$i]."' > 
-                                                                            <i class='material-icons' id='delete_image' del-id='".($i+50)."' data-type='1' data-path='".$imgNumb[$i]."'>close</i>
+                                                                            <img src='assets/uploads/".$test."' > 
+                                                                            <i class='material-icons delete_image' del-id='".($i+50)."' data-type=1 data-path='".$test."'>close</i>
                                                                         </div>";
                                                 }
-                                            }
 
                          $result["content"].=" </div>  
                                         </div>
@@ -136,7 +138,7 @@
                                         </div>
 
                                         <div class='edit_upload_image'>
-                                            <div class='upload_form'>  
+                                            <div class='home_upload_form'>  
                                                 <form id='mmmm' enctype='multipart/form-data'>                           
                                                     <input type='file' id='post_file' name='file[]' multiple>
                                                     <label for='post_file'><img src='assets/images/upload.png'></label>
@@ -144,7 +146,7 @@
                                             </div>
 
                                             <div class='image_counter'>
-                                                <h1 class='counter'>".$_SESSION["tmp_img_numb"]."</h1>
+                                            <h1 class='counter'>".$counter."</h1>
                                             </div>
 
                                             <div class='images_output'>
@@ -197,11 +199,7 @@
         case 'tmp_upload':
             $img_counter = count($_FILES["file"]["name"]);
             $imgArra = array();
-
-            $_SESSION["tmp_img_numb"] = count($_FILES["file"]["name"]);;
-
-            $all_img_numb += $img_counter;
-            $result["count"] = $all_img_numb;
+            $counter = $counter + $img_counter;
             for($i=0;$i!=$img_counter;$i++){
                 $name = $_FILES['file']['name'][$i];
 
@@ -226,17 +224,18 @@
                 
                 $result["content"] .= "<div class='img_output_div'  del-id='".$i."'> 
                                         <img src='assets/uploads/tmp/".$name."' data-path='".$name."' class='test_img_gtxov' >
-                                        <i class='material-icons' id='delete_image' data-type='2' del-id='".$i."' data-path='".$name."'>close</i>
+                                        <i class='material-icons delete_image' data-type='2' del-id='".$i."' data-path='".$name."'>close</i>
                                     </div>";
             }
 
             $result["tmp_upload"] = $imgArra;
+            $result["count"] += $counter + $img_counter;
             break;
         case 'edit_post_img':
             $dir = $_REQUEST["test"];
             $id = $_REQUEST["id"];  
-
             for($i=0;$i!=count($dir);$i++){
+                echo $dir[$i];
                 rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
                 $set->addImage($dir[$i],$id);
             }
@@ -246,9 +245,11 @@
             $dir = $_REQUEST["test"];
             $title = $_REQUEST["title"];
             $id = $get->getPostId($title);
-            foreach($id as $value){
-                $new_id = $value['id'];
+            foreach($id as $val){
+                $new_id = $val['id'];
             }
+            echo $new_id;
+            echo $title;
             for($i=0;$i!=count($dir);$i++){
                 rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
                 $set->addImage($dir[$i],$new_id);
@@ -258,20 +259,18 @@
             $id = $_REQUEST["id"];
             $path = $_REQUEST["path"];
             $name = $_REQUEST["name"];
-            echo $path;
             unlink($path);
+            echo $path;
             if($id == 1){
                 $set->delImage($name);
             }
+            $result["count"] += $counter-1;
             break;
         case 'delete_tmp_folder':
-            $folder_path = "../../../assets/uploads/tmp";
-            $files = glob($folder_path.'/*'); 
-            foreach($files as $file) {
-                echo $files;
-                if(is_file($file)){
-                    unlink($file); 
-                }
+            $path = $_REQUEST["path"];
+            for($i=0;$i!=count($path);$i++){
+                $dir = "./././assets/uploads/tmp/".$path[$i];
+                unlink($dir); 
             }
         default:
             # code...

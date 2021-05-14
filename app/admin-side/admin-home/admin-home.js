@@ -1,5 +1,5 @@
 var id = "empty";
-var img_arr;
+var img_arr = "";
 
 $(document).ready(function(){
     // ES BUGS SHEQMNIS
@@ -330,69 +330,87 @@ $(document).on("click", ".save-button", function () {
     
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
-        type:"POST",
+        type: "POST",
         data: param,
         success: function (response) {
             $("#edit-window").html("");
             $("#edit-window").hide();
 
-            $("#message").css("opacity","1");
+            $("#message").css("opacity", "1");
             $("#message").html("Ihr Beitrag wurde gespeichert");
             loadAdminHtml("admin-home");
             setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
         }
-    });    
-
-    $.ajax({
-        url:"app/admin-side/admin-home/admin-home.action.php/?act=edit_post_img",
-        data:{test:img_arr,id:$(this).attr("id")},
-        success: function(data){
-        }
     });
+
+    if (img_arr == "" || img_arr == null || img_arr == undefined || img_arr == false) {
+    }
+    else {
+        $.ajax({
+            url:"app/admin-side/admin-home/admin-home.action.php/?act=edit_post_img",
+            data:{test:img_arr,id:$(this).attr("id")},
+            success: function (data) {
+                img_arr = "";
+            }
+        });
+    }
 });
 
 $(document).on("click", ".add-save-button", function () {
+
     param = new Object();
     param.act = "create_post";
     param.title = $("#new_title").val();
     param.desc = editor.getData();
     //param.desc = $("#asd").val();
-    param.status_id = $(".edit-post-type-select-new > #activated").attr("data-type");
+    param.status_id = $(".edit-post-type-select > #activated").attr("data-type");
     param.category_id = 1; // exhebition is 1, blog = 2
     
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
-        type:"POST",
+        type: "POST",
         data: param,
         success: function (response) {
             $("#edit-window").html("");
             $("#edit-window").hide();
 
-            $("#message").css("opacity","1");
+            $("#message").css("opacity", "1");
             $("#message").html("Ihr Beitrag wurde gespeichert");
-            loadAdminHtml("admin-home");
             setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
         }
-    });    
-    $.ajax({
-        url:"app/admin-side/admin-home/admin-home.action.php/?act=add_post_img",
-        data:{test:img_arr,title:param.title},
-        success: function(data){
-        }
     });
+
+    if (img_arr == "" || img_arr == null || img_arr == undefined || img_arr == false) {
+    }
+    else {
+        $.ajax({
+            url:"app/admin-side/admin-home/admin-home.action.php/?act=add_post_img",
+            data:{test:img_arr,title:param.title},
+            success: function (data) {
+                img_arr = "";
+            }
+        });
+    }
 });
 
-$(document).on("click", ".close-ajax-edit,.cancel-button", function () {
-    $("#edit-window").html("");
-    $("#edit-window").hide();
+$(document).on("click", ".close-ajax-edit , .cancel-button", function () {
     $.ajax({
         url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
-        type:"post",
-        success: function(data){
+        data:{path:img_arr},
+        success: function (data) {
+            $("#edit-window").html("");
+            $("#edit-window").hide();
         }
     });
 });
-
+$(document).ready(function () {
+    $.ajax({
+        url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
+        data:{path:img_arr},
+        success: function(data){
+        }
+    });
+})
 $(document).on("click", ".show_more", function () {
     tmp = $(this).attr("data-id");
 
@@ -457,37 +475,38 @@ $(document).on("change","#post_file",function (){
             param = new Object();
             // param.tmp_file_names = JSON.stringify(data.tmp_upload);
             img_arr = data.tmp_upload;
+            console.log("aq iqmneba img arr ->" + img_arr);
         }
     });
 
 });
 
-$(document).on("click","#delete_image",function(){
+$(document).on("click",".delete_image",function(){
     var del_id = $(this).attr("del-id");
-
-    if(($(this).attr('data-type')) == 1){
-        var dir = "../../../assets/uploads/"+$(this).attr('data-path');
-        $.ajax({
-            url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_image",
-            type:"post",
-            data:{path:dir,id:1,name:$(this).attr('data-path')},
-            success: function(data){
-                ($(".img_output_div[del-id = "+del_id+"]")).remove();
-            }
-        });
-
+    var dir = "";
+    var where = $(this).attr('data-type');
+    console.log(where);
+    if (where == 1) {
+        dir = "../../../assets/uploads/" + $(this).attr('data-path');
     }
-    else{
-        var dir = "../../../assets/uploads/tmp/"+$(this).attr('data-path');
-        $.ajax({
-            url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_image",
-            type:"post",
-            data:{path:dir,id:2,name:$(this).attr('data-path')},
-            success: function(data){
-                ($(".img_output_div[del-id = "+del_id+"]")).remove();
+    else {
+        for (var i = 0; i != img_arr.length; i++){
+            if (img_arr[i] == $(this).attr('data-path')) {
+                img_arr[i] = "";
             }
-        });
+        }
+        dir = "../../../assets/uploads/tmp/"+$(this).attr('data-path');
     }
+
+    $.ajax({
+        url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_image",
+        type:"post",
+        data:{path:dir,id:1,name:$(this).attr('data-path')},
+        success: function(data){
+            ($(".img_output_div[del-id = "+del_id+"]")).remove();
+            $(".counter").html(data.count);
+        }
+    });
 });
 
 $(document).on("click", ".add_img",function() {
