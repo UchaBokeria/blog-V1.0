@@ -107,6 +107,7 @@
     background-color: #afacac;
   }
   .text {
+    background-color: transparent;
     /* background:linear-gradient(transparent 80%, black); */
   }
   .mySlides{
