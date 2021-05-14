@@ -9,17 +9,15 @@
     $limit = 10;
     $result = array();
     $result["content"] = "";
-    $userid = 1;
+    $userid = $_SESSION["user_id"];
     switch($act){
         case 'SetAdmin':
-            $userid = $_REQUEST['userid'];
             $username = $_REQUEST['username']; 
             $description = $_REQUEST['description'];
             $birth_date = $_REQUEST['birth_date'];
             $nickname = $_REQUEST['nickname'];
             $email = $_REQUEST['email'];
             $password = $_REQUEST['password'];
-            echo $birth_date;
 
             $res = $set->updateAccount($userid,$username,$description,$birth_date,$nickname,$email,$password); //passord unda gaetanos da sheicvalos
 
@@ -28,7 +26,7 @@
             break;
 
         case 'get_posts':
-            $res = $get->aboutAdmin($limit);
+            $res = $get->aboutAdmin();
             foreach ($res as $value) {
                     $result["content"] .= '
                         <div class="left-side-content">
@@ -126,7 +124,6 @@
                 
                 $get_image = $get->aboutAdmin(1);
                 
-                $userid = 2;
             
                 foreach($get_image as $value){
                     $img_var =  $value["profile_pic"]; //aq vigeb dbshi ra qvia img(tu ra tqma unda carieli araa);
@@ -151,17 +148,14 @@
                     if(file_exists($dir)){
                         unlink($dir);
                         unlink("../../../assets/uploads/tmp/".$name);
-                        echo "es unda naxo uechveli";
                         $response = $dir;
                     }
                     move_uploaded_file($_FILES['file']['tmp_name'],$dir);
                     $response = $dir;
                     
                 }
-                echo $response;
                 exit;
             }
-            echo 0;
             break;
         case 'tmp_upload':
             $name = $_FILES['file']['name'];
@@ -193,17 +187,12 @@
             }
             
             
-            $userid = 2;
 
         
             if(move_uploaded_file($_FILES['file']['tmp_name'],$dir)){
                 $response = $dir;
                 $_SESSION['image'] = $dir;
             }
-
-            echo $response;
-            exit;
-            echo 0;
             break;
         case 'delete_tmp_image':
             for($i=0;$i!=count($_SESSION["image"]);$i++){

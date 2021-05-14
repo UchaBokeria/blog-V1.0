@@ -1,4 +1,5 @@
 <?php
+  session_start();
   class View extends Model{
     public function pages(){
       $sql = "SELECT 	pages.dir,
@@ -108,10 +109,8 @@
       return $this->getAll($sql);
     }
 
-    public function aboutAdmin($limit){
-      $user_id = 1;
-
-      $param = array(["attr"=>$user_id,"type"=>PDO::PARAM_INT]);
+    public function aboutAdmin(){
+      $param = array(["attr"=>$_SESSION["user_id"],"type"=>PDO::PARAM_INT]);
       $sql = "SELECT  accounts.profile_pic, 
                       accounts.id,
                       accounts.username,  
