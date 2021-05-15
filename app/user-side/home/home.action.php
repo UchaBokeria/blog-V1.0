@@ -12,7 +12,7 @@
         $count  = count($res_images);
         $result["content"] .= ' 
                     <div class="exhibition" style="margin-bottom:8vh;" slide-id="'.$value["id"].'">
-                        <h1>' . $value["title"] . '</h1>
+                        <h1 class="Title_home">' . $value["title"] . '</h1>
                         <div class="home-Carousel-container">'; 
 
         for($i = 0; $i != $count;$i++){
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="text" see-id='.$value["id"].'>
-                            <h1 class="see_more" see-id='.$value["id"].'>See More</h1>
+                            <h1 class="see_more" see-id='.$value["id"].'>mehr...</h1>
                             <br>
                             <p>' . htmlspecialchars_decode($value["desc"]) . '</p>
                         </div>

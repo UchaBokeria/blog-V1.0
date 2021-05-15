@@ -186,17 +186,8 @@
                 echo "There is a problem and file is not uploaded";
             }
             
-            
-
-        
             if(move_uploaded_file($_FILES['file']['tmp_name'],$dir)){
                 $response = $dir;
-                $_SESSION['image'] = $dir;
-            }
-            break;
-        case 'delete_tmp_image':
-            for($i=0;$i!=count($_SESSION["image"]);$i++){
-                unlink($_SESSION['image'][$i]);
             }
             break;
     }

@@ -229,7 +229,6 @@
             $dir = $_REQUEST["test"];
             $id = $_REQUEST["id"];  
             for($i=0;$i!=count($dir);$i++){
-                echo $dir[$i];
                 rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
                 $set->addImage($dir[$i],$id);
             }
@@ -238,15 +237,13 @@
 
             $dir = $_REQUEST["test"];
             $title = $_REQUEST["title"];
-            $id = $get->getPostId($title);
-            foreach($id as $val){
-                $new_id = $val['id'];
-            }
-            echo $new_id;
-            echo $title;
+            $new_id = $get->lastInsertId('posts');  
+            //print_r($dir);
             for($i=0;$i!=count($dir);$i++){
-                rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
-                $set->addImage($dir[$i],$new_id);
+                for ($j=0; $j < count($dir[$i]); $j++) { 
+                    rename("../../../assets/uploads/tmp/".$dir[$i][$j],"../../../assets/uploads/".$dir[$i][$j]);
+                    $set->addImage($dir[$i][$j],$new_id);
+                }
             }
             break;
         case 'delete_image':
@@ -254,17 +251,18 @@
             $path = $_REQUEST["path"];
             $name = $_REQUEST["name"];
             unlink($path);
-            echo $path;
             if($id == 1){
                 $set->delImage($name);
             }
-            $result["count"] += $counter-1;
             break;
         case 'delete_tmp_folder':
             $path = $_REQUEST["path"];
-            for($i=0;$i!=count($path);$i++){
-                $dir = "../../../assets/uploads/tmp/".$path[$i];
-                unlink($dir); 
+            
+            for($i=0;$i!=count($dir);$i++){
+                for ($j=0; $j < count($dir[$i]); $j++) { 
+                    $dir = "../../../assets/uploads/tmp/".$path[$i][$j];
+                    unlink($dir); 
+                }
             }
         default:
             # code...

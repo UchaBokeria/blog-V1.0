@@ -16,7 +16,7 @@
       $token = "";
 
       while(true){
-        $token = bin2hex(random_bytes(32));
+        //$token = bin2hex(random_bytes(32));
 
         $sql = "SELECT id FROM accounts WHERE token = ?";
         $param = array(["attr"=>$token,"type"=>PDO::PARAM_STR]);
@@ -40,25 +40,28 @@
       return COUNT($res) != 1 ? false : true;
     }
     public function updateAccount($userId,$username,$description,$birth_date,$nickname,$email,$password){
-
-      $password = password_hash($password, PASSWORD_DEFAULT);
+      $password_change = "";
       $params = array(
         ["attr"=>$username,"type"=> PDO::PARAM_STR],
         ["attr"=>$description,"type"=> PDO::PARAM_STR],
         ["attr"=>$birth_date,"type"=> PDO::PARAM_STR],
         ["attr"=>$nickname,"type"=> PDO::PARAM_STR],
-        ["attr"=>$email,"type"=> PDO::PARAM_STR],
-        ["attr"=>$password,"type"=> PDO::PARAM_STR],
-        ["attr"=>$userId,"type"=> PDO::PARAM_INT]
+        ["attr"=>$email,"type"=> PDO::PARAM_STR]
       );
-      
+      if($password != ""){
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        array_push($params,["attr"=>$password,"type"=> PDO::PARAM_STR]);
+        $password_change = ",`password` = ?";
+      }
+
+      array_push($params,["attr"=>$userId,"type"=> PDO::PARAM_INT]);
       $sql = "UPDATE  accounts
               SET     username = ?,
                       `description` = ?,
                       birth_date = ?,
                       nickname = ?,
-                      email = ?,
-                      `password` = ?
+                      email = ?
+                      $password_change
               WHERE accounts.id = ?
               ";
       return $this->set($sql,$params);

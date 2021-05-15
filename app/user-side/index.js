@@ -39,7 +39,7 @@ $(document).on("click", "#navigation p", function () {
     // close navigation
     $("#menu span").fadeToggle();
     $(".dark-bg").fadeToggle(400);
-    $("#navigation div,#navigation p").fadeToggle(800);
+    $("#navigation div,#navigation p").fadeToggle(100);
     $("#navigation").slideToggle(200);
 });
 

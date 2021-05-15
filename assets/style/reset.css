@@ -39,7 +39,9 @@ input, button, textarea, select {
     border:0;
 }
 /* Disables the selection */
-
+p{
+  line-height: 1.5;
+}
 body {
 	line-height: 1;
     -webkit-touch-callout: none; /* iOS Safari */

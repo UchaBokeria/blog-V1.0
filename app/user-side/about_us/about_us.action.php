@@ -10,7 +10,6 @@
         $result["content"] .= '<div class="admin-info">
                                     <div class="admin-header">
                                     <div class="header-info">
-                                        <img src="assets/uploads/' . $value["profile_pic"] . '" alt="">
                                         <h1>' . $value["nickname"] . '</h1>
                                     </div>
                                     <i class="fa fa-angle-down toggle_info" data-id="'.$value["id"].'"></i>
@@ -18,7 +17,7 @@
                                 
                                     <div class="toggle" data-id="'.$value["id"].'">
                                     <div class="admin-desc">
-                                        <p>' . $value["desc"] . '</p>
+                                        <p>' . $value["description"] . '</p>
                                     </div>
                                     </div>
                                 </div>';

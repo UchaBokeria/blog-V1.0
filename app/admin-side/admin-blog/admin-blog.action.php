@@ -95,7 +95,7 @@
                                             <div class='blog_images_output'>";
                                             for($i=0;$i != count($imgNumb); $i++){
                                                 if(count($imgNumb) != 0){
-                                                    if(file_exists("../../../assets/uploads/".$imgNumb[$i])){
+                                                    if(file_exists("../../../assets/uploads/".$imgNumb[$i]) && $imgNumb[$i] != ""){
                                                         $result["content"].="<div class='blog_img_output_div' del-id='".($i+50)."'> 
                                                                                 <img src='assets/uploads/".$imgNumb[$i]."' > 
                                                                                 <i class='material-icons blog_delete_image' del-id='".($i+50)."' data-type='1' data-path='".$imgNumb[$i]."'>close</i>

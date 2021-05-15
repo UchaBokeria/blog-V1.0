@@ -72,6 +72,9 @@
   .admin-header i{
     font-size: 4vw;
   }
+  .header-info img{
+    width:4vw !important;
+  }
   .header-info{
     display: flex;
     justify-content: space-between;

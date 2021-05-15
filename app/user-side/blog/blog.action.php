@@ -21,13 +21,9 @@
                 $result["content"] .= ' 
                             <div class="blogs-boxes" style="margin-bottom:8vh;" slide-id="'.$value["id"].'">
                                 <div class="user-info">
-                                    <div class="user-image">
-                                        <img src="assets/uploads/'.$value["profile_pic"].'" alt="1">
-                                    </div>
-                                    <div class="user-text">
-                                        <h1>' . $value["nickname"] . '</h1>
-                                        <p>'.$value["createdAt"].'</p>
-                                    </div>
+                                    <h1>' . $value["nickname"] . '</h1>
+                                    <br>
+                                    <p>'.$value["createdAt"].'</p>
                                 </div>
         
                                 <div class="Carousel-container">'; 
@@ -44,7 +40,7 @@
                                 </div>
                                 
                                 <!-- <div class="blog_text" see-id='.$value["id"].'>
-                                    <h2 class="blog_see_more" see-id='.$value["id"].' style="display:none;">See More</h2>
+                                    <h2 class="blog_see_more" see-id='.$value["id"].' style="display:none;">mehr...</h2>
                                     <p>' . htmlspecialchars_decode($value["desc"]) . '</p>
                                 </div> -->
                                 <div class="text">
@@ -59,3 +55,7 @@
     
     
     echo json_encode($result);
+
+// <div class="user-image">
+//     <img src="assets/uploads/'.$value["profile_pic"].'" alt="1">
+// </div>

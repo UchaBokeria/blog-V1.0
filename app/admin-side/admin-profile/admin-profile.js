@@ -2,14 +2,14 @@ var imgChecker = 0;
 var pasChecker = 0;
 
 $(document).ready( function(){
-    $.ajax({
-        url:"app/admin-side/admin-profile/admin-profile.action.php/?act=delete_tmp_image",
-        type: 'post',
-        success: function(response){
-        },
-        error: function(response) {
-        }
-    });
+    // $.ajax({
+    //     url:"app/admin-side/admin-profile/admin-profile.action.php/?act=delete_tmp_image",
+    //     type: 'post',
+    //     success: function(response){
+    //     },
+    //     error: function(response) {
+    //     }
+    // });
 });
 
 $(document).on("click","#saveProfile",function(){
@@ -46,13 +46,13 @@ $(document).on("click","#saveProfile",function(){
     if(check == 0){
         $("#alert_text").show();
         $("#alert_text").css("color","#1FAF1F");
-
         $("#alert_text").html("Profile updated");
+
         $.ajax({
-            url:"app/admin-side/admin-profile/admin-profile.action.php",
+            url: "app/admin-side/admin-profile/admin-profile.action.php",
+            type: "post",
             data:obj,
-            succsess:function(data){
-            },
+            succsess:function(data){ },
             error:function(data){
                 $("#alert_text").show();
                 $("#alert_text").html("Something went wrong try again");

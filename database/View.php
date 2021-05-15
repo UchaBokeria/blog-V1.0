@@ -96,16 +96,12 @@
     }
 
     public function about(){
-      $sql = "SELECT	    users.id,
-                          users.nickname,
-                          users.profile_pic,
-                          GROUP_CONCAT(roles.`name`) AS role,
-                          users.description AS `desc`
-                FROM 		  account_roles 
-                LEFT JOIN accounts AS users ON users.id = account_roles.user_id
-                LEFT JOIN role_details AS roles ON account_roles.role_id = roles.id
-                WHERE     users.activated = 1
-                GROUP BY  account_roles.user_id ";
+      $sql = "SELECT id,
+                    nickname,
+                    description,
+                    profile_pic
+              FROM accounts
+              WHERE  activated = 1";
       return $this->getAll($sql);
     }
 
@@ -137,14 +133,11 @@
       }
     }
 
-    public function getPostId($title){
-      
-      $param = array(["attr"=>$title,"type"=>PDO::PARAM_INT]);
-
-      $sql =" SELECT id
-              FROM posts
-              WHERE posts.title = ?";
-
-      return $this->get($sql,$param);
+    public function lastInsertId($table){
+      $param = array(["attr"=>$table,"type"=>PDO::PARAM_STR]);
+      $lastId = $this->getAll("SELECT MAX(id) AS LastID FROM posts ");
+      return $lastId[0]["LastID"];
     }
+
+    
   }

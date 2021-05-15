@@ -1,15 +1,7 @@
 var id = "empty";
-var img_arr = "";
+var img_arr = [];
 
 $(document).ready(function(){
-    // ES BUGS SHEQMNIS
-    // $.ajax({
-    //     url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
-    //     type:"post",
-    //     success: function(data){
-    //         console.log(img_arr);
-    //     }
-    // });
 });
 
 
@@ -350,7 +342,8 @@ $(document).on("click", ".save-button", function () {
             url:"app/admin-side/admin-home/admin-home.action.php/?act=edit_post_img",
             data:{test:img_arr,id:$(this).attr("id")},
             success: function (data) {
-                img_arr = "";
+                img_arr = null;
+                img_arr = [];
             }
         });
     }
@@ -358,7 +351,6 @@ $(document).on("click", ".save-button", function () {
 
 $(document).on("click", ".add-save-button", function () {
 
-    console.log("giorgi var bijo");
     param = new Object();
     param.act = "create_post";
     param.title = $("#new_title").val();
@@ -366,13 +358,13 @@ $(document).on("click", ".add-save-button", function () {
     //param.desc = $("#asd").val();
     param.status_id = $(".edit-post-type-select-new > #activated").attr("data-type");
     param.category_id = 1; // exhebition is 1, blog = 2
-    console.log(param.status_id);
-
+    var post_id = "";
     $.ajax({
         url: "app/admin-side/admin-home/admin-home.action.php",
         type: "POST",
         data: param,
         success: function (response) {
+            post_id = response.id;
             $("#edit-window").html("");
             $("#edit-window").hide();
 
@@ -388,9 +380,10 @@ $(document).on("click", ".add-save-button", function () {
     else {
         $.ajax({
             url:"app/admin-side/admin-home/admin-home.action.php/?act=add_post_img",
-            data:{test:img_arr,title:param.title},
+            data:{test:img_arr,title:param.title,id:post_id},
             success: function (data) {
-                img_arr = "";
+                img_arr = null;
+                img_arr = [];
             }
         });
     }
@@ -401,21 +394,15 @@ $(document).on("click", ".close-ajax-edit , .cancel-button", function () {
         url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
         data:{path:img_arr},
         success: function (data) {
+            img_arr = null;
+            img_arr = [];
             $("#edit-window").html("");
             $("#edit-window").hide();
         }
     });
 });
 $(document).ready(function () {
-    var img = img_arr;
-    $.ajax({
-        url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
-        data:{path:img},
-        success: function (data) {
-            $("#edit-window").html("");
-            $("#edit-window").hide();
-        }
-    });
+
 })
 $(document).on("click", ".show_more", function () {
     tmp = $(this).attr("data-id");
@@ -479,9 +466,7 @@ $(document).on("change","#post_file",function (){
             $(".images_output").append(data.content);
             $(".counter").html(data.count);
             param = new Object();
-            // param.tmp_file_names = JSON.stringify(data.tmp_upload);
-            img_arr = data.tmp_upload;
-            console.log("aq iqmneba img arr ->" + img_arr);
+            img_arr.push(data.tmp_upload);
         }
     });
 
@@ -491,7 +476,6 @@ $(document).on("click",".delete_image",function(){
     var del_id = $(this).attr("del-id");
     var dir = "";
     var where = $(this).attr('data-type');
-    console.log(where);
     if (where == 1) {
         dir = "../../../assets/uploads/" + $(this).attr('data-path');
     }

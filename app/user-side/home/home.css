@@ -4,14 +4,18 @@
 #exhibition h1{
   color: #252525;
   font-family: RobotoBold;
+  margin-bottom:3vh !important;
 }
 #exhibition p{
   font-size: 16px;
   color: #121212;
   font-family: RobotoLight;
 }
+.Title_home{
+  margin-bottom:3vh;
+}
 #slideImgActive{
-  display:block !important;
+  display:flex !important;
 }
 .home-Carousel-container{
   position: relative;
@@ -21,14 +25,17 @@
   height: 30vh;
 }
 .mySlides{
+  display: flex;
   float:left;
   width:100%;
   min-width:100%;
-  margin:0 10% 0 0;
+  margin:0 2% 0 0;
   height:30vh;
+  justify-content:center !important;
+  align-items: center !important;
 }
 .mySlides img{
-  width:100%;
+  width:auto;
   height:30vh;
 }
 .text{
@@ -42,6 +49,10 @@
   cursor: pointer;
   font-size: 5vw;
   background-color: white;
+  margin-top:2vh;
+}
+.text p{
+  font-size:4vw;
 }
 .see_more_height{
   height: auto !important;
@@ -109,6 +120,9 @@
   .text {
     background-color: transparent;
     /* background:linear-gradient(transparent 80%, black); */
+  }
+  .text h1{
+    font-size:1.2vw !important;
   }
   .mySlides{
     display: none;
