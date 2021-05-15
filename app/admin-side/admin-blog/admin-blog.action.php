@@ -109,7 +109,7 @@
                                         </div>
                                         <button class='blog_save-button' type='button' id='".$value['id']."'>speicher</button>
                                         <br>
-                                        <button class='cancel-button' type='button'>abbrechen</button>
+                                        <button class='blog_cancel-button' type='button'>abbrechen</button>
                                     </div>";
             }
             //echo $result["content"];
@@ -149,7 +149,7 @@
                                         </div>
                                         <button class='blog_add-save-button' type='button'>speicher</button>
                                         <br>
-                                        <button class='cancel-button' type='button'>abbrechen</button>
+                                        <button class='blog_cancel-button' type='button'>abbrechen</button>
                                     </div>";
             
             
@@ -234,41 +234,39 @@
             $id = $_REQUEST["id"];  
 
             for($i=0;$i!=count($dir);$i++){
-                rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
-                $set->addImage($dir[$i],$id);
+                for ($j=0; $j < count($dir[$i]); $j++) { 
+                    rename("../../../assets/uploads/tmp/".$dir[$i][$j],"../../../assets/uploads/".$dir[$i][$j]);
+                    $set->addImage($dir[$i][$j],$id);
+                }
             }
             break;
         case 'add_post_img':
-
             $dir = $_REQUEST["test"];
             $title = $_REQUEST["title"];
-            $id = $get->getPostId($title);
-            foreach($id as $value){
-                $new_id = $value['id'];
-            }
+            $new_id = $get->lastInsertId('posts');  
             for($i=0;$i!=count($dir);$i++){
-                rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
-                $set->addImage($dir[$i],$new_id);
+                for ($j=0; $j < count($dir[$i]); $j++) { 
+                    rename("../../../assets/uploads/tmp/".$dir[$i][$j],"../../../assets/uploads/".$dir[$i][$j]);
+                    $set->addImage($dir[$i][$j],$new_id);
+                }
             }
             break;
         case 'delete_image':
             $id = $_REQUEST["id"];
             $path = $_REQUEST["path"];
             $name = $_REQUEST["name"];
-            echo $path;
             unlink($path);
             if($id == 1){
-                echo 12;
                 $set->delImage($name);
             }
             break;
         case 'delete_tmp_folder':
-            $folder_path = "../../../assets/uploads/tmp";
-            $files = glob($folder_path.'/*'); 
-            foreach($files as $file) {
-                echo $files;
-                if(is_file($file)){
-                    unlink($file); 
+            $path = $_REQUEST["path"];
+        
+            for($i=0;$i!=count($path);$i++){
+                for ($j=0; $j < count($path[$i]); $j++) { 
+                    $dir = "../../../assets/uploads/tmp/".$path[$i][$j];
+                    unlink($dir); 
                 }
             }
         default:

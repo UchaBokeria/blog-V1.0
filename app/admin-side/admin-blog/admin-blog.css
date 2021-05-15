@@ -365,6 +365,9 @@
 }
 
 .ck .ck-editor strong{font-family: 'RobotoBold' !important;font:1vw  !important;}
+.ck .ck-content  h1{ display: block; font-size: 2em !important; }
+.ck .ck-content  h2{ display: block; font-size: 1.5em !important; }
+.ck .ck-content  h3{ display: block; font-size: 1.17em !important; }
 .ck .ck-editor b{font-family: 'RobotoBold' !important;font:1vw  !important;}
 .ck .ck-editor i{}
 .ck .ck-editor {

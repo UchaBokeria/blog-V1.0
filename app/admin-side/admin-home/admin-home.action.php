@@ -229,8 +229,10 @@
             $dir = $_REQUEST["test"];
             $id = $_REQUEST["id"];  
             for($i=0;$i!=count($dir);$i++){
-                rename("../../../assets/uploads/tmp/".$dir[$i],"../../../assets/uploads/".$dir[$i]);
-                $set->addImage($dir[$i],$id);
+                for ($j=0; $j < count($dir[$i]); $j++) { 
+                    rename("../../../assets/uploads/tmp/".$dir[$i][$j],"../../../assets/uploads/".$dir[$i][$j]);
+                    $set->addImage($dir[$i][$j],$id);
+                }
             }
             break;
         case 'add_post_img':
@@ -257,9 +259,9 @@
             break;
         case 'delete_tmp_folder':
             $path = $_REQUEST["path"];
-            
-            for($i=0;$i!=count($dir);$i++){
-                for ($j=0; $j < count($dir[$i]); $j++) { 
+        
+            for($i=0;$i!=count($path);$i++){
+                for ($j=0; $j < count($path[$i]); $j++) { 
                     $dir = "../../../assets/uploads/tmp/".$path[$i][$j];
                     unlink($dir); 
                 }

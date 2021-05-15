@@ -1,5 +1,5 @@
 var id = "empty";
-var blog_img_arr;
+var blog_img_arr = [];
 
 $(document).ready(function(){
 
@@ -335,13 +335,18 @@ $(document).on("click", ".blog_save-button", function () {
             setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
         }
     });    
-
-    $.ajax({
-        url:"app/admin-side/admin-blog/admin-blog.action.php/?act=edit_post_img",
-        data:{test:blog_img_arr,id:$(this).attr("id")},
-        success: function(data){
-        }
-    });
+    if (blog_img_arr == "" || blog_img_arr == null || blog_img_arr == undefined || blog_img_arr == false) {
+    }
+    else {
+        $.ajax({
+            url: "app/admin-side/admin-blog/admin-blog.action.php/?act=edit_post_img",
+            data: { test: blog_img_arr, id: $(this).attr("id") },
+            success: function (data) {
+                blog_img_arr = null;
+                blog_img_arr = [];
+            }
+        });
+    }
 });
 
 $(document).on("click", ".blog_add-save-button", function () {
@@ -366,24 +371,34 @@ $(document).on("click", ".blog_add-save-button", function () {
             loadAdminHtml("admin-blog");
             setTimeout(function () { $("#message").css("opacity", "0"); }, 2000);
         }
-    });    
-    $.ajax({
-        url:"app/admin-side/admin-blog/admin-blog.action.php/?act=add_post_img",
-        data:{test:blog_img_arr,title:param.title},
-        success: function(data){
-        }
     });
+    if (blog_img_arr == "" || blog_img_arr == null || blog_img_arr == undefined || blog_img_arr == false) {
+    }
+    else {
+        $.ajax({
+            url: "app/admin-side/admin-blog/admin-blog.action.php/?act=add_post_img",
+            data: { test: blog_img_arr, title: param.title },
+            success: function (data) {
+                blog_img_arr = null;
+                blog_img_arr = [];
+            }
+        });
+    }
 });
 
-$(document).on("click", ".blog_close-ajax-edit,.cancel-button", function () {
-    $("#blog_edit-window").html("");
-    $("#blog_edit-window").hide();
-    $.ajax({
-        url:"app/admin-side/admin-blog/admin-blog.action.php/?act=delete_tmp_folder",
-        type:"post",
-        success: function(data){
-        }
-    });
+$(document).on("click", ".blog_close-ajax-edit,.blog_cancel-button", function () {
+        $.ajax({
+            url: "app/admin-side/admin-blog/admin-blog.action.php/?act=delete_tmp_folder",
+            data:{path:blog_img_arr},
+            type: "post",
+            success: function (data) {
+                blog_img_arr = null;
+                blog_img_arr = [];
+                $("#blog_edit-window").html("");
+                $("#blog_edit-window").hide();
+            }
+        });
+    
 });
 
 $(document).on("click", ".blog_show_more", function () {
@@ -449,7 +464,7 @@ $(document).on("change","#blog_post_file",function (){
             $(".blog_counter").html(data.count);
             param = new Object();
             // param.tmp_file_names = JSON.stringify(data.tmp_upload);
-            blog_img_arr = data.tmp_upload;
+            blog_img_arr.push(data.tmp_upload);
         }
     });
 

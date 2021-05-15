@@ -382,11 +382,11 @@ $(document).on("click", ".add-save-button", function () {
             url:"app/admin-side/admin-home/admin-home.action.php/?act=add_post_img",
             data:{test:img_arr,title:param.title,id:post_id},
             success: function (data) {
-                img_arr = null;
-                img_arr = [];
             }
         });
     }
+    img_arr = null;
+    img_arr = [];
 });
 
 $(document).on("click", ".close-ajax-edit , .cancel-button", function () {
@@ -394,12 +394,12 @@ $(document).on("click", ".close-ajax-edit , .cancel-button", function () {
         url:"app/admin-side/admin-home/admin-home.action.php/?act=delete_tmp_folder",
         data:{path:img_arr},
         success: function (data) {
-            img_arr = null;
-            img_arr = [];
             $("#edit-window").html("");
             $("#edit-window").hide();
         }
     });
+    img_arr = null;
+    img_arr = [];
 });
 $(document).ready(function () {
 

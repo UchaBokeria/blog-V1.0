@@ -32,7 +32,7 @@
                         <div class="left-side-content">
                             <input type="hidden" name="id" id="id" value="'.$value["id"].'">
 
-                            <div class="upload_image">
+                            <div class="upload_image" style="display:none;">
                                 <div class="upload_form">                                
                                     <input type="file" id="file" name="file" />
                                     <label for="file"><img src="assets/images/upload.png"></label>

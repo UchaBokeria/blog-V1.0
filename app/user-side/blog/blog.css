@@ -194,6 +194,9 @@
   bottom:0;
 }
 
+#detail_body h1{ display: block; font-size: 2em !important; }
+#detail_body h2{ display: block; font-size: 1.5em !important; }
+#detail_body h3{ display: block; font-size: 1.17em !important; }
 /* @media only screen and (min-width:500){
   .user-info{
     background-color: green;

@@ -28,5 +28,11 @@ $(document).on("click",".home-Carousel-container .prevBut",function(){
 
 $(document).on("click",".see_more",function(){
     var post_id = $(this).attr("see-id");
+    if ($(".text[see-id = "+ post_id +"] > .see_more[see-id = "+ post_id +"]").html() == "weniger ekifa...") 
+        $(".text[see-id = " + post_id + "] > .see_more[see-id = "+ post_id +"]").html("mehr...");
+    else 
+        $(".text[see-id = " + post_id + "] > .see_more[see-id = "+ post_id +"]").html("weniger ekifa...");
+        
+    
     $(".text[see-id = "+ post_id +"]").toggleClass("see_more_height");
 });

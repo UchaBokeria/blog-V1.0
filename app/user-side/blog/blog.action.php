@@ -16,7 +16,6 @@
             $res = $get->posts(2); // 2 means blog sections posts
             foreach ($res as $value) {
                 $res_images = explode(",",$value["path"]);
-        
                 $count  = count($res_images);
                 $result["content"] .= ' 
                             <div class="blogs-boxes" style="margin-bottom:8vh;" slide-id="'.$value["id"].'">
@@ -27,16 +26,20 @@
                                 </div>
         
                                 <div class="Carousel-container">'; 
-        
-                for($i = 0; $i != $count;$i++){
-                    $result["content"] .= '<img src="assets/uploads/'.$res_images[$i].'" class="mySlides" slide-id="'.$value["id"].'" data-id="'.$i.'">';
+                if($count < 2 && $res_images[0] == ""){
+                    $result["content"] .= '<img src="assets/uploads/logo.png"  class="mySlides" slide-id="'.$value["id"].'" data-id="'.$i.'">';
+                }
+                else{
+                    for($i = 0; $i != $count;$i++){
+                        $result["content"] .= '<img src="assets/uploads/'.$res_images[$i].'" class="mySlides" slide-id="'.$value["id"].'" data-id="'.$i.'">';
+                    }
+                    $result["content"] .= ' <button class="w3-black w3-display-right nextBut" slide-id="'.$value["id"].'">&#10095;</button>
+                                            <button class="w3-black w3-display-left prevBut"  slide-id="'.$value["id"].'">&#10094;</button>';
                 }
         
                 $result["content"] .= 
                                 '
-                                <button class="w3-black w3-display-right nextBut" slide-id="'.$value["id"].'">&#10095;</button>
-                                <button class="w3-black w3-display-left prevBut"  slide-id="'.$value["id"].'">&#10094;</button>
-        
+
                                 </div>
                                 
                                 <!-- <div class="blog_text" see-id='.$value["id"].'>
