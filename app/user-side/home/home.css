@@ -1,6 +1,7 @@
 #exhibition{
   margin-bottom: 5vh;
 }
+
 #exhibition h1{
   color: #252525;
   font-family: RobotoBold;
@@ -49,15 +50,9 @@
   overflow:hidden;
   word-wrap: break-word;
 }
-.text h1{ display: block; font-size: 5em !important; }
-.text h2{ display: block; font-size: 4em !important; }
-.text h3{ display: block; font-size: 3em !important; }
-.see_more{
-  font-size:5vw !important;
-  cursor: pointer;
-  background-color: white;
-  margin-top:2vh;
-}
+.text h1{ font-size: 5em !important; }
+.text h2{ font-size: 4em !important; }
+.text h3{ font-size: 3em !important; }
 .text p{
   font-size:4vw;
 }
@@ -72,6 +67,13 @@
   display: none;
 }
   
+.text > h1.see_more{ font-size: 4em !important; }
+.see_more{
+  font-size:4em !important;
+  cursor: pointer;
+  background-color: white;
+  margin-top:2vh;
+}
 /* .rotateLeft{
   transform: rotate(90deg);
 }
@@ -133,11 +135,13 @@
   .text h1{ display: block; font-size: 2em !important; }
   .text h2{ display: block; font-size: 1.5em !important; }
   .text h3{ display: block; font-size: 1.17em !important; }
+  .text > h1.see_more{ font-size: 1em !important; }
   .see_more{
-    font-size:5vw !important;
+    font-size:4em !important;
     cursor: pointer;
     background-color: white;
-    margin-top:2}
+    margin-top:2vh;
+  }
   .text h1{
     font-size:1.2vw !important;
   }

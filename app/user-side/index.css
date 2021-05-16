@@ -9,7 +9,7 @@
     position:relative;
     font-family: RobotoBold;
 }
-#menu img,
+#menu > #logo,
 #menu div{
     position:absolute;
     z-index:1;

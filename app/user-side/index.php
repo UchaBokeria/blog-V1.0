@@ -1,7 +1,7 @@
 <div id="menu">
   <img src="assets/images/logo.jpeg" id="logo" data-page="home" style="border:0 !important;">
-    <p id="page-titlee">Ausstellung</p>
-    <div class="glyphicon glyphicon-menu-hamburger toggle-navigation"></div>
+  <p id="page-titlee">Ausstellung</p>
+  <div class="glyphicon glyphicon-menu-hamburger toggle-navigation"></div>
 </div>
 
 <div class="web-menu">

@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="text see_more_height" see-id='.$value["id"].'>
-                            <h1 class="see_more " see-id='.$value["id"].'>weniger...</h1>
+                            <h1 class="see_more" see-id='.$value["id"].'>weniger...</h1>
                             <br>
                             <p>' . htmlspecialchars_decode($value["desc"]) . '</p>
                         </div>
