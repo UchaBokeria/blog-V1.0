@@ -9,10 +9,17 @@
     // private $DBport = "3306";
 
     // // // SO THIS IS VULVENTEMPEL HOSTINGER CONF NEW!!!!
+    // private $DBhost = "nl-srv-web447.main-hosting.eu";
+    // private $DBuser = "u205928446_WacheDesTemp";
+    // private $DBpwd = 'MsDZ1G#AF1sA$as1';
+    // private $DBname = "u205928446_Blog";
+    // private $DBport = "3306";
+
+    // // // FOR TESTING VULVENTEMPEL HOSTINGER CONF NEW!!!!
     private $DBhost = "nl-srv-web447.main-hosting.eu";
-    private $DBuser = "u205928446_WacheDesTemp";
+    private $DBuser = "u205928446_test";
     private $DBpwd = 'MsDZ1G#AF1sA$as1';
-    private $DBname = "u205928446_Blog";
+    private $DBname = "u205928446_Testing_space";
     private $DBport = "3306";
 
     protected function connect()
