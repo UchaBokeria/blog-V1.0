@@ -42,14 +42,16 @@
 
                                 </div>
                                 
-                                <!-- <div class="blog_text" see-id='.$value["id"].'>
-                                    <h2 class="blog_see_more" see-id='.$value["id"].' style="display:none;">mehr...</h2>
-                                    <p>' . htmlspecialchars_decode($value["desc"]) . '</p>
-                                </div> -->
-                                <div class="text">
+                                <div class="blog_text" see-id='.$value["id"].'>
+                                    <p>' . htmlspecialchars_decode($value["body"]) . '</p>
+                                </div> 
+                                <h2 class="blog_see_more" see-id='.$value["id"].' >mehr...</h2>
+                                
+                                <!-- <div class="text">
                                     <h3 style="cursor:text;color:#575757;margin-bottom:2vh;" data-id="'.$value["id"].'" data-title="'.$value["title"].'" data-html-id="'.$value["id"].'">'.$value["title"].'</h3>
                                     <h1 style="cursor:pointer" data-id="'.$value["id"].'" data-title="'.$value["title"].'" data-html-id="'.$value["id"].'">Mehr sehen</h1>
-                                </div>
+                                </div> -->
+
                                 <hr style="border-bottom:1px solid #C4C4C4; margin:1vh 0;">
                             </div>';
             }

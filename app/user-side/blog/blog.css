@@ -47,7 +47,6 @@
 
 .blog_text{
   width: 100%;
-  display:none;
   height:10vh;
   letter-spacing: 1px;
   font-size:1.2vw;
@@ -56,17 +55,22 @@
   word-wrap: break-word;
 }
 .blog_text p {
+  color: black;
   line-height:1.2;
 }
-.blog_text h1{
-  cursor: pointer;
+.blog_text h2{
   font-size: 5vw;
   background-color: white;
+  cursor: pointer !important;
 }
 .blog_see_more_height{
   height: auto !important;
 }
-
+.blog_see_more{
+  margin-top:2vh;
+  cursor: pointer;
+  color: rgb(143, 143, 143);
+}
 
 /* .rotateLeft{
   transform: rotate(90deg);

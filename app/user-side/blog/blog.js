@@ -34,10 +34,16 @@ $(document).on("click",".Carousel-container .nextBut",function(){
 });
 
 // // // description dropdown version
-// $(document).on("click",".blog_see_more",function(){
-//     var post_id = $(this).attr("see-id");
-//     $(".blog_text[see-id = "+ post_id +"]").toggleClass("blog_see_more_height");
-// });
+$(document).on("click",".blog_see_more",function(){
+    var post_id = $(this).attr("see-id");
+
+    if ($(".blogs-boxes[slide-id = "+ post_id +"] > .blog_see_more[see-id = "+ post_id +"]").html() == "weniger...") 
+        $(".blogs-boxes[slide-id = " + post_id + "] > .blog_see_more[see-id = "+ post_id +"]").html("mehr...");
+    else 
+        $(".blogs-boxes[slide-id = " + post_id + "] > .blog_see_more[see-id = "+ post_id +"]").html("weniger...");
+        
+    $(".blog_text[see-id = "+ post_id +"]").toggleClass("blog_see_more_height");
+});
 
 
 // show up blog post pop up

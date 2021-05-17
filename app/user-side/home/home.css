@@ -66,13 +66,12 @@
 .nextBut,.prevBut{
   display: none;
 }
-  
-.text > h1.see_more{ font-size: 4em !important; }
 .see_more{
-  font-size:4em !important;
+  font-size:4vw !important;
   cursor: pointer;
   background-color: white;
   margin-top:2vh;
+  color: rgb(143, 143, 143);
 }
 /* .rotateLeft{
   transform: rotate(90deg);
@@ -127,7 +126,7 @@
     background-color: #e6e6e6;
   }
   .text {
-    
+    user-select:text;
     background-color: transparent;
     /* background:linear-gradient(transparent 80%, black); */
   }
@@ -137,10 +136,11 @@
   .text h3{ display: block; font-size: 1.17em !important; }
   .text > h1.see_more{ font-size: 1em !important; }
   .see_more{
-    font-size:4em !important;
+    font-size:1vw !important;
     cursor: pointer;
     background-color: white;
     margin-top:2vh;
+    color: rgb(143, 143, 143);
   }
   .text h1{
     font-size:1.2vw !important;
