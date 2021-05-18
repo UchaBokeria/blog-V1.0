@@ -21,7 +21,6 @@
                             <div class="blogs-boxes" style="margin-bottom:8vh;" slide-id="'.$value["id"].'">
                                 <div class="user-info">
                                     <h1>' . $value["nickname"] . '</h1>
-                                    <br>
                                     <p>'.$value["createdAt"].'</p>
                                 </div>
         
