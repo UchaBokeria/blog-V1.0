@@ -67,11 +67,6 @@
   line-height:1.2;
   font-size:4vw;
 }
-.blog_text h2{
-  font-size: 5vw;
-  background-color: white;
-  cursor: pointer !important;
-}
 .blog_see_more_height{
   height: auto !important;
 }
@@ -115,6 +110,12 @@
 
 
 @media only screen and (min-width:1025px){
+  .blog_text p {
+    font-size:1vw;
+  }
+  .blog_see_more{
+    font-size: 1vw;
+  }
   .user-info{
     display: flex;
     flex-direction: column;
